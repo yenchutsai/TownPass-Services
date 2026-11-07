@@ -5,8 +5,8 @@ import TaipeiMap from '@/components/organisms/TaipeiMap.vue';
 
 const activeTab = ref(1);
 const tabList = [
-  { id: 1, title: '申辦' },
-  { id: 2, title: '台北地圖' }
+  { id: 1, title: '資訊' },
+  { id: 2, title: '生活地圖' }
 ];
 </script>
 

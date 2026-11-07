@@ -171,7 +171,7 @@ onBeforeUnmount(() => {
 <template>
   <section class="taipei-map" aria-labelledby="taipei-map-title">
     <header class="map-heading">
-      <h1 id="taipei-map-title">台北地圖</h1>
+      <h1 id="taipei-map-title">生活地圖</h1>
       <select
         class="district-select"
         aria-label="選擇行政區"
