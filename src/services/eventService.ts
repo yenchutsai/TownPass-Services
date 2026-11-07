@@ -160,12 +160,23 @@ export async function fetchBolaEvents(): Promise<{
   data: BolaEventsFeedData;
   isFallback: boolean;
 }> {
-  const urlsToTry = [DEV_PROXY_URL, BOLA_RSS_URL];
+  // Resilient multi-tier strategy for both dev server and static deployments:
+  // 1. Local Vite dev proxy (/api/bola-events)
+  // 2. Direct government URL (works in SSR, Electron, or environments without browser CORS)
+  // 3. Public CORS proxies (works in static sites like GitHub Pages without a backend)
+  const urlsToTry = [
+    DEV_PROXY_URL,
+    BOLA_RSS_URL,
+    `https://api.allorigins.win/raw?url=${encodeURIComponent(BOLA_RSS_URL)}`,
+    `https://corsproxy.io/?url=${encodeURIComponent(BOLA_RSS_URL)}`
+  ];
 
   for (const url of urlsToTry) {
     try {
       const response = await fetch(url, {
-        headers: { Accept: 'application/rss+xml, application/xml, text/xml, */*' }
+        headers: {
+          Accept: 'application/rss+xml, application/xml, text/xml, */*'
+        }
       });
       if (response.ok) {
         const text = await response.text();
@@ -175,7 +186,7 @@ export async function fetchBolaEvents(): Promise<{
         }
       }
     } catch {
-      // Continue to next or fallback
+      // Continue to next tier
     }
   }
 
