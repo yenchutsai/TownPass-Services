@@ -1,12 +1,29 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, ref } from 'vue';
+import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
 import * as L from 'leaflet';
 import type { Feature, FeatureCollection, Polygon } from 'geojson';
 import 'leaflet/dist/leaflet.css';
 import districtData from '@/data/taipei-districts.json';
+import type { LivingMapSpot } from '@/interfaces/living-map.interface';
 
 type DistrictProperties = { code: string; town: string };
 type DistrictFeature = Feature<Polygon, DistrictProperties>;
+
+const props = withDefaults(
+  defineProps<{
+    spots?: LivingMapSpot[];
+    selectedSpotId?: string;
+  }>(),
+  {
+    spots: () => [],
+    selectedSpotId: ''
+  }
+);
+
+const emit = defineEmits<{
+  'select-spot': [spot: LivingMapSpot];
+  'visible-spots-change': [spots: LivingMapSpot[]];
+}>();
 
 const districts = districtData as FeatureCollection<Polygon, DistrictProperties>;
 const mapElement = ref<HTMLDivElement>();
@@ -20,8 +37,12 @@ const tileError = ref(false);
 let map: L.Map | undefined;
 let boundaries: L.GeoJSON | undefined;
 let positionMarker: L.CircleMarker | undefined;
+let spotLayer: L.LayerGroup | undefined;
+const spotMarkers = new Map<string, L.CircleMarker>();
 let resizeObserver: ResizeObserver | undefined;
 let disposed = false;
+
+const maxVisibleMarkers = 350;
 
 const normalStyle = { color: '#2994a3', weight: 1.5, fillColor: '#2eb6c7', fillOpacity: 0.035 };
 const activeStyle = { color: '#087c8d', weight: 2.5, fillColor: '#2eb6c7', fillOpacity: 0.18 };
@@ -50,6 +71,57 @@ function resetView() {
   locationMessage.value = '';
   selectDistrict('');
 }
+
+function validSpot(spot: LivingMapSpot) {
+  return Number.isFinite(spot.lat) && Number.isFinite(spot.lng) && spot.lat !== 0 && spot.lng !== 0;
+}
+
+function refreshSpotMarkers() {
+  if (!map || !spotLayer) return;
+
+  spotLayer.clearLayers();
+  spotMarkers.clear();
+
+  const bounds = map.getBounds();
+  const visibleSpots = props.spots
+    .filter(validSpot)
+    .filter((spot) => bounds.contains([spot.lat, spot.lng]))
+    .slice(0, maxVisibleMarkers);
+
+  visibleSpots.forEach((spot) => {
+    const selected = spot.id === props.selectedSpotId;
+    const muslimFriendly = spot.categoryId.startsWith('muslim-');
+    const spotMarker = L.circleMarker([spot.lat, spot.lng], {
+      radius: selected ? 9 : 7,
+      color: '#fff',
+      weight: selected ? 3 : 2,
+      fillColor: selected ? '#e5782c' : muslimFriendly ? '#7b5ab6' : '#1596a5',
+      fillOpacity: 0.95
+    }).addTo(spotLayer!);
+
+    const tooltip = document.createElement('span');
+    tooltip.textContent = spot.name;
+    spotMarker.bindTooltip(tooltip, { direction: 'top', offset: [0, -7] });
+    spotMarker.on('click', () => emit('select-spot', spot));
+    spotMarkers.set(spot.id, spotMarker);
+  });
+
+  emit('visible-spots-change', visibleSpots);
+}
+
+function focusSpot(spot: LivingMapSpot) {
+  if (!map || !validSpot(spot)) return;
+  map.setView([spot.lat, spot.lng], Math.max(map.getZoom(), 16));
+  refreshSpotMarkers();
+  spotMarkers.get(spot.id)?.openTooltip();
+}
+
+defineExpose({ focusSpot });
+
+watch(
+  () => [props.spots, props.selectedSpotId] as const,
+  () => refreshSpotMarkers()
+);
 
 function isInTaipei(latitude: number, longitude: number) {
   return districts.features.some((feature) => {
@@ -141,6 +213,9 @@ onMounted(() => {
     }
   }).addTo(map);
 
+  spotLayer = L.layerGroup().addTo(map);
+  map.on('moveend', refreshSpotMarkers);
+
   // Keep the mask below district outlines without reordering uninitialized paths.
   const maskPane = map.createPane('taipei-mask');
   maskPane.style.zIndex = '350';
@@ -165,6 +240,7 @@ onMounted(() => {
     .zoom({ position: 'bottomright', zoomInTitle: '放大地圖', zoomOutTitle: '縮小地圖' })
     .addTo(map);
   resetView();
+  refreshSpotMarkers();
   resizeObserver = new ResizeObserver(() => map?.invalidateSize());
   resizeObserver.observe(mapElement.value);
 });
@@ -172,8 +248,10 @@ onMounted(() => {
 onBeforeUnmount(() => {
   disposed = true;
   resizeObserver?.disconnect();
+  spotMarkers.clear();
   map?.remove();
   map = undefined;
+  spotLayer = undefined;
 });
 </script>
 
