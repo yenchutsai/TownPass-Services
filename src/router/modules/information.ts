@@ -12,6 +12,18 @@ const informationRoutes: RouteRecordRaw[] = [
         name: 'phone',
         component: () => import('@/views/infopage/PhoneView.vue'),
         meta: { title: '電話' }
+      },
+      {
+        path: 'line',
+        name: 'line',
+        component: () => import('@/views/infopage/LineView.vue'),
+        meta: { title: 'LINE' }
+      },
+      {
+        path: 'facebook',
+        name: 'facebook',
+        component: () => import('@/views/infopage/FacebookView.vue'),
+        meta: { title: 'Facebook' }
       }
     ]
   }

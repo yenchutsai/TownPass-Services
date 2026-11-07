@@ -4,9 +4,19 @@ import { RouterLink, RouterView } from 'vue-router';
 import phoneIcon from '@/assets/images/icon_tel.svg';
 import placeholderIcon from '@/assets/images/info-icon-grey.svg';
 
-const informationItems = [
-  { id: 'phone', title: '電話', image: phoneIcon, pending: false },
-  ...Array.from({ length: 7 }, (_, index) => ({
+type InformationItem = {
+  id: string;
+  title: string;
+  image: string;
+  pending: boolean;
+  routeName?: string;
+};
+
+const informationItems: InformationItem[] = [
+  { id: 'phone', title: '電話', image: phoneIcon, pending: false, routeName: 'phone' },
+  { id: 'line', title: 'LINE', image: '', pending: false, routeName: 'line' },
+  { id: 'facebook', title: 'Facebook', image: '', pending: false, routeName: 'facebook' },
+  ...Array.from({ length: 5 }, (_, index) => ({
     id: `pending-${index + 1}`,
     title: '待定',
     image: placeholderIcon,
@@ -27,12 +37,16 @@ const informationItems = [
           :class="{ 'information-item--pending': item.pending }"
         >
           <component
-            :is="item.id === 'phone' ? RouterLink : 'div'"
-            :to="item.id === 'phone' ? { name: 'phone' } : undefined"
+            :is="item.routeName ? RouterLink : 'div'"
+            :to="item.routeName ? { name: item.routeName } : undefined"
             class="information-row"
           >
             <div class="information-image">
-              <img :src="item.image" alt="" width="32" height="32" />
+              <span v-if="item.id === 'line'" class="line-icon" aria-hidden="true">LINE</span>
+              <span v-else-if="item.id === 'facebook'" class="facebook-icon" aria-hidden="true"
+                >f</span
+              >
+              <img v-else :src="item.image" alt="" width="32" height="32" />
             </div>
             <p class="information-title" :title="item.title">{{ item.title }}</p>
           </component>
@@ -97,6 +111,28 @@ a.information-row:hover {
   width: 32px;
   height: 32px;
   object-fit: contain;
+}
+
+.line-icon,
+.facebook-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  color: #fff;
+  font-weight: 700;
+}
+
+.line-icon {
+  background: #06c755;
+  font-size: 12px;
+}
+
+.facebook-icon {
+  background: #1877f2;
+  font-size: 28px;
 }
 
 .information-title {
