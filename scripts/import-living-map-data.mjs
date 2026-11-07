@@ -41,11 +41,22 @@ function parseCsv(text) {
 }
 
 function clean(value) {
-  return value.replace(/^\uFEFF/, '').replace(/[\t\r\n]+/g, ' ').replace(/\s+/g, ' ').trim();
+  return value
+    .replace(/^\uFEFF/, '')
+    .replace(/[\t\r\n]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 function validCoordinates(lat, lng) {
-  return Number.isFinite(lat) && Number.isFinite(lng) && lat > 24.8 && lat < 25.3 && lng > 121.3 && lng < 121.8;
+  return (
+    Number.isFinite(lat) &&
+    Number.isFinite(lng) &&
+    lat > 24.8 &&
+    lat < 25.3 &&
+    lng > 121.3 &&
+    lng < 121.8
+  );
 }
 
 function hospitalName(value) {
@@ -75,7 +86,9 @@ const smokingAreas = smokingRows.flatMap((row, index) => {
       relativeLocation: row['相對位置'],
       manager: row['管理單位'],
       phone: row['管理單位電話'],
-      note: row['備註']
+      note: row['備註'],
+      sourceTitle: '臺北市資料大平臺－臺北市指定吸菸區',
+      sourceUrl: 'https://data.taipei/dataset/detail?id=8b2fcdeb-d14b-46c4-92d8-66ad07b96a91'
     }
   ];
 });
@@ -97,7 +110,9 @@ const aedPlaces = aedRows.flatMap((row, index) => {
       location: row['AED放置地點'],
       description: row['AED地點描述'],
       hours: row['開放使用時間備註'],
-      phone: row['開放時間緊急連絡電話']
+      phone: row['開放時間緊急連絡電話'],
+      sourceTitle: '政府資料開放平臺－AED位置資訊',
+      sourceUrl: 'https://data.gov.tw/dataset/12063'
     }
   ];
 });
@@ -114,7 +129,9 @@ const hospitals = hospitalRows.flatMap((row, index) => {
       name: hospitalName(row['機構名稱']),
       address: row['地址'],
       lat,
-      lng
+      lng,
+      sourceTitle: '臺北市政府衛生局－臺北市醫院清冊',
+      sourceUrl: 'https://data.gov.tw/dataset/121182'
     }
   ];
 });
@@ -124,5 +141,9 @@ writeJson('aed_taipei.json', aedPlaces);
 writeJson('taipei_hospitals.json', hospitals);
 
 console.log(
-  JSON.stringify({ smokingAreas: smokingAreas.length, aedPlaces: aedPlaces.length, hospitals: hospitals.length })
+  JSON.stringify({
+    smokingAreas: smokingAreas.length,
+    aedPlaces: aedPlaces.length,
+    hospitals: hospitals.length
+  })
 );

@@ -130,6 +130,11 @@
             {
               "title": "緊急聯絡電話",
               "value_field": "phone"
+            },
+            {
+              "title": "資料來源",
+              "value_field": "sourceTitle",
+              "url_field": "sourceUrl"
             }
           ]
         }
@@ -179,6 +184,11 @@
             {
               "title": "備註",
               "value_field": "note"
+            },
+            {
+              "title": "資料來源",
+              "value_field": "sourceTitle",
+              "url_field": "sourceUrl"
             }
           ]
         },
@@ -198,7 +208,14 @@
             "address": "address",
             "lat": "lat",
             "lng": "lng"
-          }
+          },
+          "service_infos": [
+            {
+              "title": "資料來源",
+              "value_field": "sourceTitle",
+              "url_field": "sourceUrl"
+            }
+          ]
         }
       ]
     }

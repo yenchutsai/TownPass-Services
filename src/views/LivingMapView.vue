@@ -15,6 +15,7 @@ interface ValueFieldConfig {
 interface ServiceInfoConfig {
   title: string;
   value_field?: string;
+  url_field?: string;
   value_fields?: ValueFieldConfig[];
 }
 
@@ -150,7 +151,8 @@ function mapServiceInfo(item: unknown, configs: ServiceInfoConfig[] = []): Livin
     }
 
     const value = stringifyValue(getNestedValue(item, config.value_field ?? ''));
-    return value ? [{ label: config.title, value }] : [];
+    const url = stringifyValue(getNestedValue(item, config.url_field ?? ''));
+    return value ? [{ label: config.title, value, ...(url ? { url } : {}) }] : [];
   });
 }
 
@@ -340,7 +342,7 @@ function updateViewport(viewport: { center: MapCenter; spots: LivingMapSpot[] })
 }
 
 function googleMapsUrl(spot: LivingMapSpot) {
-  const query = spot.address || `${spot.lat},${spot.lng}`;
+  const query = [spot.name, spot.address].filter(Boolean).join(' ') || `${spot.lat},${spot.lng}`;
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }
 
