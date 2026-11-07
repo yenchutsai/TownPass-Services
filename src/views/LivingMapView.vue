@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onErrorCaptured, ref, watch } from 'vue';
+import { onErrorCaptured, ref, watch } from 'vue';
 import TaipeiMap from '@/components/organisms/TaipeiMap.vue';
 import placeListJson from '../../public/mock/place_list.json';
 import muslimFriendlyPlacesJson from '@/data/muslim-friendly-places.json';
@@ -95,21 +95,11 @@ const serviceGroups: ServiceGroup[] = [
 ];
 
 const mapFailed = ref(false);
-const loading = ref(false);
-const loadError = ref('');
 const selectedServiceId = ref('muslim-prayer-room');
 const spots = ref<LivingMapSpot[]>([]);
-const visibleSpots = ref<LivingMapSpot[]>([]);
 const selectedSpot = ref<LivingMapSpot | null>(null);
-const mapRef = ref<InstanceType<typeof TaipeiMap>>();
 const spotCache = new Map<string, LivingMapSpot[]>();
 let latestLoadRequest = 0;
-
-const selectedService = computed(() =>
-  serviceGroups
-    .flatMap((group) => group.services)
-    .find((service) => service.id === selectedServiceId.value)
-);
 
 function getNestedValue(source: unknown, path: string): unknown {
   if (!path) return source;
@@ -202,10 +192,7 @@ function buildMuslimPrayerRoomSpots(): LivingMapSpot[] {
 async function loadSelectedService() {
   const serviceId = selectedServiceId.value;
   const loadRequest = ++latestLoadRequest;
-  loading.value = true;
-  loadError.value = '';
   selectedSpot.value = null;
-  visibleSpots.value = [];
 
   try {
     const cached = spotCache.get(serviceId);
@@ -253,15 +240,11 @@ async function loadSelectedService() {
     if (loadRequest !== latestLoadRequest) return;
     console.error('Unable to load living map places:', error);
     spots.value = [];
-    loadError.value = '暫時無法載入地點資料，請稍後再試。';
-  } finally {
-    if (loadRequest === latestLoadRequest) loading.value = false;
   }
 }
 
-function selectSpot(spot: LivingMapSpot, focus = false) {
+function selectSpot(spot: LivingMapSpot) {
   selectedSpot.value = spot;
-  if (focus) mapRef.value?.focusSpot(spot);
 }
 
 watch(selectedServiceId, loadSelectedService, { immediate: true });
@@ -275,65 +258,16 @@ onErrorCaptured((error) => {
 
 <template>
   <section class="living-map-view" aria-label="生活地圖">
-    <aside class="place-panel" aria-label="找地點">
-      <div class="panel-heading">
-        <p class="panel-eyebrow">找地點</p>
-        <h1>選擇生活服務地圖</h1>
-      </div>
-
+    <header class="map-toolbar">
       <label class="service-label" for="living-map-service">服務類型</label>
       <select id="living-map-service" v-model="selectedServiceId" class="service-select">
-        <optgroup
-          v-for="group in serviceGroups"
-          :key="group.name"
-          :label="group.featured ? `☪ ${group.name}` : group.name"
-        >
+        <optgroup v-for="group in serviceGroups" :key="group.name" :label="group.name">
           <option v-for="service in group.services" :key="service.id" :value="service.id">
             {{ service.name }}
           </option>
         </optgroup>
       </select>
-
-      <div v-if="selectedServiceId.startsWith('muslim-')" class="muslim-group-note">
-        <span class="muslim-group-icon" aria-hidden="true">☪</span>
-        <div>
-          <strong>
-            {{ selectedServiceId === 'muslim-prayer-room' ? '穆斯林祈禱室地圖' : '穆斯林友善專區' }}
-          </strong>
-          <p v-if="selectedServiceId === 'muslim-prayer-room'">
-            收錄交通部觀光署臺北市穆斯林友善環境清單，並合併重複據點；開放時間與入場方式請於出發前向場館確認。
-          </p>
-          <p v-else>集中顯示臺北市友善店家清冊中標示為穆斯林友善的地點。</p>
-        </div>
-      </div>
-
-      <div class="result-heading" aria-live="polite">
-        <div>
-          <strong>{{ selectedService?.name }}</strong>
-          <p>{{ selectedService?.agency }}</p>
-        </div>
-        <span>{{ loading ? '載入中' : `${visibleSpots.length}/${spots.length} 筆` }}</span>
-      </div>
-
-      <p v-if="loadError" class="load-message" role="alert">{{ loadError }}</p>
-      <p v-else-if="!loading && !visibleSpots.length" class="load-message">
-        目前地圖範圍內沒有地點，請移動或縮放地圖。
-      </p>
-
-      <ul v-else class="spot-list" aria-label="目前地圖範圍內的地點">
-        <li v-for="spot in visibleSpots" :key="spot.id">
-          <button
-            type="button"
-            class="spot-list-button"
-            :class="{ 'spot-list-button--active': selectedSpot?.id === spot.id }"
-            @click="selectSpot(spot, true)"
-          >
-            <strong>{{ spot.name }}</strong>
-            <span>{{ spot.address || spot.area }}</span>
-          </button>
-        </li>
-      </ul>
-    </aside>
+    </header>
 
     <div class="map-column">
       <div v-if="mapFailed" class="map-error" role="alert">
@@ -342,37 +276,10 @@ onErrorCaptured((error) => {
       </div>
       <TaipeiMap
         v-else
-        ref="mapRef"
         :spots="spots"
         :selected-spot-id="selectedSpot?.id"
         @select-spot="selectSpot"
-        @visible-spots-change="visibleSpots = $event"
       />
-
-      <article v-if="selectedSpot" class="spot-detail" aria-live="polite">
-        <button
-          type="button"
-          class="detail-close"
-          aria-label="關閉地點詳情"
-          @click="selectedSpot = null"
-        >
-          ×
-        </button>
-        <p class="detail-category">{{ selectedSpot.categoryName }}</p>
-        <h2>{{ selectedSpot.name }}</h2>
-        <p class="detail-address">{{ selectedSpot.address }}</p>
-        <dl v-if="selectedSpot.info?.length" class="detail-info">
-          <template v-for="info in selectedSpot.info" :key="`${info.label}-${info.value}`">
-            <dt>{{ info.label }}</dt>
-            <dd>
-              <a v-if="info.url" :href="info.url" target="_blank" rel="noopener noreferrer">
-                {{ info.value }}
-              </a>
-              <span v-else>{{ info.value }}</span>
-            </dd>
-          </template>
-        </dl>
-      </article>
     </div>
   </section>
 </template>
@@ -521,11 +428,7 @@ onErrorCaptured((error) => {
   min-width: 0;
   padding: 20px;
 }
-.map-column :deep(.taipei-map) {
-  max-width: none;
-  padding: 0;
-}
-.map-column :deep(.map-canvas) {
+.map-column :deep(.maplibre-map) {
   height: calc(100dvh - 158px);
   min-height: 460px;
 }
@@ -654,12 +557,9 @@ onErrorCaptured((error) => {
   .map-column {
     padding: 14px;
   }
-  .map-column :deep(.map-canvas) {
+  .map-column :deep(.maplibre-map) {
     height: 60dvh;
     min-height: 400px;
-  }
-  .map-column :deep(.map-heading) {
-    align-items: flex-start;
   }
   .spot-detail {
     position: fixed;
@@ -668,6 +568,72 @@ onErrorCaptured((error) => {
     left: 12px;
     width: auto;
     max-height: 42dvh;
+  }
+}
+
+/* The living map is intentionally reduced to one compact filter and the map. */
+.living-map-view {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+}
+.map-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  border: 1px solid #d6e1e3;
+  border-radius: 12px;
+  background: #fff;
+}
+.service-label {
+  flex: 0 0 auto;
+  margin: 0;
+}
+.service-select {
+  width: min(360px, 100%);
+  min-height: 44px;
+}
+.map-column {
+  flex: 1;
+  min-height: 0;
+  padding: 0;
+}
+.map-column :deep(.taipei-map) {
+  max-width: none;
+  height: 100%;
+  padding: 0;
+}
+.map-column :deep(.map-heading) {
+  display: none;
+}
+.map-column :deep(.map-canvas) {
+  height: calc(100dvh - 148px);
+  min-height: 520px;
+}
+
+@media (max-width: 760px) {
+  .living-map-view {
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+  }
+  .map-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 10px;
+  }
+  .service-select {
+    width: 100%;
+  }
+  .map-column {
+    padding: 0;
+  }
+  .map-column :deep(.map-canvas) {
+    height: calc(100dvh - 180px);
+    min-height: 430px;
   }
 }
 </style>
