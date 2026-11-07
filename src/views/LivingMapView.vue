@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import { onErrorCaptured, ref, watch } from 'vue';
+import { computed, onErrorCaptured, ref, watch } from 'vue';
 import TaipeiMap from '@/components/organisms/TaipeiMap.vue';
 import placeListJson from '../../public/mock/place_list.json';
 import muslimFriendlyPlacesJson from '@/data/muslim-friendly-places.json';
+import muslimMosquesJson from '@/data/muslim-mosques.json';
 import muslimPrayerRoomsJson from '@/data/muslim-prayer-rooms.json';
 import type { LivingMapInfo, LivingMapSpot } from '@/interfaces/living-map.interface';
 
@@ -14,6 +15,7 @@ interface ValueFieldConfig {
 interface ServiceInfoConfig {
   title: string;
   value_field?: string;
+  url_field?: string;
   value_fields?: ValueFieldConfig[];
 }
 
@@ -32,12 +34,6 @@ interface PlaceConfig {
     lng: string;
   };
   service_infos?: ServiceInfoConfig[];
-}
-
-interface ServiceGroup {
-  name: string;
-  featured?: boolean;
-  services: { id: string; name: string; agency: string }[];
 }
 
 interface MuslimFriendlyPlace {
@@ -63,43 +59,63 @@ interface MuslimPrayerRoom {
   sourceUrl: string;
 }
 
+interface MuslimMosque {
+  id: string;
+  name: string;
+  address: string;
+  lat: number;
+  lng: number;
+  phone: string;
+  note: string;
+  sourceTitle: string;
+  sourceUrl: string;
+}
+
+interface MapCenter {
+  lat: number;
+  lng: number;
+}
+
 const placeCategories = placeListJson.list as unknown as {
   name: string;
   places: PlaceConfig[];
 }[];
 const placeConfigs = placeCategories.flatMap((category) => category.places);
 const muslimFriendlyPlaces = muslimFriendlyPlacesJson as MuslimFriendlyPlace[];
+const muslimMosques = muslimMosquesJson as MuslimMosque[];
 const muslimPrayerRooms = muslimPrayerRoomsJson as MuslimPrayerRoom[];
 
-const serviceGroups: ServiceGroup[] = [
-  {
-    name: '穆斯林友善',
-    featured: true,
-    services: [
-      {
-        id: 'muslim-prayer-room',
-        name: '穆斯林祈禱室',
-        agency: '臺北市政府觀光傳播局／各場館'
-      },
-      {
-        id: 'muslim-friendly',
-        name: '穆斯林友善店家',
-        agency: '臺北市政府產業發展局商業處'
-      }
-    ]
-  },
-  ...placeCategories.map((category) => ({
-    name: category.name,
-    services: category.places.map(({ id, name, agency }) => ({ id, name, agency }))
-  }))
+const hiddenServiceIds = new Set(['pa-1', 'pa-3']);
+const serviceOptions = [
+  { id: 'muslim-mosque', name: '清真寺' },
+  { id: 'muslim-prayer-room', name: '穆斯林祈禱室' },
+  { id: 'muslim-ablution', name: '淨下設備' },
+  { id: 'muslim-friendly', name: '穆斯林友善店家' },
+  ...placeConfigs
+    .filter((place) => !hiddenServiceIds.has(place.id))
+    .map(({ id, name }) => ({ id, name }))
 ];
 
 const mapFailed = ref(false);
 const selectedServiceId = ref('muslim-prayer-room');
 const spots = ref<LivingMapSpot[]>([]);
+const visibleSpots = ref<LivingMapSpot[]>([]);
+const mapCenter = ref<MapCenter | null>(null);
 const selectedSpot = ref<LivingMapSpot | null>(null);
+const mapRef = ref<InstanceType<typeof TaipeiMap>>();
+const nearestSpotId = ref('');
 const spotCache = new Map<string, LivingMapSpot[]>();
 let latestLoadRequest = 0;
+
+const nearestSpots = computed(() => {
+  if (!mapCenter.value) return [];
+  return visibleSpots.value
+    .map((spot) => ({
+      spot,
+      distance: calculateDistance(mapCenter.value!, spot)
+    }))
+    .sort((first, second) => first.distance - second.distance);
+});
 
 function getNestedValue(source: unknown, path: string): unknown {
   if (!path) return source;
@@ -135,7 +151,8 @@ function mapServiceInfo(item: unknown, configs: ServiceInfoConfig[] = []): Livin
     }
 
     const value = stringifyValue(getNestedValue(item, config.value_field ?? ''));
-    return value ? [{ label: config.title, value }] : [];
+    const url = stringifyValue(getNestedValue(item, config.url_field ?? ''));
+    return value ? [{ label: config.title, value, ...(url ? { url } : {}) }] : [];
   });
 }
 
@@ -189,6 +206,43 @@ function buildMuslimPrayerRoomSpots(): LivingMapSpot[] {
   }));
 }
 
+function buildMuslimAblutionSpots(): LivingMapSpot[] {
+  return muslimPrayerRooms
+    .filter((place) => /淨下|小淨/.test(`${place.locationDetail} ${place.note}`))
+    .map((place) => ({
+      id: `ablution-${place.id}`,
+      name: place.name,
+      address: place.address,
+      lat: place.lat,
+      lng: place.lng,
+      categoryId: 'muslim-ablution',
+      categoryName: '淨下設備',
+      info: [
+        { label: '設備位置', value: place.locationDetail },
+        ...(place.phone ? [{ label: '電話', value: place.phone }] : []),
+        { label: '使用提醒', value: place.note },
+        { label: '資料來源', value: place.sourceTitle, url: place.sourceUrl }
+      ]
+    }));
+}
+
+function buildMuslimMosqueSpots(): LivingMapSpot[] {
+  return muslimMosques.map((place) => ({
+    id: place.id,
+    name: place.name,
+    address: place.address,
+    lat: place.lat,
+    lng: place.lng,
+    categoryId: 'muslim-mosque',
+    categoryName: '清真寺',
+    info: [
+      ...(place.phone ? [{ label: '電話', value: place.phone }] : []),
+      { label: '參訪提醒', value: place.note },
+      { label: '資料來源', value: place.sourceTitle, url: place.sourceUrl }
+    ]
+  }));
+}
+
 async function loadSelectedService() {
   const serviceId = selectedServiceId.value;
   const loadRequest = ++latestLoadRequest;
@@ -201,11 +255,20 @@ async function loadSelectedService() {
       return;
     }
 
-    if (serviceId === 'muslim-prayer-room' || serviceId === 'muslim-friendly') {
+    if (
+      serviceId === 'muslim-mosque' ||
+      serviceId === 'muslim-prayer-room' ||
+      serviceId === 'muslim-ablution' ||
+      serviceId === 'muslim-friendly'
+    ) {
       const result =
-        serviceId === 'muslim-prayer-room'
-          ? buildMuslimPrayerRoomSpots()
-          : buildMuslimFriendlySpots();
+        serviceId === 'muslim-mosque'
+          ? buildMuslimMosqueSpots()
+          : serviceId === 'muslim-ablution'
+            ? buildMuslimAblutionSpots()
+            : serviceId === 'muslim-prayer-room'
+              ? buildMuslimPrayerRoomSpots()
+              : buildMuslimFriendlySpots();
       spotCache.set(serviceId, result);
       if (loadRequest === latestLoadRequest) spots.value = result;
       return;
@@ -243,8 +306,44 @@ async function loadSelectedService() {
   }
 }
 
-function selectSpot(spot: LivingMapSpot) {
+function calculateDistance(origin: MapCenter, spot: LivingMapSpot) {
+  const earthRadiusKm = 6371;
+  const toRadians = (degrees: number) => (degrees * Math.PI) / 180;
+  const latitudeDifference = toRadians(spot.lat - origin.lat);
+  const longitudeDifference = toRadians(spot.lng - origin.lng);
+  const originLatitude = toRadians(origin.lat);
+  const spotLatitude = toRadians(spot.lat);
+  const haversine =
+    Math.sin(latitudeDifference / 2) ** 2 +
+    Math.cos(originLatitude) * Math.cos(spotLatitude) * Math.sin(longitudeDifference / 2) ** 2;
+  return earthRadiusKm * 2 * Math.atan2(Math.sqrt(haversine), Math.sqrt(1 - haversine));
+}
+
+function formatDistance(distance: number) {
+  return distance < 1 ? `${Math.round(distance * 1000)} 公尺` : `${distance.toFixed(1)} 公里`;
+}
+
+function selectSpot(spot: LivingMapSpot, focus = false) {
   selectedSpot.value = spot;
+  if (focus) mapRef.value?.focusSpot(spot);
+}
+
+function selectNearestSpot() {
+  const target = visibleSpots.value.find((spot) => spot.id === nearestSpotId.value);
+  if (target) selectSpot(target, true);
+}
+
+function updateViewport(viewport: { center: MapCenter; spots: LivingMapSpot[] }) {
+  mapCenter.value = viewport.center;
+  visibleSpots.value = viewport.spots;
+  if (!viewport.spots.some((spot) => spot.id === nearestSpotId.value)) {
+    nearestSpotId.value = '';
+  }
+}
+
+function googleMapsUrl(spot: LivingMapSpot) {
+  const query = [spot.name, spot.address].filter(Boolean).join(' ') || `${spot.lat},${spot.lng}`;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }
 
 watch(selectedServiceId, loadSelectedService, { immediate: true });
@@ -259,14 +358,29 @@ onErrorCaptured((error) => {
 <template>
   <section class="living-map-view" aria-label="生活地圖">
     <header class="map-toolbar">
-      <label class="service-label" for="living-map-service">服務類型</label>
-      <select id="living-map-service" v-model="selectedServiceId" class="service-select">
-        <optgroup v-for="group in serviceGroups" :key="group.name" :label="group.name">
-          <option v-for="service in group.services" :key="service.id" :value="service.id">
+      <div class="toolbar-field toolbar-field--service">
+        <label class="service-label" for="living-map-service">服務類型</label>
+        <select id="living-map-service" v-model="selectedServiceId" class="service-select">
+          <option v-for="service in serviceOptions" :key="service.id" :value="service.id">
             {{ service.name }}
           </option>
-        </optgroup>
-      </select>
+        </select>
+      </div>
+
+      <div class="toolbar-field toolbar-field--nearest">
+        <label class="service-label" for="nearest-spot">附近地點</label>
+        <select
+          id="nearest-spot"
+          v-model="nearestSpotId"
+          class="service-select nearest-select"
+          @change="selectNearestSpot"
+        >
+          <option value="">目前畫面中心由近到遠</option>
+          <option v-for="item in nearestSpots" :key="item.spot.id" :value="item.spot.id">
+            {{ formatDistance(item.distance) }}・{{ item.spot.name }}
+          </option>
+        </select>
+      </div>
     </header>
 
     <div class="map-column">
@@ -276,10 +390,45 @@ onErrorCaptured((error) => {
       </div>
       <TaipeiMap
         v-else
+        ref="mapRef"
         :spots="spots"
         :selected-spot-id="selectedSpot?.id"
         @select-spot="selectSpot"
+        @viewport-change="updateViewport"
       />
+
+      <article v-if="selectedSpot" class="spot-detail" aria-live="polite">
+        <button
+          type="button"
+          class="detail-close"
+          aria-label="關閉地點詳情"
+          @click="selectedSpot = null"
+        >
+          ×
+        </button>
+        <p class="detail-category">{{ selectedSpot.categoryName }}</p>
+        <h2>{{ selectedSpot.name }}</h2>
+        <p class="detail-address">{{ selectedSpot.address || selectedSpot.area }}</p>
+        <a
+          class="google-maps-link"
+          :href="googleMapsUrl(selectedSpot)"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          在 Google Maps 開啟
+        </a>
+        <dl v-if="selectedSpot.info?.length" class="detail-info">
+          <template v-for="info in selectedSpot.info" :key="`${info.label}-${info.value}`">
+            <dt>{{ info.label }}</dt>
+            <dd>
+              <a v-if="info.url" :href="info.url" target="_blank" rel="noopener noreferrer">
+                {{ info.value }}
+              </a>
+              <span v-else>{{ info.value }}</span>
+            </dd>
+          </template>
+        </dl>
+      </article>
     </div>
   </section>
 </template>
@@ -428,7 +577,7 @@ onErrorCaptured((error) => {
   min-width: 0;
   padding: 20px;
 }
-.map-column :deep(.maplibre-map) {
+.map-column :deep(.map-canvas) {
   height: calc(100dvh - 158px);
   min-height: 460px;
 }
@@ -557,7 +706,7 @@ onErrorCaptured((error) => {
   .map-column {
     padding: 14px;
   }
-  .map-column :deep(.maplibre-map) {
+  .map-column :deep(.map-canvas) {
     height: 60dvh;
     min-height: 400px;
   }
@@ -580,12 +729,24 @@ onErrorCaptured((error) => {
 }
 .map-toolbar {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 12px;
   padding: 10px 12px;
   border: 1px solid #d6e1e3;
   border-radius: 12px;
   background: #fff;
+}
+.toolbar-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.toolbar-field--service {
+  flex: 0 1 430px;
+}
+.toolbar-field--nearest {
+  flex: 1 1 320px;
 }
 .service-label {
   flex: 0 0 auto;
@@ -594,6 +755,17 @@ onErrorCaptured((error) => {
 .service-select {
   width: min(360px, 100%);
   min-height: 44px;
+}
+.nearest-select {
+  width: 100%;
+}
+.google-maps-link {
+  display: inline-flex;
+  margin-top: 14px;
+  color: #087c8d;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: underline;
 }
 .map-column {
   flex: 1;
@@ -627,6 +799,14 @@ onErrorCaptured((error) => {
   }
   .service-select {
     width: 100%;
+  }
+  .toolbar-field {
+    flex: none;
+    align-items: stretch;
+  }
+  .toolbar-field {
+    flex-direction: column;
+    gap: 5px;
   }
   .map-column {
     padding: 0;

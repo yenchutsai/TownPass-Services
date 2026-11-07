@@ -96,6 +96,126 @@
               "value_field": "grade"
             }
           ]
+        },
+        {
+          "id": "pb-6",
+          "name": "AED場所",
+          "icon": "",
+          "agency": "衛生福利部醫事司",
+          "type": "飲水機、公廁、哺集乳室、AED場所",
+          "data_type": "json",
+          "request_url": "/mock/find-place/aed_taipei.json",
+          "data_path": "",
+          "format_fields": {
+            "id": "id",
+            "name": "name",
+            "area": "area",
+            "address": "address",
+            "lat": "lat",
+            "lng": "lng"
+          },
+          "service_infos": [
+            {
+              "title": "放置地點",
+              "value_field": "location"
+            },
+            {
+              "title": "地點說明",
+              "value_field": "description"
+            },
+            {
+              "title": "開放時間",
+              "value_field": "hours"
+            },
+            {
+              "title": "緊急聯絡電話",
+              "value_field": "phone"
+            },
+            {
+              "title": "資料來源",
+              "value_field": "sourceTitle",
+              "url_field": "sourceUrl"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "健康與醫療",
+      "places": [
+        {
+          "id": "pc-1",
+          "name": "指定吸菸區",
+          "icon": "",
+          "agency": "臺北市政府衛生局",
+          "type": "健康與醫療",
+          "data_type": "json",
+          "request_url": "/mock/find-place/designated_smoking_areas.json",
+          "data_path": "",
+          "format_fields": {
+            "id": "id",
+            "name": "name",
+            "area": "area",
+            "address": "address",
+            "lat": "lat",
+            "lng": "lng"
+          },
+          "service_infos": [
+            {
+              "title": "設置形式",
+              "value_field": "style"
+            },
+            {
+              "title": "開放時間",
+              "value_field": "hours"
+            },
+            {
+              "title": "相對位置",
+              "value_field": "relativeLocation"
+            },
+            {
+              "title": "管理單位",
+              "value_field": "manager"
+            },
+            {
+              "title": "管理單位電話",
+              "value_field": "phone"
+            },
+            {
+              "title": "備註",
+              "value_field": "note"
+            },
+            {
+              "title": "資料來源",
+              "value_field": "sourceTitle",
+              "url_field": "sourceUrl"
+            }
+          ]
+        },
+        {
+          "id": "pc-2",
+          "name": "醫院",
+          "icon": "",
+          "agency": "臺北市政府衛生局",
+          "type": "健康與醫療",
+          "data_type": "json",
+          "request_url": "/mock/find-place/taipei_hospitals.json",
+          "data_path": "",
+          "format_fields": {
+            "id": "id",
+            "name": "name",
+            "area": "",
+            "address": "address",
+            "lat": "lat",
+            "lng": "lng"
+          },
+          "service_infos": [
+            {
+              "title": "資料來源",
+              "value_field": "sourceTitle",
+              "url_field": "sourceUrl"
+            }
+          ]
         }
       ]
     }

@@ -23,6 +23,7 @@ const props = withDefaults(
 const emit = defineEmits<{
   'select-spot': [spot: LivingMapSpot];
   'visible-spots-change': [spots: LivingMapSpot[]];
+  'viewport-change': [viewport: { center: { lat: number; lng: number }; spots: LivingMapSpot[] }];
 }>();
 
 const districts = districtData as FeatureCollection<Polygon, DistrictProperties>;
@@ -85,10 +86,9 @@ function refreshSpotMarkers() {
   const bounds = map.getBounds();
   const visibleSpots = props.spots
     .filter(validSpot)
-    .filter((spot) => bounds.contains([spot.lat, spot.lng]))
-    .slice(0, maxVisibleMarkers);
+    .filter((spot) => bounds.contains([spot.lat, spot.lng]));
 
-  visibleSpots.forEach((spot) => {
+  visibleSpots.slice(0, maxVisibleMarkers).forEach((spot) => {
     const selected = spot.id === props.selectedSpotId;
     const muslimFriendly = spot.categoryId.startsWith('muslim-');
     const spotMarker = L.circleMarker([spot.lat, spot.lng], {
@@ -107,6 +107,11 @@ function refreshSpotMarkers() {
   });
 
   emit('visible-spots-change', visibleSpots);
+  const center = map.getCenter();
+  emit('viewport-change', {
+    center: { lat: center.lat, lng: center.lng },
+    spots: visibleSpots
+  });
 }
 
 function focusSpot(spot: LivingMapSpot) {

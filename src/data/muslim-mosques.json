@@ -1,0 +1,24 @@
+[
+  {
+    "id": "mosque-taipei-grand",
+    "name": "臺北清真寺",
+    "address": "臺北市大安區新生南路二段62號",
+    "lat": 25.02794,
+    "lng": 121.53421,
+    "phone": "02-2321-9445",
+    "note": "主禮拜堂及二樓女性禮拜堂以穆斯林使用為主；參訪時間與規範請事先向寺方確認。",
+    "sourceTitle": "臺北旅遊網－Halal Travel Guide",
+    "sourceUrl": "https://www.travel.taipei/en/must-visit/halal/"
+  },
+  {
+    "id": "mosque-taipei-cultural",
+    "name": "臺北文化清真寺",
+    "address": "臺北市中正區辛亥路一段25巷3號",
+    "lat": 25.019389,
+    "lng": 121.52795,
+    "phone": "02-2367-5421",
+    "note": "鄰近捷運台電大樓站；禮拜及參訪時間請事先向寺方確認。",
+    "sourceTitle": "臺北旅遊網－Halal Travel Guide",
+    "sourceUrl": "https://www.travel.taipei/en/must-visit/halal/"
+  }
+]
