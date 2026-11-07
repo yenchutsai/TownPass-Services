@@ -16,7 +16,8 @@ const informationItems: InformationItem[] = [
   { id: 'phone', title: '電話', image: phoneIcon, pending: false, routeName: 'phone' },
   { id: 'line', title: 'LINE', image: '', pending: false, routeName: 'line' },
   { id: 'facebook', title: 'Facebook', image: '', pending: false, routeName: 'facebook' },
-  ...Array.from({ length: 5 }, (_, index) => ({
+  { id: 'website', title: '網站', image: '', pending: false, routeName: 'website' },
+  ...Array.from({ length: 4 }, (_, index) => ({
     id: `pending-${index + 1}`,
     title: '待定',
     image: placeholderIcon,
@@ -43,6 +44,9 @@ const informationItems: InformationItem[] = [
           >
             <div class="information-image">
               <span v-if="item.id === 'line'" class="line-icon" aria-hidden="true">LINE</span>
+              <span v-else-if="item.id === 'website'" class="website-icon" aria-hidden="true"
+                >🌐</span
+              >
               <span v-else-if="item.id === 'facebook'" class="facebook-icon" aria-hidden="true"
                 >f</span
               >
@@ -114,7 +118,8 @@ a.information-row:hover {
 }
 
 .line-icon,
-.facebook-icon {
+.facebook-icon,
+.website-icon {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,6 +137,11 @@ a.information-row:hover {
 
 .facebook-icon {
   background: #1877f2;
+  font-size: 28px;
+}
+
+.website-icon {
+  background: #468d9b;
   font-size: 28px;
 }
 

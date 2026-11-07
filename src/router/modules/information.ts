@@ -20,6 +20,12 @@ const informationRoutes: RouteRecordRaw[] = [
         meta: { title: 'LINE' }
       },
       {
+        path: 'website',
+        name: 'website',
+        component: () => import('@/views/infopage/WebsiteView.vue'),
+        meta: { title: '網站' }
+      },
+      {
         path: 'facebook',
         name: 'facebook',
         component: () => import('@/views/infopage/FacebookView.vue'),
