@@ -30,6 +30,18 @@ const informationRoutes: RouteRecordRaw[] = [
         name: 'facebook',
         component: () => import('@/views/infopage/FacebookView.vue'),
         meta: { title: 'Facebook' }
+      },
+      {
+        path: 'youtube',
+        name: 'youtube',
+        component: () => import('@/views/infopage/YouTubeView.vue'),
+        meta: { title: 'YouTube' }
+      },
+      {
+        path: 'radio',
+        name: 'radio',
+        component: () => import('@/views/infopage/RadioView.vue'),
+        meta: { title: '廣播' }
       }
     ]
   }
