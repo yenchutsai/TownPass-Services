@@ -56,9 +56,30 @@ const router = createRouter({
       path: '/',
       name: 'home',
       meta: {
-        title: '申辦服務'
+        title: '生活服務'
       },
-      component: HomeView
+      component: HomeView,
+      redirect: { name: 'living-map' },
+      children: [
+        {
+          path: 'information',
+          name: 'information',
+          component: () => import('../views/InformationView.vue'),
+          meta: { title: '資訊' }
+        },
+        {
+          path: 'living-map',
+          name: 'living-map',
+          component: () => import('../views/LivingMapView.vue'),
+          meta: { title: '生活地圖' }
+        },
+        {
+          path: 'events',
+          name: 'events',
+          component: () => import('../views/EventsView.vue'),
+          meta: { title: '活動' }
+        }
+      ]
     },
     {
       path: '/form/:id',

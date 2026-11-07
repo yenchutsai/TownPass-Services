@@ -1,57 +1,27 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import TaipeiMap from '@/components/organisms/TaipeiMap.vue';
+import { RouterLink, RouterView } from 'vue-router';
 
-const activeTab = ref(1);
-const tabList = [
-  { id: 1, title: '資訊' },
-  { id: 2, title: '生活地圖' },
-  { id: 3, title: '活動' }
+const tabs = [
+  { route: 'information', title: '資訊' },
+  { route: 'living-map', title: '生活地圖' },
+  { route: 'events', title: '活動' }
 ];
-
-function focusTab(index: number, event: KeyboardEvent) {
-  activeTab.value = (index + tabList.length) % tabList.length;
-  const buttons = (event.currentTarget as HTMLButtonElement).parentElement?.querySelectorAll(
-    'button'
-  );
-  buttons?.[activeTab.value]?.focus();
-}
 </script>
 
 <template>
   <main>
-    <nav class="home-tabs" role="tablist" aria-label="主要功能">
-      <button
-        v-for="(tab, index) in tabList"
-        :id="`home-tab-${tab.id}`"
-        :key="tab.id"
-        type="button"
-        role="tab"
+    <nav class="home-tabs" aria-label="主要功能">
+      <RouterLink
+        v-for="tab in tabs"
+        :key="tab.route"
+        :to="{ name: tab.route }"
         class="home-tab"
-        :class="{ 'home-tab--active': activeTab === index }"
-        :aria-selected="activeTab === index"
-        :aria-controls="`home-panel-${tab.id}`"
-        :tabindex="activeTab === index ? 0 : -1"
-        @click="activeTab = index"
-        @keydown.left.prevent="focusTab(index - 1, $event)"
-        @keydown.right.prevent="focusTab(index + 1, $event)"
-        @keydown.home.prevent="focusTab(0, $event)"
-        @keydown.end.prevent="focusTab(tabList.length - 1, $event)"
+        active-class="home-tab--active"
       >
         {{ tab.title }}
-      </button>
+      </RouterLink>
     </nav>
-    <section
-      v-for="(tab, index) in tabList"
-      :id="`home-panel-${tab.id}`"
-      :key="tab.id"
-      role="tabpanel"
-      :aria-labelledby="`home-tab-${tab.id}`"
-      :hidden="activeTab !== index"
-      tabindex="0"
-    >
-      <TaipeiMap v-if="index === 1 && activeTab === 1" />
-    </section>
+    <RouterView />
   </main>
 </template>
 
@@ -66,6 +36,9 @@ function focusTab(index: number, event: KeyboardEvent) {
   background: #fff;
 }
 .home-tab {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   min-height: 48px;
   padding: 12px 8px;
   border-bottom: 2px solid transparent;

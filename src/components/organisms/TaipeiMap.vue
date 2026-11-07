@@ -111,7 +111,15 @@ function locate() {
 
 onMounted(() => {
   if (!mapElement.value) return;
-  map = L.map(mapElement.value, { zoomControl: false, minZoom: 10, maxZoom: 19 });
+  const cityBounds = L.geoJSON(districts).getBounds();
+  map = L.map(mapElement.value, {
+    zoomControl: false,
+    minZoom: 10,
+    maxZoom: 19,
+    maxBounds: cityBounds.pad(0.2)
+  });
+  // Leaflet must have a view before adding and styling vector layers.
+  map.fitBounds(cityBounds, { padding: [20, 20] });
   map.attributionControl.setPrefix(false);
   const tiles = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
     maxZoom: 19,
@@ -133,7 +141,10 @@ onMounted(() => {
     }
   }).addTo(map);
 
-  // Fade the surrounding area while leaving Taipei and its streets visible.
+  // Keep the mask below district outlines without reordering uninitialized paths.
+  const maskPane = map.createPane('taipei-mask');
+  maskPane.style.zIndex = '350';
+  maskPane.style.pointerEvents = 'none';
   const outerRing: L.LatLngExpression[] = [
     [24.6, 121.1],
     [24.6, 122],
@@ -144,14 +155,12 @@ onMounted(() => {
     feature.geometry.coordinates[0].map(([lng, lat]) => [lat, lng] as L.LatLngTuple)
   );
   L.polygon([outerRing, ...holes], {
+    pane: 'taipei-mask',
     stroke: false,
     fillColor: '#e9eff0',
     fillOpacity: 0.72,
     interactive: false
-  })
-    .addTo(map)
-    .bringToBack();
-  map.setMaxBounds(boundaries.getBounds().pad(0.2));
+  }).addTo(map);
   L.control
     .zoom({ position: 'bottomright', zoomInTitle: '放大地圖', zoomOutTitle: '縮小地圖' })
     .addTo(map);
