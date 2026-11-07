@@ -123,6 +123,8 @@ export function parseRssXml(xmlText: string): BolaEventsFeedData {
     const match = knownEvents.find((k) => k.id === id || k.title === title);
     const titleEn = match?.titleEn || generateEnglishTitle(title);
     const summaryEn = match?.summaryEn || summary;
+    const source = match?.source || '臺北市勞動局';
+    const sourceEn = match?.sourceEn || 'Taipei Labor Bureau';
 
     events.push({
       id,
@@ -138,12 +140,22 @@ export function parseRssXml(xmlText: string): BolaEventsFeedData {
       category: catKey,
       categoryLabel: catLabel,
       categoryLabelEn: catLabelEn,
+      source,
+      sourceEn,
       summary,
       summaryEn,
       contentHtml: desc,
       attachments
     });
   });
+
+  // Preserve events from other sources (e.g. WDA, Migrant Worker School)
+  const nonBolaEvents = knownEvents.filter((k) => k.source && k.source !== '臺北市勞動局');
+  for (const nonBola of nonBolaEvents) {
+    if (!events.some((e) => e.id === nonBola.id)) {
+      events.push(nonBola);
+    }
+  }
 
   // Sort by time descending by default
   events.sort((a, b) => b.timestamp - a.timestamp);

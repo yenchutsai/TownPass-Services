@@ -32,6 +32,13 @@ const categoryLabel = computed(() => {
   return t(`events.${props.event.category}`);
 });
 
+const displaySource = computed(() => {
+  if (currentLang.value === 'en' && props.event.sourceEn) {
+    return props.event.sourceEn;
+  }
+  return props.event.source || '';
+});
+
 const formattedDateStr = computed(() => {
   return formatEventDate(props.event.timestamp, locale.value);
 });
@@ -132,73 +139,83 @@ function toggleExpanded() {
       >
         <!-- Upper part of the box: Reserve the tag, remove the date -->
         <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
-          <!-- Category Tag with clean SVG icon (NO emoji) -->
-          <span
-            class="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-0.5 rounded-full border shadow-2xs"
-            :class="categoryStyles.badge"
-          >
-            <!-- SVG Icon by category -->
-            <svg
-              v-if="props.event.category === 'activity'"
-              class="w-3.5 h-3.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
+          <div class="flex items-center gap-1.5 flex-wrap">
+            <!-- Category Tag with clean SVG icon (NO emoji) -->
+            <span
+              class="inline-flex items-center gap-1.5 text-xs font-bold px-2.5 py-0.5 rounded-full border shadow-2xs"
+              :class="categoryStyles.badge"
             >
-              <rect x="3" y="4" width="18" height="18" rx="2" />
-              <line x1="16" y1="2" x2="16" y2="6" />
-              <line x1="8" y1="2" x2="8" y2="6" />
-              <line x1="3" y1="10" x2="21" y2="10" />
-            </svg>
-            <svg
-              v-else-if="props.event.category === 'job'"
-              class="w-3.5 h-3.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
+              <!-- SVG Icon by category -->
+              <svg
+                v-if="props.event.category === 'activity'"
+                class="w-3.5 h-3.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              <svg
+                v-else-if="props.event.category === 'job'"
+                class="w-3.5 h-3.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+              </svg>
+              <svg
+                v-else-if="props.event.category === 'subsidy'"
+                class="w-3.5 h-3.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="8" r="7" />
+                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
+              </svg>
+              <svg
+                v-else-if="props.event.category === 'rule'"
+                class="w-3.5 h-3.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                <polyline points="14 2 14 8 20 8" />
+                <line x1="16" y1="13" x2="8" y2="13" />
+                <line x1="16" y1="17" x2="8" y2="17" />
+              </svg>
+              <svg
+                v-else
+                class="w-3.5 h-3.5"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+              </svg>
+              <span>{{ categoryLabel }}</span>
+            </span>
+
+            <!-- Source Origin Badge (e.g. 臺北市勞動局 / 勞動力發展署 / 臺北移工學校) -->
+            <span
+              v-if="displaySource"
+              class="inline-flex items-center text-[10px] sm:text-[11px] font-medium px-2 py-0.5 rounded-full bg-grey-100 text-grey-600 border border-grey-200"
             >
-              <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
-              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
-            </svg>
-            <svg
-              v-else-if="props.event.category === 'subsidy'"
-              class="w-3.5 h-3.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <circle cx="12" cy="8" r="7" />
-              <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
-            </svg>
-            <svg
-              v-else-if="props.event.category === 'rule'"
-              class="w-3.5 h-3.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-              <polyline points="14 2 14 8 20 8" />
-              <line x1="16" y1="13" x2="8" y2="13" />
-              <line x1="16" y1="17" x2="8" y2="17" />
-            </svg>
-            <svg
-              v-else
-              class="w-3.5 h-3.5"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
-              <path d="M13.73 21a2 2 0 0 1-3.46 0" />
-            </svg>
-            <span>{{ categoryLabel }}</span>
-          </span>
+              {{ displaySource }}
+            </span>
+          </div>
 
           <!-- Compact Attachment Badge (if any) -->
           <div
