@@ -29,8 +29,8 @@ const phoneNumbers = resources.phone;
             "
           >
             <p class="phone-description">
-              <strong>{{ phone.number }}</strong
-              >：{{ t(phone.descriptionKey) }}
+              <strong>{{ phone.number }}</strong>
+              <span>：{{ t(phone.descriptionKey) }}</span>
             </p>
             <img :src="phoneIcon" alt="" width="24" height="24" />
           </a>

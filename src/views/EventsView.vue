@@ -208,9 +208,9 @@ function clearFilters() {
               >
                 <path d="M7 15l5 5 5-5M7 9l5-5 5 5" />
               </svg>
-              <span>{{
-                sortOrder === 'desc' ? t('events.sortNewest') : t('events.sortOldest')
-              }}</span>
+              <span>
+                {{ sortOrder === 'desc' ? t('events.sortNewest') : t('events.sortOldest') }}
+              </span>
             </button>
           </div>
         </div>

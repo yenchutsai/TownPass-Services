@@ -2,7 +2,6 @@
  * Scheduled/build script to fetch latest BOLA Taipei OpenData events
  * Usage: node scripts/fetch-events.js
  */
-import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -10,8 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const DATA_PATH = path.resolve(__dirname, '../src/data/bola-events.json');
 
-const BOLA_RSS_URL =
-  'https://bola.gov.taipei/OpenData.aspx?SN=B475EA5A93126B2E';
+const BOLA_RSS_URL = 'https://bola.gov.taipei/OpenData.aspx?SN=B475EA5A93126B2E';
 
 async function updateEvents() {
   console.log('Fetching latest events from BOLA open data...');
@@ -29,4 +27,3 @@ async function updateEvents() {
 }
 
 updateEvents();
-

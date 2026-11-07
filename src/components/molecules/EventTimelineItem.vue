@@ -14,15 +14,17 @@ const props = defineProps<{
 
 const isExpanded = ref(false);
 
+const isNonChinese = computed(() => locale.value !== 'zh-TW');
+
 const displayTitle = computed(() => {
-  if (locale.value === 'en' && props.event.titleEn) {
+  if (isNonChinese.value && props.event.titleEn) {
     return props.event.titleEn;
   }
   return props.event.title;
 });
 
 const displaySummary = computed(() => {
-  if (locale.value === 'en' && props.event.summaryEn) {
+  if (isNonChinese.value && props.event.summaryEn) {
     return props.event.summaryEn;
   }
   return props.event.summary;
@@ -33,7 +35,7 @@ const categoryLabel = computed(() => {
 });
 
 const displaySource = computed(() => {
-  if (currentLang.value === 'en' && props.event.sourceEn) {
+  if (isNonChinese.value && props.event.sourceEn) {
     return props.event.sourceEn;
   }
   return props.event.source || '';

@@ -37,15 +37,15 @@ const informationItems: InformationItem[] = [
           >
             <div class="information-image">
               <span v-if="item.id === 'line'" class="line-icon" aria-hidden="true">LINE</span>
-              <span v-else-if="item.id === 'website'" class="website-icon" aria-hidden="true"
-                >🌐</span
-              >
-              <span v-else-if="item.id === 'facebook'" class="facebook-icon" aria-hidden="true"
-                >f</span
-              >
-              <span v-else-if="item.id === 'youtube'" class="youtube-icon" aria-hidden="true"
-                >▶</span
-              >
+              <span v-else-if="item.id === 'website'" class="website-icon" aria-hidden="true">
+                🌐
+              </span>
+              <span v-else-if="item.id === 'facebook'" class="facebook-icon" aria-hidden="true">
+                f
+              </span>
+              <span v-else-if="item.id === 'youtube'" class="youtube-icon" aria-hidden="true">
+                ▶
+              </span>
               <span v-else-if="item.id === 'radio'" class="radio-icon" aria-hidden="true">📻</span>
               <img v-else :src="item.image" alt="" width="32" height="32" />
             </div>
