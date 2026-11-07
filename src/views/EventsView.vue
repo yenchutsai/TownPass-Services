@@ -140,103 +140,11 @@ function clearFilters() {
 <template>
   <section class="events-panel" :aria-label="t('pageTitle')">
     <div class="events-container">
-      <!-- Top Header: Clean, with Language Selector and Refresh beside Update Time -->
-      <div class="bg-white rounded-3xl p-5 sm:p-6 shadow-xs border border-grey-100 mb-5">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <!-- Title & Subtitle -->
-          <div>
-            <div class="flex items-center gap-2 mb-1.5">
-              <span
-                class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200"
-              >
-                <span class="h-2 w-2 rounded-full bg-emerald-500 animate-pulse"></span>
-                {{ t('dailyUpdateBadge') }}
-              </span>
-              <span class="text-xs text-grey-400 font-medium">{{ t('sourceLabel') }}</span>
-            </div>
-            <h1 class="text-2xl sm:text-3xl font-extrabold text-grey-900 tracking-tight">
-              {{ t('pageTitle') }}
-            </h1>
-            <p class="text-xs sm:text-sm text-grey-500 mt-1 max-w-xl">
-              {{ t('pageSubtitle') }}
-            </p>
-          </div>
-
-          <!-- Top-Right: Language Switcher Pill (Link to Open Data removed) -->
-          <div class="flex items-center self-start sm:self-center">
-            <div
-              class="inline-flex items-center p-0.5 rounded-xl bg-grey-100 border border-grey-200 shadow-2xs"
-            >
-              <button
-                type="button"
-                class="px-2.5 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer"
-                :class="
-                  currentLang === 'zh'
-                    ? 'bg-white text-grey-900 shadow-xs'
-                    : 'text-grey-500 hover:text-grey-800'
-                "
-                @click="setLanguage('zh')"
-              >
-                繁中
-              </button>
-              <button
-                type="button"
-                class="px-2.5 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer"
-                :class="
-                  currentLang === 'en'
-                    ? 'bg-white text-grey-900 shadow-xs'
-                    : 'text-grey-500 hover:text-grey-800'
-                "
-                @click="setLanguage('en')"
-              >
-                EN
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Last updated timestamp & Refresh Button right next to it -->
-        <div
-          v-if="lastUpdatedTime"
-          class="mt-3.5 pt-3 border-t border-grey-100 text-xs text-grey-500 flex flex-wrap items-center justify-between gap-2"
-        >
-          <div class="flex items-center gap-2">
-            <span>{{ t('lastChecked') }}{{ lastUpdatedTime }}</span>
-
-            <!-- Refresh button moved right next to update time -->
-            <button
-              type="button"
-              class="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold bg-grey-50 text-grey-700 hover:bg-grey-100 border border-grey-200 transition-colors disabled:opacity-50 cursor-pointer"
-              :disabled="refreshing || loading"
-              :title="t('refresh')"
-              @click="loadData(true)"
-            >
-              <svg
-                class="w-3.5 h-3.5 text-grey-600"
-                :class="{ 'animate-spin': refreshing }"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-              >
-                <path d="M23 4v6h-6M1 20v-6h6" />
-                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
-              </svg>
-              <span>{{ refreshing ? t('refreshing') : t('refresh') }}</span>
-            </button>
-          </div>
-
-          <span v-if="isFallbackData" class="text-orange-500 font-medium">
-            {{ t('fallbackNotice') }}
-          </span>
-        </div>
-      </div>
-
       <!-- Search & Filters Toolbar -->
       <div
         class="bg-white rounded-2xl p-3.5 sm:p-4 shadow-xs border border-grey-100 mb-5 space-y-3"
       >
-        <!-- Search bar & Sort order -->
+        <!-- Search bar, Sort order & Language Switcher -->
         <div class="flex flex-col sm:flex-row gap-2.5">
           <!-- Search input -->
           <div class="relative flex-1">
@@ -277,11 +185,12 @@ function clearFilters() {
             </button>
           </div>
 
-          <!-- Sort Order Toggle Button -->
-          <div class="flex items-center shrink-0">
+          <!-- Controls: Sort Order & Language Switcher -->
+          <div class="flex items-center gap-2 shrink-0">
+            <!-- Sort Order Toggle Button -->
             <button
               type="button"
-              class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border transition-colors w-full sm:w-auto justify-center cursor-pointer"
+              class="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold border transition-colors cursor-pointer"
               :class="
                 sortOrder === 'desc'
                   ? 'bg-primary-50 text-primary-700 border-primary-200 hover:bg-primary-100'
@@ -300,6 +209,36 @@ function clearFilters() {
               </svg>
               <span>{{ sortOrder === 'desc' ? t('sortNewest') : t('sortOldest') }}</span>
             </button>
+
+            <!-- Language Switcher Pill -->
+            <div
+              class="inline-flex items-center p-0.5 rounded-xl bg-grey-100 border border-grey-200 shadow-2xs"
+            >
+              <button
+                type="button"
+                class="px-2.5 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer"
+                :class="
+                  currentLang === 'zh'
+                    ? 'bg-white text-grey-900 shadow-xs'
+                    : 'text-grey-500 hover:text-grey-800'
+                "
+                @click="setLanguage('zh')"
+              >
+                繁中
+              </button>
+              <button
+                type="button"
+                class="px-2.5 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer"
+                :class="
+                  currentLang === 'en'
+                    ? 'bg-white text-grey-900 shadow-xs'
+                    : 'text-grey-500 hover:text-grey-800'
+                "
+                @click="setLanguage('en')"
+              >
+                EN
+              </button>
+            </div>
           </div>
         </div>
 
@@ -407,7 +346,32 @@ function clearFilters() {
 
         <!-- Result count & reset -->
         <div class="flex items-center justify-between text-xs text-grey-500 pt-0.5">
-          <span>{{ t('foundCount', { count: filteredEvents.length }) }}</span>
+          <div class="flex items-center gap-2">
+            <span>{{ t('foundCount', { count: filteredEvents.length }) }}</span>
+            <button
+              type="button"
+              class="inline-flex items-center gap-1 text-[11px] text-grey-400 hover:text-primary-600 cursor-pointer transition-colors"
+              :disabled="refreshing || loading"
+              :title="t('refresh')"
+              @click="loadData(true)"
+            >
+              <svg
+                class="w-3.5 h-3.5"
+                :class="{ 'animate-spin': refreshing }"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path d="M23 4v6h-6M1 20v-6h6" />
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+              </svg>
+              <span>{{ refreshing ? t('refreshing') : '' }}</span>
+            </button>
+            <span v-if="isFallbackData" class="text-orange-500 text-[11px] font-medium">
+              ({{ t('fallbackNotice') }})
+            </span>
+          </div>
           <button
             v-if="searchQuery || selectedCategory !== 'all'"
             type="button"
