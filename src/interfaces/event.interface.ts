@@ -9,6 +9,7 @@ export interface BolaEventAttachment {
 export interface BolaEvent {
   id: string;
   title: string;
+  titleEn?: string;
   link: string;
   pubDate: string;
   isoDate: string;
@@ -18,7 +19,9 @@ export interface BolaEvent {
   yearMonth: string;
   category: EventCategoryKey;
   categoryLabel: string;
+  categoryLabelEn?: string;
   summary: string;
+  summaryEn?: string;
   contentHtml: string;
   attachments: BolaEventAttachment[];
 }
@@ -29,4 +32,3 @@ export interface BolaEventsFeedData {
   updatedAt: string;
   events: BolaEvent[];
 }
-

@@ -12,21 +12,42 @@ const DEV_PROXY_URL = '/api/bola-events';
 export function detectCategory(
   title: string,
   desc: string
-): { key: EventCategoryKey; label: string } {
+): { key: EventCategoryKey; label: string; labelEn: string } {
   const text = `${title} ${desc}`.toLowerCase();
   if (/職缺|徵才|聘用|甄試|業務督導員|檢查員|查察員|組員|技佐|約僱/.test(text)) {
-    return { key: 'job', label: '職缺徵才' };
+    return { key: 'job', label: '職缺徵才', labelEn: 'Careers' };
   }
   if (/活動|報名|招生|課程|講座|參訓|研習|競賽|培訓/.test(text)) {
-    return { key: 'activity', label: '活動報名' };
+    return { key: 'activity', label: '活動課程', labelEn: 'Activities' };
   }
   if (/補助|選拔|獎勵|認證|實施計畫|評選|表揚/.test(text)) {
-    return { key: 'subsidy', label: '補助獎勵' };
+    return { key: 'subsidy', label: '補助獎勵', labelEn: 'Subsidies' };
   }
   if (/細則|條文|修正|要點|法規|規定|令|規則|辦法|標準/.test(text)) {
-    return { key: 'rule', label: '法規政策' };
+    return { key: 'rule', label: '法規政策', labelEn: 'Regulations' };
   }
-  return { key: 'announcement', label: '最新公告' };
+  return { key: 'announcement', label: '最新公告', labelEn: 'News' };
+}
+
+export function generateEnglishTitle(title: string): string {
+  if (title.includes('職缺') && title.includes('檢查員'))
+    return 'Job Opening: Contract Labor Inspectors';
+  if (title.includes('職缺') && title.includes('查察員')) return 'Job Opening: Contract Inspectors';
+  if (title.includes('職缺')) return 'Job Opening Announcement';
+  if (title.includes('優良工會')) return 'Outstanding Labor Union Selection Plan';
+  if (title.includes('績優勞工') || title.includes('模範勞工'))
+    return 'Outstanding Worker Commendation Plan';
+  if (title.includes('職業訓練') || title.includes('職能發展學院'))
+    return 'Vocational Training Course Enrollment';
+  if (title.includes('最低工資')) return 'Official Notice on Minimum Wage Adjustments';
+  if (title.includes('勞動教育') && title.includes('補助'))
+    return 'Labor Education Funding Grants Notice';
+  if (title.includes('請假規則')) return 'Regulations on Worker Leave Taking Update';
+  if (title.includes('性別平等')) return 'Gender Equality in Employment Act Notice';
+  if (title.includes('退休金')) return 'Labor Pension Regulations Update';
+  if (title.includes('職業安全') || title.includes('職安法'))
+    return 'Occupational Safety and Health Notice';
+  return title;
 }
 
 export function parseRssXml(xmlText: string): BolaEventsFeedData {
@@ -38,6 +59,7 @@ export function parseRssXml(xmlText: string): BolaEventsFeedData {
   const itemNodes = xmlDoc.querySelectorAll('item');
 
   const events: BolaEvent[] = [];
+  const knownEvents = (fallbackData.events || []) as unknown as BolaEvent[];
 
   itemNodes.forEach((itemNode, idx) => {
     const title = itemNode.querySelector('title')?.textContent?.trim() || '';
@@ -95,11 +117,17 @@ export function parseRssXml(xmlText: string): BolaEventsFeedData {
     const sParamMatch = link.match(/[?&]s=([A-Za-z0-9]+)/);
     const id = sParamMatch ? sParamMatch[1] : `event-${idx}`;
 
-    const { key: catKey, label: catLabel } = detectCategory(title, summary);
+    const { key: catKey, label: catLabel, labelEn: catLabelEn } = detectCategory(title, summary);
+
+    // Look up pre-translated titleEn & summaryEn
+    const match = knownEvents.find((k) => k.id === id || k.title === title);
+    const titleEn = match?.titleEn || generateEnglishTitle(title);
+    const summaryEn = match?.summaryEn || summary;
 
     events.push({
       id,
       title,
+      titleEn,
       link,
       pubDate: pubDateStr,
       isoDate,
@@ -109,7 +137,9 @@ export function parseRssXml(xmlText: string): BolaEventsFeedData {
       yearMonth,
       category: catKey,
       categoryLabel: catLabel,
+      categoryLabelEn: catLabelEn,
       summary,
+      summaryEn,
       contentHtml: desc,
       attachments
     });
@@ -130,11 +160,6 @@ export async function fetchBolaEvents(): Promise<{
   data: BolaEventsFeedData;
   isFallback: boolean;
 }> {
-  // Strategy:
-  // 1. Try local dev proxy `/api/bola-events`
-  // 2. Try direct URL if proxy 404s
-  // 3. Fallback to bundled static snapshot if network/CORS error occurs
-
   const urlsToTry = [DEV_PROXY_URL, BOLA_RSS_URL];
 
   for (const url of urlsToTry) {
