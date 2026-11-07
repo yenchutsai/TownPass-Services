@@ -20,6 +20,8 @@ export interface BolaEvent {
   category: EventCategoryKey;
   categoryLabel: string;
   categoryLabelEn?: string;
+  source?: string;
+  sourceEn?: string;
   summary: string;
   summaryEn?: string;
   contentHtml: string;

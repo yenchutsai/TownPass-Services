@@ -1,7 +1,7 @@
 {
   "title": "勞動局中文網最新消息",
   "sourceUrl": "https://bola.gov.taipei/OpenData.aspx?SN=B475EA5A93126B2E",
-  "updatedAt": "2026-11-07T17:24:48.863697",
+  "updatedAt": "2026-11-07T14:21:47.601411+00:00",
   "events": [
     {
       "id": "6FC56817C92027CF",
@@ -40,7 +40,9 @@
         }
       ],
       "titleEn": "Notice: Ministry of Labor Amends Article 14-1 of Gender Equality in Employment Act Enforcement Rules",
-      "summaryEn": "The Ministry of Labor has revised and promulgated the enforcement rules for gender equality in the workplace."
+      "summaryEn": "The Ministry of Labor has revised and promulgated the enforcement rules for gender equality in the workplace.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "2B87C72553176F85",
@@ -69,7 +71,9 @@
         }
       ],
       "titleEn": "Flowchart & Processing Timeline: Workplace Bullying Investigation Subsidy (<100 Employees)",
-      "summaryEn": "Application instructions, procedural flowcharts, and processing timeline for employers with under 100 workers investigating workplace bullying complaints."
+      "summaryEn": "Application instructions, procedural flowcharts, and processing timeline for employers with under 100 workers investigating workplace bullying complaints.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "693F8D57F9163751",
@@ -87,7 +91,9 @@
       "contentHtml": "<p id=\"isPasted\">本次甄試簡章相關規定請至臺北市就業服務處網站首頁『最新消息』區查閱：<a href=\"https://eso.gov.taipei/\" rel=\"noopener noreferrer\" target=\"_blank\" title=\"前往網址\">網址</a>，服務電話：（02）23085231</p><p>1.職稱：聘用查察員。</p><p>2.名額：正取5名、備取5名。</p><p>3.刊載期間：115/11/3~115/11/9。</p><p>4.資格條件：</p><p>1、 需為大學以上之勞工、法律、心理、職業安全衛生、社會、社會工作、衛生行政、公共行政、人力資源或其他相關科系畢業，或曾修習勞工、法律、心理、職業安全衛生、社會、社會工作、衛生行政、公共行政、人力資源或其他相關科系之專業科目（含必修、核心選修）課程達20 學分以上（不得跨科系認定），並符合下列資格之一者：</p><p>1. 國內外研究院所畢業得有碩士學位者。</p><p>2. 國內外大學畢業，並具有與擬任工作相當之專業訓練或研究工作1年以上著有成績或具有與擬任工作有關之重要工作經驗2年以上者。</p><p>二、國內公立或已立案之私立大學或經教育部承認之國外大學以上畢業,且具1年以上社勞行政工作經驗者。</p><p>5.僱用期間：依實際到職日起至115年12月31日止，依聘僱計畫及成績考核一年一聘僱。本聘用計畫經費由勞動部專款補助，如遇補助經費刪減、中止或聘用原因消失，應無條件解聘，並不得以任何理由要求留用或救助。</p><p>&nbsp;6.薪資待遇：新臺幣45,624元~58,978元</p><p>新進人員須自計畫所訂最低薪點起支，並依考核規定晉級。</p><p>7.工作項目：</p><p>(1)受理並調查事業單位最高負責人涉職場霸凌之申訴案件、處分及後續行政救濟。</p><p>(2)辦理職場霸凌案件通報事宜。</p><p>(3)協助雇主辦理職場霸凌防治措施。</p><p>(4)辦理職場霸凌防治法令諮詢及宣導業務。</p><p>(5)其他臨時交辦事項。</p><p>8.應備文件：</p><p>(1)身分證正反面。</p><p>(2)求職登記表（倘須就業服務處協助推介就業則於網路報名時併同填寫，無則免填）。</p><p>(3)學歷證明文件。國內學歷請檢附中文畢業證書；如係國外學歷須加附經翻譯且認證（本國駐外單位、公證等）之中文譯本；國外學歷並須依教育部訂頒之「大學辦理國外學歷採認辦法」，經我國駐外單位驗（認）證；持大陸學歷者，須依「大陸地區學歷採認辦法」通過學歷甄試或經採認。</p><p>(4)與資格條件相符之工作經驗證明文件。</p><p>(5)與資格條件相符之專業訓練證明文件。</p><p>(6)與資格條件相符之研究工作證明文件。</p>",
       "attachments": [],
       "titleEn": "Job Opening: Taipei Dept. of Labor Hiring 5 Contract Inspectors",
-      "summaryEn": "Taipei City Government Department of Labor is recruiting 5 full-time contract inspectors. Click for qualification details."
+      "summaryEn": "Taipei City Government Department of Labor is recruiting 5 full-time contract inspectors. Click for qualification details.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "97484C75DE60F813",
@@ -105,7 +111,9 @@
       "contentHtml": "<p id=\"isPasted\">(1) 職稱：聘用檢查員</p><p>(2) 需求人數：3名</p><p>(3) 辦公地點:臺北市萬華區艋舺大道101號6樓。</p><p>(4) 公告期間:自115年11月3日至115年11月9日止。</p><p>(5) 待遇/每月:新臺幣45,624元至58,978元(新進人員須自計畫所訂最低薪點起支，並依考核規定晉級。)</p><p>(6) 資格條件：</p><p>需為勞工、社會、法律或其他相關科系畢業，或曾修習勞工、社會、法律或其他相關科系之專業科目(含必修、核心選修)課程達20學分以上者(不得跨科系認定)，並符合下列資格之一者：</p><p>1. 國內外研究院所畢業得有碩士學位者。</p><p>2. 國內外大學畢業，並具有與擬任工作相當之專業訓練或研究工作1年以上著有成績，或具有與擬任工作有關之重要工作經驗2年以上。</p><p>(7) 工作內容</p><p>1. 本市勞動條件檢查事項：本市轄內申訴檢查、專案檢查及一般檢查，其檢查範圍包含勞動基準法、性別平等工作法、勞工退休金條例、勞資爭議處理法（協助調查事實部分）等其他勞動條件相關法令。</p><p>2. 勞動條件檢查後續配合事項：</p><p>(1) 包括處分、訴願答辯、登錄陳報檢查結果、統計並提出專案檢查報告等。</p><p>(2) 檢查後續罰鍰、訴願等相關事項。</p><p>(3) 其他行政支援事宜。</p><p>3. 其他臨時交辦事項。</p><p>(8) 共同應備文件</p><p>※檢附文件前，請務必詳閱簡章【二、報名】及【三、甄試】之各項規定1.身分證正反面。</p><p>2.求職登記表。（倘須就業服務處協助推介就業則於網路報名時併同填寫，無則免填）</p><p>3.學歷證明文件。國內學歷請檢附中文畢業證書；如係國外學歷須加附經翻譯且認證（本國駐外單位、公證等）之中文譯本；國外學歷並須依教育部訂頒之「大學辦理國外學歷採認辦法」，經我國駐外單位驗（認）證；持大陸學歷者，須依「大陸地區學歷採認辦法」通過學歷甄試或經採認。</p><p>(9) 職缺應備文件</p><p>1.與資格條件相符之專業訓練或研究工作證明文件影本。</p><p>2.與資格條件相符之工作經驗證明文件。「工作經驗」指全職受薪之工作經驗，不含部分工時（工讀）、服兵役（義務役、替代役）、志願服務（志工）、實習性質或公法救助臨時性工作經驗。「工作經驗證明文件」係由雇主，如政府機關、學校或事業單位（含公民營事業機構、法人團體等）開具之服務、在職或離職證明文件（證明文件須加蓋機關印信或公司章），並須載明「工作期間起訖時間、內容」。另「聘僱或勞動契約書」、「年度考核通知書」等無法證明實際工作起訖時間不可代替工作經驗證明文件，僅得為輔助證明文件；「勞保資料明細表」僅為勞保加退保紀錄，及「各類所得扣繳免扣繳憑單」等，均不可代替工作經驗證明文件。</p><p>(10) 聯絡方式：人事聯絡人:章先生 電話:(02)2302-6355#100 傳真:(02)2302-6856電子郵件:DL-00199@gov.taipei</p><p>(11) 聘僱時間</p><p>1.經錄取進用者，尚須通過學科訓練、見習訓練及檢查實務訓練，每階段考 核成績須通過外尚須再經過筆試及口試，總成績合格者，准予聘僱；考核未通過者，將終止聘僱。</p><p>2.依實際到職日起至訓練期間結束止，考核成績不滿80分者，予以解聘 (僱)；115年度依聘僱計畫及成績考核一年一聘僱。</p><p>3. 本聘用計畫經費係由勞動部專款補助，如遇補助經費刪減、中止或聘用原因消失，應無條件解聘，並不得以任何理由要求留用或救助。</p><p>(12) 備註</p><p>1.需熟諳電腦文書操作。</p><p>2.具公文撰寫能力者尤佳。</p><p><a href=\"https://eso.gov.taipei/\" rel=\"noopener noreferrer\" target=\"_blank\" title=\"前往網址\">網址</a></p>",
       "attachments": [],
       "titleEn": "Job Opening: Taipei Dept. of Labor Hiring 3 Contract Labor Inspectors",
-      "summaryEn": "Recruitment notice for 3 contract labor inspectors with competitive salary points and clear eligibility requirements."
+      "summaryEn": "Recruitment notice for 3 contract labor inspectors with competitive salary points and clear eligibility requirements.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "F3CB00CCC90CEFC1",
@@ -123,7 +131,9 @@
       "contentHtml": "<p><span style=\"color: rgb(255, 0, 0);\">本次甄試報名表及簡章相關規定請至臺北市就業服務處網站首頁『最新消息』區下載：網址<a href=\"http://eso.gov.taipei/\" rel=\"noopener noreferrer\" target=\"_blank\" title=\"點擊前往\">連結</a>，服務電話：（02）23085231。</span></p><p>(一)職稱：組員</p><p>(二)需求人數：正取1名；備取2名</p><p>(三)考試方式：口試</p><p>(四)工作內容：</p><p>1.承辦勞資關係及勞動條件審核業務。</p><p>2.其他臨時交辦事項。</p><p>(五)待遇／每月：新臺幣38,948元~43,399元（新進人員須自計畫所訂最低薪點起支，並依考核規定晉級。）</p><p>(六)資格條件：</p><p>1.國內外大學畢業者。</p><p>2.具有與擬任工作性質程度相當之訓練或工作經驗者。</p><p>(七)報名應繳證件： ※檢附文件前，請務必詳閱簡章【二、報名】及【三、甄試】之各項規定</p><p>1.身分證正反面。</p><p>2.求職登記表。（倘須就業服務處協助推介就業則於網路報名時併同填寫，無則免填）</p><p>3.學歷證明文件。國內學歷請檢附中文畢業證書；如係國外學歷須加附經翻譯且認證（本國駐外單位、公證等）之中文譯本；國外學歷並須依教育部訂頒之「大學辦理國外學歷採認辦法」，經我國駐外單位驗（認）證；持大陸學歷者，須依「大陸地區學歷採認辦法」通過學歷甄試或經採認。</p><p>4.與資格條件相符之工作經驗證明文件。</p><p>5.與資格條件相符之專業訓練證明文件。</p><p>6.與資格條件相符之研究工作證明文件。</p><p>(八)聯絡人：劉雪如股長 電話: (02) 2720-8889#7049</p><p>(九)聘僱期間：依實際到職日起至115年12月31日止，依聘僱計畫及成績考核一年一聘僱。</p><p>(十)備註：本職缺重點業務係工作規則核備及勞資會議備查等相關業務之審核。</p>",
       "attachments": [],
       "titleEn": "Job Opening: Administrative Officer Position (1 Opening)",
-      "summaryEn": "Civil service recruitment for 1 labor relations review officer. Interviews will be conducted by Taipei Employment Services Office."
+      "summaryEn": "Civil service recruitment for 1 labor relations review officer. Interviews will be conducted by Taipei Employment Services Office.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "CC232AEA3C1BB567",
@@ -162,7 +172,9 @@
         }
       ],
       "titleEn": "2027 Taipei Outstanding Labor Union Selection Plan",
-      "summaryEn": "Implementation guidelines and criteria for the annual selection and commendation of excellent enterprise and craft unions in Taipei."
+      "summaryEn": "Implementation guidelines and criteria for the annual selection and commendation of excellent enterprise and craft unions in Taipei.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "33FCF1D9E5669B06",
@@ -191,7 +203,126 @@
         }
       ],
       "titleEn": "Job Opening: Operations Supervisor for Labor Pension Protection Project (1 Opening)",
-      "summaryEn": "Recruitment of 1 project operations supervisor responsible for monitoring and securing workers pension rights in Taipei."
+      "summaryEn": "Recruitment of 1 project operations supervisor responsible for monitoring and securing workers pension rights in Taipei.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
+    },
+    {
+      "id": "fd-course-0253629D5934F6D6",
+      "title": "臺北移工學校：基礎中文生活溝通與會話培訓課程",
+      "titleEn": "Taipei Migrant Worker School: Practical Mandarin Conversation & Daily Life Training",
+      "link": "https://fd.gov.taipei/cp.aspx?n=0253629D5934F6D6",
+      "pubDate": "Mon, 02 Nov 2026 09:00:00 +0800",
+      "isoDate": "2026-11-02T01:00:00.000Z",
+      "timestamp": 1793581200000,
+      "formattedDate": "2026/11/02",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年11月",
+      "category": "activity",
+      "categoryLabel": "活動課程",
+      "categoryLabelEn": "Activities",
+      "source": "臺北移工學校",
+      "sourceEn": "Taipei Migrant Worker School",
+      "summary": "臺北市勞動局移工學校規劃之生活中文實用課程，協助移工迅速掌握日常買菜、問路、看診與工作溝通，提升生活適應力與職場技能。",
+      "summaryEn": "Free foundational Mandarin Chinese speaking and listening course designed for international workers in Taipei to enhance daily communication and workplace safety.",
+      "contentHtml": "<p>為提升在臺移工之語言溝通與在臺生活適應力，臺北移工學校開辦初階與進階生活實用中文班，課程免費並提供雙語輔導助教。</p>",
+      "attachments": [
+        {
+          "title": "課程簡章與報名表.pdf",
+          "url": "https://fd.gov.taipei/cp.aspx?n=0253629D5934F6D6",
+          "type": "pdf"
+        }
+      ]
+    },
+    {
+      "id": "wda-2c95efb3a1805cd601a1867bdd2c2518",
+      "title": "(直聘中心)直聘分中心服務資訊-多國語言版",
+      "titleEn": "Direct Hiring Service Center Information (Multilingual Edition)",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a1805cd601a1867bdd2c2518",
+      "pubDate": "Fri, 30 Oct 2026 00:00:00 GMT",
+      "isoDate": "2026-10-30T00:00:00Z",
+      "timestamp": 1793289600000,
+      "formattedDate": "2026/10/30",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年10月",
+      "category": "activity",
+      "categoryLabel": "活動課程",
+      "categoryLabelEn": "Activities",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：(直聘中心)直聘分中心服務資訊-多國語言版。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "Service guide for Direct Hiring Centers available in English, Indonesian, Tagalog, Thai, and Vietnamese to support migrant workers and employers.",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：(直聘中心)直聘分中心服務資訊-多國語言版。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
+    },
+    {
+      "id": "wda-2c95efb3a1805cd601a186b7fed0274e",
+      "title": "勞動部肯定模範移工在臺貢獻　116年選拔活動開放推薦",
+      "titleEn": "Ministry of Labor Honors Model Migrant Workers: 2027 Nominations Open",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a1805cd601a186b7fed0274e",
+      "pubDate": "Thu, 29 Oct 2026 00:00:00 GMT",
+      "isoDate": "2026-10-29T00:00:00Z",
+      "timestamp": 1793203200000,
+      "formattedDate": "2026/10/29",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年10月",
+      "category": "subsidy",
+      "categoryLabel": "補助獎勵",
+      "categoryLabelEn": "Subsidies",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：勞動部肯定模範移工在臺貢獻　116年選拔活動開放推薦。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "Recognizing outstanding foreign workers across manufacturing, caregiving, and agriculture in Taiwan. Nominations for 2027 are officially open.",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：勞動部肯定模範移工在臺貢獻　116年選拔活動開放推薦。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
+    },
+    {
+      "id": "fd-course-EF5149CD294162AE",
+      "title": "臺北移工學校：家庭看護工專業照護與急救技能精進班",
+      "titleEn": "Taipei Migrant Worker School: Professional Home Caregiving & First-Aid Advanced Skills",
+      "link": "https://fd.gov.taipei/cp.aspx?n=EF5149CD294162AE",
+      "pubDate": "Wed, 28 Oct 2026 14:00:00 +0800",
+      "isoDate": "2026-10-28T06:00:00.000Z",
+      "timestamp": 1793167200000,
+      "formattedDate": "2026/10/28",
+      "formattedTime": "14:00",
+      "yearMonth": "2026年10月",
+      "category": "activity",
+      "categoryLabel": "活動課程",
+      "categoryLabelEn": "Activities",
+      "source": "臺北移工學校",
+      "sourceEn": "Taipei Migrant Worker School",
+      "summary": "包含臥床被翻身移位技巧、管灌飲食注意事項、壓瘡預防、CPR 與 AED 操作急救實作，由資深護理師指導。",
+      "summaryEn": "Hands-on caregiver development training covering patient transfer techniques, nasogastric tube feeding precautions, bedsore care, and CPR/AED certification.",
+      "contentHtml": "<p>專業護理師親自示範各項長照護理技巧，提供印尼語與越南語即時隨堂口譯，完成結訓頒發專業技能證書。</p>",
+      "attachments": [
+        {
+          "title": "照顧技巧研習講義.pdf",
+          "url": "https://fd.gov.taipei/cp.aspx?n=EF5149CD294162AE",
+          "type": "pdf"
+        }
+      ]
+    },
+    {
+      "id": "fd-course-B02614897A8C75DE",
+      "title": "臺北移工學校：臺灣文化共融探索與城市生活體驗營",
+      "titleEn": "Taipei Migrant Worker School: Cultural Inclusion & City Life Exploration Workshop",
+      "link": "https://fd.gov.taipei/cp.aspx?n=B02614897A8C75DE",
+      "pubDate": "Sun, 25 Oct 2026 10:30:00 +0800",
+      "isoDate": "2026-10-25T02:30:00.000Z",
+      "timestamp": 1792895400000,
+      "formattedDate": "2026/10/25",
+      "formattedTime": "10:30",
+      "yearMonth": "2026年10月",
+      "category": "activity",
+      "categoryLabel": "活動課程",
+      "categoryLabelEn": "Activities",
+      "source": "臺北移工學校",
+      "sourceEn": "Taipei Migrant Worker School",
+      "summary": "帶領移工學員走訪大稻埕、臺北探索館及節慶活動體驗，增進多元文化交流與城市共融情誼。",
+      "summaryEn": "Interactive city excursion and cultural exchange workshop exploring historic Dadaocheng, Taipei heritage, and intercultural arts.",
+      "contentHtml": "<p>透過文化參訪與節慶體驗活動，促進移工與在地居民互動，打造友善包容的多元共融社會。</p>",
+      "attachments": []
     },
     {
       "id": "04C189D2437236BF",
@@ -209,7 +340,9 @@
       "contentHtml": "<p>　　116年臺北市模範勞工、優秀勞工自即日起開放報名，模範勞工自公告之日起至115年11月18日截止報名，優秀勞工公告之日起至115年12月31日截止報名，報名資格、名額、報名應備文件等詳見計畫書暨附件。為響應環保愛地球，報名應備文件不提供紙本檔案，請自行下載列印，並於前揭期限前，以郵寄方式寄送本局（以郵戳為憑）。</p><p><br></p><ul><li><a target=\"_blank\" href=\"https://bola.gov.taipei/News_Content.aspx?n=295C401D7978237F&sms=CB966D09FD30A097&s=A7A63CEB6C16265D\"><img src='images/Icons/link.gif' alt='' border='0' /></a></li></ul>",
       "attachments": [],
       "titleEn": "2027 Taipei Outstanding Worker Selection Plan - Open for Registration",
-      "summaryEn": "Taipei Department of Labor is accepting nominations for the 2027 outstanding workers selection. Apply online or via employer."
+      "summaryEn": "Taipei Department of Labor is accepting nominations for the 2027 outstanding workers selection. Apply online or via employer.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "0708ED09695515AD",
@@ -233,7 +366,9 @@
         }
       ],
       "titleEn": "Official Notice on Minimum Wage Adjustments",
-      "summaryEn": "Regulations and implementation timeline regarding the national statutory minimum monthly wage and hourly rate adjustments."
+      "summaryEn": "Regulations and implementation timeline regarding the national statutory minimum monthly wage and hourly rate adjustments.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "event-9",
@@ -257,7 +392,177 @@
         }
       ],
       "titleEn": "Taipei Vocational Development Institute: 2027 H1 Vocational Training Courses Enrollment",
-      "summaryEn": "Enrollment guide for free and subsidized vocational skill training courses across technical, digital, and service sectors."
+      "summaryEn": "Enrollment guide for free and subsidized vocational skill training courses across technical, digital, and service sectors.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
+    },
+    {
+      "id": "wda-2c95efb3a153665601a15bf364137063",
+      "title": "115年犯罪被害人保護週實施計畫",
+      "titleEn": "2026 Crime Victims Protection Week Implementation Plan",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a153665601a15bf364137063",
+      "pubDate": "Wed, 21 Oct 2026 00:00:00 GMT",
+      "isoDate": "2026-10-21T00:00:00Z",
+      "timestamp": 1792512000000,
+      "formattedDate": "2026/10/21",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年10月",
+      "category": "rule",
+      "categoryLabel": "法規政策",
+      "categoryLabelEn": "Regulations",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：115年犯罪被害人保護週實施計畫。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "Legal aid, safety protection, and emergency support services for victims of crime and foreign residents in Taiwan.",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：115年犯罪被害人保護週實施計畫。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
+    },
+    {
+      "id": "wda-2c95efb3a153665601a15be38d667004",
+      "title": "連續11年調升最低工資",
+      "titleEn": "連續11年調升最低工資",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a153665601a15be38d667004",
+      "pubDate": "Wed, 21 Oct 2026 00:00:00 GMT",
+      "isoDate": "2026-10-21T00:00:00Z",
+      "timestamp": 1792512000000,
+      "formattedDate": "2026/10/21",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年10月",
+      "category": "announcement",
+      "categoryLabel": "最新公告",
+      "categoryLabelEn": "News",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：連續11年調升最低工資。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "連續11年調升最低工資",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：連續11年調升最低工資。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
+    },
+    {
+      "id": "wda-2c95efb3a153665601a158e8041d17fb",
+      "title": "116年度全國模範移工選拔",
+      "titleEn": "116年度全國模範移工選拔",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a153665601a158e8041d17fb",
+      "pubDate": "Tue, 20 Oct 2026 00:00:00 GMT",
+      "isoDate": "2026-10-20T00:00:00Z",
+      "timestamp": 1792425600000,
+      "formattedDate": "2026/10/20",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年10月",
+      "category": "subsidy",
+      "categoryLabel": "補助獎勵",
+      "categoryLabelEn": "Subsidies",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：116年度全國模範移工選拔。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "116年度全國模範移工選拔",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：116年度全國模範移工選拔。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
+    },
+    {
+      "id": "wda-2c95efb3a114675101a11a5564171bd1",
+      "title": "(直聘中心)移工轉換雇主或工作協調會議-多國語言版",
+      "titleEn": "(直聘中心)移工轉換雇主或工作協調會議-多國語言版",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a114675101a11a5564171bd1",
+      "pubDate": "Mon, 19 Oct 2026 00:00:00 GMT",
+      "isoDate": "2026-10-19T00:00:00Z",
+      "timestamp": 1792339200000,
+      "formattedDate": "2026/10/19",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年10月",
+      "category": "announcement",
+      "categoryLabel": "最新公告",
+      "categoryLabelEn": "News",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：(直聘中心)移工轉換雇主或工作協調會議-多國語言版。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "(直聘中心)移工轉換雇主或工作協調會議-多國語言版",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：(直聘中心)移工轉換雇主或工作協調會議-多國語言版。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
+    },
+    {
+      "id": "wda-2c95efb3a153665601a15903754a180e",
+      "title": "跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1123高雄場",
+      "titleEn": "跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1123高雄場",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a153665601a15903754a180e",
+      "pubDate": "Mon, 19 Oct 2026 00:00:00 GMT",
+      "isoDate": "2026-10-19T00:00:00Z",
+      "timestamp": 1792339200000,
+      "formattedDate": "2026/10/19",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年10月",
+      "category": "announcement",
+      "categoryLabel": "最新公告",
+      "categoryLabelEn": "News",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1123高雄場。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1123高雄場",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1123高雄場。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
+    },
+    {
+      "id": "wda-2c95efb3a153665601a159020c44180b",
+      "title": "跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1118台北場",
+      "titleEn": "跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1118台北場",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a153665601a159020c44180b",
+      "pubDate": "Mon, 19 Oct 2026 00:00:00 GMT",
+      "isoDate": "2026-10-19T00:00:00Z",
+      "timestamp": 1792339200000,
+      "formattedDate": "2026/10/19",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年10月",
+      "category": "announcement",
+      "categoryLabel": "最新公告",
+      "categoryLabelEn": "News",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1118台北場。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1118台北場",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1118台北場。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
+    },
+    {
+      "id": "wda-2c95efb3a153665601a158fe01291804",
+      "title": "跨國勞動力精進方案宣導說明會（旅宿業）-桃園場",
+      "titleEn": "跨國勞動力精進方案宣導說明會（旅宿業）-桃園場",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a153665601a158fe01291804",
+      "pubDate": "Mon, 19 Oct 2026 00:00:00 GMT",
+      "isoDate": "2026-10-19T00:00:00Z",
+      "timestamp": 1792339200000,
+      "formattedDate": "2026/10/19",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年10月",
+      "category": "announcement",
+      "categoryLabel": "最新公告",
+      "categoryLabelEn": "News",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：跨國勞動力精進方案宣導說明會（旅宿業）-桃園場。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "跨國勞動力精進方案宣導說明會（旅宿業）-桃園場",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：跨國勞動力精進方案宣導說明會（旅宿業）-桃園場。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
+    },
+    {
+      "id": "fd-course-4B3D980F042B102D",
+      "title": "臺北移工學校：行動數位應用與個人資訊安全培訓班",
+      "titleEn": "Taipei Migrant Worker School: Mobile Digital Skills & Cybersecurity Literacy Course",
+      "link": "https://fd.gov.taipei/cp.aspx?n=4B3D980F042B102D",
+      "pubDate": "Sat, 17 Oct 2026 13:30:00 +0800",
+      "isoDate": "2026-10-17T05:30:00.000Z",
+      "timestamp": 1792215000000,
+      "formattedDate": "2026/10/17",
+      "formattedTime": "13:30",
+      "yearMonth": "2026年10月",
+      "category": "activity",
+      "categoryLabel": "活動課程",
+      "categoryLabelEn": "Activities",
+      "source": "臺北移工學校",
+      "sourceEn": "Taipei Migrant Worker School",
+      "summary": "學習智慧型手機便民 App、公車捷運轉乘查詢、防範電信海外求職詐騙及行動支付正確使用概念。",
+      "summaryEn": "Mobile digital literacy program teaching navigation tools, Taipei public transport apps, e-payments, and online scam prevention.",
+      "contentHtml": "<p>培養移工數位素養，學習正確查證防詐意識，保護自身個人資料與薪資財務安全。</p>",
+      "attachments": []
     },
     {
       "id": "76D9309843CAC15A",
@@ -281,7 +586,93 @@
         }
       ],
       "titleEn": "Workplace Equality: Winners Announced for 2026 Taipei Workplace Gender Equality Certification!",
-      "summaryEn": "Recognizing top enterprises and institutions championing equal opportunity, transparent promotion, and parental care in Taipei."
+      "summaryEn": "Recognizing top enterprises and institutions championing equal opportunity, transparent promotion, and parental care in Taipei.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
+    },
+    {
+      "id": "fd-lang",
+      "title": "臺北移工學校—語言課程（華語、臺語及檢定輔導班）",
+      "titleEn": "Taipei Migrant Worker School: Chinese & Taiwanese Language Courses",
+      "link": "https://fd.gov.taipei/cp.aspx?n=0253629D5934F6D6",
+      "pubDate": "2026/10/15 10:00:00",
+      "isoDate": "2026-10-15T00:00:00",
+      "timestamp": 1791993600000,
+      "formattedDate": "2026/10/15",
+      "formattedTime": "10:00",
+      "yearMonth": "2026年10月",
+      "category": "activity",
+      "categoryLabel": "活動課程",
+      "categoryLabelEn": "Activities",
+      "summary": "協助外國人適應在臺生活與工作，開辦移工華語、臺語、TOCFL口語基礎級輔導班及進階班，完全免費，增進語言能力與職場穩定。",
+      "summaryEn": "Free language classes and TOCFL test prep courses in Mandarin and Taiwanese to help international workers thrive in daily life and work.",
+      "contentHtml": "<p>協助外國人適應在臺生活與工作，開辦移工華語、臺語、TOCFL口語基礎級輔導班及進階班，完全免費，增進語言能力與職場穩定。</p>",
+      "attachments": [],
+      "source": "臺北移工學校",
+      "sourceEn": "Taipei Migrant Worker School"
+    },
+    {
+      "id": "wda-2c95efb3a114675101a11a4ece711b95",
+      "title": "(直聘中心)雙語服務即時通譯-多國語言版",
+      "titleEn": "(直聘中心)雙語服務即時通譯-多國語言版",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a114675101a11a4ece711b95",
+      "pubDate": "Tue, 13 Oct 2026 00:00:00 GMT",
+      "isoDate": "2026-10-13T00:00:00Z",
+      "timestamp": 1791820800000,
+      "formattedDate": "2026/10/13",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年10月",
+      "category": "announcement",
+      "categoryLabel": "最新公告",
+      "categoryLabelEn": "News",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：(直聘中心)雙語服務即時通譯-多國語言版。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "(直聘中心)雙語服務即時通譯-多國語言版",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：(直聘中心)雙語服務即時通譯-多國語言版。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
+    },
+    {
+      "id": "fd-care",
+      "title": "臺北移工學校—照顧技巧訓練（失智症照護與居家指導）",
+      "titleEn": "Taipei Migrant Worker School: Caregiving Skills Practical Training",
+      "link": "https://fd.gov.taipei/cp.aspx?n=EF5149CD294162AE",
+      "pubDate": "2026/10/12 10:00:00",
+      "isoDate": "2026-10-12T00:00:00",
+      "timestamp": 1791734400000,
+      "formattedDate": "2026/10/12",
+      "formattedTime": "10:00",
+      "yearMonth": "2026年10月",
+      "category": "activity",
+      "categoryLabel": "活動課程",
+      "categoryLabelEn": "Activities",
+      "summary": "提升外籍看護工居家照顧服務實作技巧，預防職業傷害，涵蓋失智症照護、一對一到宅訓練及小班制演練指導。",
+      "summaryEn": "Hands-on instruction in elder care, dementia management, and injury prevention, with one-on-one in-home guidance.",
+      "contentHtml": "<p>提升外籍看護工居家照顧服務實作技巧，預防職業傷害，涵蓋失智症照護、一對一到宅訓練及小班制演練指導。</p>",
+      "attachments": [],
+      "source": "臺北移工學校",
+      "sourceEn": "Taipei Migrant Worker School"
+    },
+    {
+      "id": "fd-culture",
+      "title": "臺北移工學校—多元文化共融課程與生活講座",
+      "titleEn": "Taipei Migrant Worker School: Multicultural Community Events",
+      "link": "https://fd.gov.taipei/cp.aspx?n=B02614897A8C75DE",
+      "pubDate": "2026/10/08 10:00:00",
+      "isoDate": "2026-10-08T00:00:00",
+      "timestamp": 1791388800000,
+      "formattedDate": "2026/10/08",
+      "formattedTime": "10:00",
+      "yearMonth": "2026年10月",
+      "category": "activity",
+      "categoryLabel": "活動課程",
+      "categoryLabelEn": "Activities",
+      "summary": "舉辦多元文化相關活動與「南風漫城」系列活動，促進移工與國人交流、彼此共融共好。",
+      "summaryEn": "Cultural exchange festivals, community workshops, and community celebration events fostering mutual understanding in Taipei.",
+      "contentHtml": "<p>舉辦多元文化相關活動與「南風漫城」系列活動，促進移工與國人交流、彼此共融共好。</p>",
+      "attachments": [],
+      "source": "臺北移工學校",
+      "sourceEn": "Taipei Migrant Worker School"
     },
     {
       "id": "6E633E86878EB207",
@@ -315,7 +706,51 @@
         }
       ],
       "titleEn": "Notice: Ministry of Labor Issues Amendments to Regulations on Worker Leave Taking",
-      "summaryEn": "Clarifications and amendments regarding sick leave calculations, medical certificate submission, and leave deductions."
+      "summaryEn": "Clarifications and amendments regarding sick leave calculations, medical certificate submission, and leave deductions.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
+    },
+    {
+      "id": "wda-2c95efb3a0eacc0001a0f6064a2b5698",
+      "title": "為強化犯罪預防宣導，即日起提供民眾可免費下載「刑事Bear的日常」LINE貼圖，歡迎下載及推廣",
+      "titleEn": "為強化犯罪預防宣導，即日起提供民眾可免費下載「刑事Bear的日常」LINE貼圖，歡迎下載及推廣",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a0eacc0001a0f6064a2b5698",
+      "pubDate": "Thu, 01 Oct 2026 00:00:00 GMT",
+      "isoDate": "2026-10-01T00:00:00Z",
+      "timestamp": 1790784000000,
+      "formattedDate": "2026/10/01",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年10月",
+      "category": "announcement",
+      "categoryLabel": "最新公告",
+      "categoryLabelEn": "News",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：為強化犯罪預防宣導，即日起提供民眾可免費下載「刑事Bear的日常」LINE貼圖，歡迎下載及推廣。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "為強化犯罪預防宣導，即日起提供民眾可免費下載「刑事Bear的日常」LINE貼圖，歡迎下載及推廣",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：為強化犯罪預防宣導，即日起提供民眾可免費下載「刑事Bear的日常」LINE貼圖，歡迎下載及推廣。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
+    },
+    {
+      "id": "fd-digital",
+      "title": "臺北移工學校—數位學習課程（多國語言線上學習專區）",
+      "titleEn": "Taipei Migrant Worker School: Multilingual Digital Learning Platform",
+      "link": "https://fd.gov.taipei/cp.aspx?n=4B3D980F042B102D",
+      "pubDate": "2026/09/25 10:00:00",
+      "isoDate": "2026-09-25T00:00:00",
+      "timestamp": 1790265600000,
+      "formattedDate": "2026/09/25",
+      "formattedTime": "10:00",
+      "yearMonth": "2026年09月",
+      "category": "activity",
+      "categoryLabel": "活動課程",
+      "categoryLabelEn": "Activities",
+      "summary": "開設專屬數位學習影音頻道，內容涵蓋中文教學、身體照顧、職業安全等主題，並翻譯四國語言，隨時隨地免費在線學習。",
+      "summaryEn": "Free online YouTube video tutorials subtitled in four languages covering healthcare skills, occupational safety, and language.",
+      "contentHtml": "<p>開設專屬數位學習影音頻道，內容涵蓋中文教學、身體照顧、職業安全等主題，並翻譯四國語言，隨時隨地免費在線學習。</p>",
+      "attachments": [],
+      "source": "臺北移工學校",
+      "sourceEn": "Taipei Migrant Worker School"
     },
     {
       "id": "D9202BF05E2FE51E",
@@ -339,7 +774,72 @@
         }
       ],
       "titleEn": "Ministry of Labor Issues Revised Workplace Risk Assessment Guidelines",
-      "summaryEn": "Comprehensive technical handbook for enterprises to evaluate hazards, mitigate industrial risks, and enhance worker safety."
+      "summaryEn": "Comprehensive technical handbook for enterprises to evaluate hazards, mitigate industrial risks, and enhance worker safety.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
+    },
+    {
+      "id": "wda-2c95efb3a0b2705e01a0b36812d506a0",
+      "title": "台北富邦商業銀行股份有限公司打擊詐騙金融安全工具包_多國語",
+      "titleEn": "台北富邦商業銀行股份有限公司打擊詐騙金融安全工具包_多國語",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a0b2705e01a0b36812d506a0",
+      "pubDate": "Sat, 19 Sep 2026 00:00:00 GMT",
+      "isoDate": "2026-09-19T00:00:00Z",
+      "timestamp": 1789747200000,
+      "formattedDate": "2026/09/19",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年09月",
+      "category": "announcement",
+      "categoryLabel": "最新公告",
+      "categoryLabelEn": "News",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：台北富邦商業銀行股份有限公司打擊詐騙金融安全工具包_多國語。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "台北富邦商業銀行股份有限公司打擊詐騙金融安全工具包_多國語",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：台北富邦商業銀行股份有限公司打擊詐騙金融安全工具包_多國語。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
+    },
+    {
+      "id": "wda-2c95efb3a08fbe1d01a09da9f2d33683",
+      "title": "勞動部助旅宿業海外招才 首波印尼技術人力抵臺",
+      "titleEn": "勞動部助旅宿業海外招才 首波印尼技術人力抵臺",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a08fbe1d01a09da9f2d33683",
+      "pubDate": "Mon, 14 Sep 2026 00:00:00 GMT",
+      "isoDate": "2026-09-14T00:00:00Z",
+      "timestamp": 1789315200000,
+      "formattedDate": "2026/09/14",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年09月",
+      "category": "announcement",
+      "categoryLabel": "最新公告",
+      "categoryLabelEn": "News",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：勞動部助旅宿業海外招才 首波印尼技術人力抵臺。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "勞動部助旅宿業海外招才 首波印尼技術人力抵臺",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：勞動部助旅宿業海外招才 首波印尼技術人力抵臺。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
+    },
+    {
+      "id": "wda-2c95efb3a08fbe1d01a09e70d7c23dba",
+      "title": "(職安署)「職災勞工及家屬法律權益協助方案」宣導摺頁電子版-多國語言版",
+      "titleEn": "(職安署)「職災勞工及家屬法律權益協助方案」宣導摺頁電子版-多國語言版",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a08fbe1d01a09e70d7c23dba",
+      "pubDate": "Mon, 14 Sep 2026 00:00:00 GMT",
+      "isoDate": "2026-09-14T00:00:00Z",
+      "timestamp": 1789315200000,
+      "formattedDate": "2026/09/14",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年09月",
+      "category": "announcement",
+      "categoryLabel": "最新公告",
+      "categoryLabelEn": "News",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：(職安署)「職災勞工及家屬法律權益協助方案」宣導摺頁電子版-多國語言版。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "(職安署)「職災勞工及家屬法律權益協助方案」宣導摺頁電子版-多國語言版",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：(職安署)「職災勞工及家屬法律權益協助方案」宣導摺頁電子版-多國語言版。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
     },
     {
       "id": "A31289010AD39FCA",
@@ -357,7 +857,51 @@
       "contentHtml": "<p>　　茲公告115年度勞動教育經費補助第三次公告，敬請參見<a href=\"https://bola.gov.taipei/News_Content.aspx?n=954974C68391B710&sms=6D4843EAFB9776A3&s=2847AB500AE7A4A0\" rel=\"noopener noreferrer\" target=\"_blank\" title=\"勞動教育經費補助\">臺北市政府勞動局網站＞業務服務＞勞動教育文化＞勞動教育＞勞動教育經費補助</a>，受理申請自公告日起至9月22日止，逾期不予受理。敬請參見臺北市政府勞動局首頁&gt;業務服務&gt;勞動教育文化&gt;勞動教育&gt;勞動教育經費補助。</p>",
       "attachments": [],
       "titleEn": "2026 Labor Education Subsidy Grants: 3rd Call for Applications",
-      "summaryEn": "Taipei Department of Labor opens the 3rd grant application window for labor unions and organizations holding educational seminars."
+      "summaryEn": "Taipei Department of Labor opens the 3rd grant application window for labor unions and organizations holding educational seminars.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
+    },
+    {
+      "id": "wda-2c95efb3",
+      "title": "跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1021南投場",
+      "titleEn": "Fair Recruitment & Foreign Labor Seminar (Manufacturing) - Nantou Session",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a07b1b4901a07baa566100c0",
+      "pubDate": "2026/09/07 09:00:00",
+      "isoDate": "2026-09-07T00:00:00",
+      "timestamp": 1788710400000,
+      "formattedDate": "2026/09/07",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年09月",
+      "category": "activity",
+      "categoryLabel": "活動課程",
+      "categoryLabelEn": "Activities",
+      "summary": "Compliance and ethical recruitment seminar for central Taiwan manufacturing corporations.",
+      "summaryEn": "Compliance and ethical recruitment seminar for central Taiwan manufacturing corporations.",
+      "contentHtml": "<p>跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1021南投場</p>",
+      "attachments": [],
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency"
+    },
+    {
+      "id": "wda-2c95efb3a07b1b4901a07baa566100c0",
+      "title": "跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1021南投場",
+      "titleEn": "跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1021南投場",
+      "link": "https://fw.wda.gov.tw/wda-employer/home/activity/2c95efb3a07b1b4901a07baa566100c0",
+      "pubDate": "Mon, 07 Sep 2026 00:00:00 GMT",
+      "isoDate": "2026-09-07T00:00:00Z",
+      "timestamp": 1788710400000,
+      "formattedDate": "2026/09/07",
+      "formattedTime": "09:00",
+      "yearMonth": "2026年09月",
+      "category": "announcement",
+      "categoryLabel": "最新公告",
+      "categoryLabelEn": "News",
+      "source": "勞動力發展署",
+      "sourceEn": "Workforce Development Agency",
+      "summary": "勞動部勞動力發展署移工與雇主活動服務公告：跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1021南投場。歡迎相關單位及外籍移工踴躍報名與參與。",
+      "summaryEn": "跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1021南投場",
+      "contentHtml": "<p>勞動部勞動力發展署移工與雇主活動服務公告：跨國勞動力精進方案暨公平招募宣導說明會（僅開放製造業雇主參加）- 1021南投場。歡迎相關單位及外籍移工踴躍報名與參與。</p>",
+      "attachments": []
     },
     {
       "id": "6E1F1018E9F16C37",
@@ -391,7 +935,9 @@
         }
       ],
       "titleEn": "Accreditation Guidelines for Occupational Health Service Personnel Training Institutions",
-      "summaryEn": "Updated standards and criteria for certified institutions providing medical and occupational health training to labor professionals."
+      "summaryEn": "Updated standards and criteria for certified institutions providing medical and occupational health training to labor professionals.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "E784970580FAAD2E",
@@ -415,7 +961,9 @@
         }
       ],
       "titleEn": "Regulations on Legal and Living Expense Subsidies for Labor-Management Disputes",
-      "summaryEn": "Government subsidy policies providing legal aid and temporary living allowances for workers engaged in labor arbitration or litigation."
+      "summaryEn": "Government subsidy policies providing legal aid and temporary living allowances for workers engaged in labor arbitration or litigation.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "AA4DF61E69EB01AD",
@@ -444,7 +992,9 @@
         }
       ],
       "titleEn": "Taipei Labor Affairs Academy Phase 2 Courses - Registration Opens Aug 11",
-      "summaryEn": "Registration notice for courses covering labor law, negotiation tactics, collective bargaining, and occupational safety."
+      "summaryEn": "Registration notice for courses covering labor law, negotiation tactics, collective bargaining, and occupational safety.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "284BD97835843C27",
@@ -468,7 +1018,9 @@
         }
       ],
       "titleEn": "Taipei Mental Health Support & Consultation Service Resources Directory",
-      "summaryEn": "Comprehensive directory of free and subsidized counseling clinics, hotlines, and psychological consultation resources in Taipei."
+      "summaryEn": "Comprehensive directory of free and subsidized counseling clinics, hotlines, and psychological consultation resources in Taipei.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "6D2B7B7979DDCD1F",
@@ -497,7 +1049,9 @@
         }
       ],
       "titleEn": "Ministry of Labor Revises Penalty Discretion Standards for OSH Violations",
-      "summaryEn": "Updated penalty assessment rubric for violations under Article 32 of the Occupational Safety and Health Act."
+      "summaryEn": "Updated penalty assessment rubric for violations under Article 32 of the Occupational Safety and Health Act.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "FEFF32430529C82F",
@@ -531,7 +1085,9 @@
         }
       ],
       "titleEn": "[Notice] Revision to Performance Review and Recognition Guidelines for OSH Management Systems",
-      "summaryEn": "Revised standards for evaluating and rewarding excellence in occupational safety and health management system implementations."
+      "summaryEn": "Revised standards for evaluating and rewarding excellence in occupational safety and health management system implementations.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "22636881C9CFECF3",
@@ -555,7 +1111,9 @@
         }
       ],
       "titleEn": "[Notice] Registration Guidelines & Procedures for Employers Establishing OSH Committees",
-      "summaryEn": "Mandatory registration timeline and electronic filing formats for employers establishing occupational safety committees."
+      "summaryEn": "Mandatory registration timeline and electronic filing formats for employers establishing occupational safety committees.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "618C42D91C5B45AA",
@@ -584,7 +1142,9 @@
         }
       ],
       "titleEn": "[Notice] Promulgation of Management Regulations for Professional Occupational Health Service Institutions",
-      "summaryEn": "Legal framework and operational standards governing third-party occupational medical institutions and clinics."
+      "summaryEn": "Legal framework and operational standards governing third-party occupational medical institutions and clinics.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "A464A41FF1D6187A",
@@ -602,7 +1162,9 @@
       "contentHtml": "<p>　　茲公告115年度勞動教育經費補助第二次公告，敬請參見臺北市政府勞動局網站＞業務服務＞勞動教育文化＞勞動教育＞<a href=\"https://bola.gov.taipei/News_Content.aspx?n=954974C68391B710&sms=6D4843EAFB9776A3&s=2847AB500AE7A4A0\" rel=\"noopener noreferrer\" target=\"_blank\" title=\"點擊前往勞動教育經費補助\">勞動教育經費補助</a>，受理申請自公告日起至7月17日止，逾期不予受理。</p>",
       "attachments": [],
       "titleEn": "2026 Labor Education Funding Subsidy: 2nd Call for Applications",
-      "summaryEn": "Second batch of grant applications opened for unions organizing labor welfare and training activities in Taipei."
+      "summaryEn": "Second batch of grant applications opened for unions organizing labor welfare and training activities in Taipei.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "AF88783A290FFC50",
@@ -631,7 +1193,9 @@
         }
       ],
       "titleEn": "Regulations on Handling Complaints of Workplace Bullying by Top Executives at Local Authorities",
-      "summaryEn": "New legal mechanism for workers to report workplace bullying committed by corporate executives directly to local labor bureaus."
+      "summaryEn": "New legal mechanism for workers to report workplace bullying committed by corporate executives directly to local labor bureaus.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "580B711482C8C843",
@@ -655,7 +1219,9 @@
         }
       ],
       "titleEn": "Guidelines & Considerations for Employment Contracts with Workers Aged 65 and Older",
-      "summaryEn": "Legal guidance and best practices for employers when hiring or renewing contracts with senior workers aged 65 and above."
+      "summaryEn": "Legal guidance and best practices for employers when hiring or renewing contracts with senior workers aged 65 and above.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "54D3380EB1968934",
@@ -679,7 +1245,9 @@
         }
       ],
       "titleEn": "Labor Rights Notice: Employer Use of Messaging Apps for After-Hours Work Tasks",
-      "summaryEn": "Protection notice regarding working hours, standby duties, and required overtime compensation when messaging workers after hours."
+      "summaryEn": "Protection notice regarding working hours, standby duties, and required overtime compensation when messaging workers after hours.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "DBCB481EB68FB14B",
@@ -703,7 +1271,9 @@
         }
       ],
       "titleEn": "Labor Standards Act Article 15-1 Notice: Minimum Service Term & Penalty Reimbursement Guidelines",
-      "summaryEn": "Legal limitations on compulsory service duration agreements, training cost compensation, and breach penalty clauses."
+      "summaryEn": "Legal limitations on compulsory service duration agreements, training cost compensation, and breach penalty clauses.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "0391E46FA7FC48FD",
@@ -727,7 +1297,9 @@
         }
       ],
       "titleEn": "Implementation Notice: Partial Amendments to the Occupational Safety and Health Act",
-      "summaryEn": "Key statutory updates taking effect, reinforcing employer duties and worker protection across construction and hazardous workplaces."
+      "summaryEn": "Key statutory updates taking effect, reinforcing employer duties and worker protection across construction and hazardous workplaces.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "CF8724ACA409BCFF",
@@ -751,7 +1323,9 @@
         }
       ],
       "titleEn": "Ministry of Labor Interpretation: Application of Mandatory Retirement Age under Article 54 of Labor Standards Act",
-      "summaryEn": "Administrative interpretation clarifying the rights of workers reaching 65 and conditions governing mandatory retirement."
+      "summaryEn": "Administrative interpretation clarifying the rights of workers reaching 65 and conditions governing mandatory retirement.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "7C6748053D911F83",
@@ -775,7 +1349,9 @@
         }
       ],
       "titleEn": "Ministry of Labor Notice on Protecting Labor Rights of Cancer Patients in the Workplace",
-      "summaryEn": "Workplace accommodation, extended medical leave, and anti-discrimination protections for workers undergoing cancer treatment."
+      "summaryEn": "Workplace accommodation, extended medical leave, and anti-discrimination protections for workers undergoing cancer treatment.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "A12E4F266E21E265",
@@ -793,7 +1369,9 @@
       "contentHtml": "<p>　　茲公告有關115年度勞動教育經費補助獎勵經「115年臺北市政府勞動局選拔優良工會實施計畫」獲選之優良工會，調整補助項目之補助基準等相關事項，敬請參見臺北市政府勞動局網站＞業務服務＞勞動教育文化＞勞動教育＞<a href=\"https://bola.gov.taipei/News_Content.aspx?n=954974C68391B710&sms=6D4843EAFB9776A3&s=2847AB500AE7A4A0\" rel=\"noopener noreferrer\" target=\"_blank\" title=\"點擊前往勞動教育經費補助\">勞動教育經費補助</a>。</p>",
       "attachments": [],
       "titleEn": "2026 Labor Education Grants: Adjusted Subsidy Standards for Outstanding Labor Unions",
-      "summaryEn": "Incentive adjustments and bonus funding caps for unions recognized in Taipei City Outstanding Union selection."
+      "summaryEn": "Incentive adjustments and bonus funding caps for unions recognized in Taipei City Outstanding Union selection.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "AE9A8F2DAE9FDE5F",
@@ -827,7 +1405,9 @@
         }
       ],
       "titleEn": "Promulgation of Amendments to Enforcement Rules of the Labor Pension Act",
-      "summaryEn": "Revised provisions governing voluntary pension contributions, payout procedures, and survivor benefit claims."
+      "summaryEn": "Revised provisions governing voluntary pension contributions, payout procedures, and survivor benefit claims.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "FCDADCE5085FAFF8",
@@ -851,7 +1431,9 @@
         }
       ],
       "titleEn": "Official Clarification: Parental Leave Applications Under 30 Days for Raising Multiple Children",
-      "summaryEn": "Rules clarifying short-duration parental leave without pay applications when raising two or more children simultaneously."
+      "summaryEn": "Rules clarifying short-duration parental leave without pay applications when raising two or more children simultaneously.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "99BDA4E486D0E1C9",
@@ -875,7 +1457,9 @@
         }
       ],
       "titleEn": "Call for Applications: 2026 Taipei Labor Film & Documentary Appreciation Seminars",
-      "summaryEn": "Grants available for non-profit groups and labor unions hosting film screenings and cultural discussions about workers rights."
+      "summaryEn": "Grants available for non-profit groups and labor unions hosting film screenings and cultural discussions about workers rights.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "6748F8EC13AB66CF",
@@ -904,7 +1488,9 @@
         }
       ],
       "titleEn": "Reference Guidelines for Enterprises on Preventing and Prohibiting Forced Labor",
-      "summaryEn": "Self-assessment checklist and compliance guidance to eliminate forced labor and debt bondage across corporate supply chains."
+      "summaryEn": "Self-assessment checklist and compliance guidance to eliminate forced labor and debt bondage across corporate supply chains.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "35F26F6EBE399C26",
@@ -933,7 +1519,9 @@
         }
       ],
       "titleEn": "Applications Open for Joint Labor Education & Awareness Activities with Taipei Unions",
-      "summaryEn": "Partnership program for labor unions to co-host community labor rights educational campaigns and public workshops."
+      "summaryEn": "Partnership program for labor unions to co-host community labor rights educational campaigns and public workshops.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "F54CE69FB730D296",
@@ -962,7 +1550,9 @@
         }
       ],
       "titleEn": "Ministry of Labor Info Guide: Salary & Overtime Calculation for Security Personnel",
-      "summaryEn": "Visual calculation guide clarifying working hours caps, regular pay formulas, and overtime pay rules for security workers."
+      "summaryEn": "Visual calculation guide clarifying working hours caps, regular pay formulas, and overtime pay rules for security workers.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "240914BF0CD44A7D",
@@ -980,7 +1570,9 @@
       "contentHtml": "<p>臺北市114學年度第2學期非自願性失業勞工子女就學費用補助，自115年2月2日起至3月31日止受理申請，詳情請至首頁/業務服務/勞動教育文化/<a href=\"https://bola.gov.taipei/News_Content.aspx?n=A935A294AE539706&sms=233B2F9EBC054F09&s=EEF3835E00B82E77\" rel=\"noopener noreferrer\" target=\"_blank\" title=\"點擊前往失業勞工子女就學費用補助查詢\">失業勞工子女就學費用補助查詢</a>。</p>",
       "attachments": [],
       "titleEn": "Call for Applications: 2026 Education Subsidies for Children of Unemployed Workers in Taipei",
-      "summaryEn": "Financial tuition aid for high school and university students of recently laid-off or unemployed Taipei residents."
+      "summaryEn": "Financial tuition aid for high school and university students of recently laid-off or unemployed Taipei residents.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "8D38D1D162D5CA00",
@@ -1009,7 +1601,9 @@
         }
       ],
       "titleEn": "Consultation Guidelines for Employers & Workers on Postponing Retirement and Post-Retirement Re-employment",
-      "summaryEn": "Practical guide for mutual negotiations on phased retirement, flexible work arrangements, and post-retirement hiring."
+      "summaryEn": "Practical guide for mutual negotiations on phased retirement, flexible work arrangements, and post-retirement hiring.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "8466CD5E93A5956D",
@@ -1033,7 +1627,9 @@
         }
       ],
       "titleEn": "Official Clarification: Wage Calculation for Ordinary Sick Leave under Regulations on Worker Leave Taking",
-      "summaryEn": "Detailed calculation examples clarifying half-pay standards and holiday inclusion for ordinary sickness leave."
+      "summaryEn": "Detailed calculation examples clarifying half-pay standards and holiday inclusion for ordinary sickness leave.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "2948CB0D43455501",
@@ -1062,7 +1658,9 @@
         }
       ],
       "titleEn": "Ministry of Labor Updates Standard Forms for Labor Dispute Legal & Living Subsidies",
-      "summaryEn": "Revised downloadable forms and certificate templates required when applying for labor arbitration legal fees aid."
+      "summaryEn": "Revised downloadable forms and certificate templates required when applying for labor arbitration legal fees aid.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "BD97F0E5BCE6A48E",
@@ -1091,7 +1689,9 @@
         }
       ],
       "titleEn": "Processing Timeline & Flowcharts: Establishment of Employee Welfare Committee Applications",
-      "summaryEn": "Standard operating procedures and required documentation for corporations establishing employee welfare committees."
+      "summaryEn": "Standard operating procedures and required documentation for corporations establishing employee welfare committees.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "7D96C95C99097F71",
@@ -1115,7 +1715,9 @@
         }
       ],
       "titleEn": "Notice on Protecting Labor Rights: Full-Attendance Bonus Entitlement During Ordinary Sick Leave",
-      "summaryEn": "Clarification that statutory sick leave must not be penalized excessively with discriminatory attendance bonus deductions."
+      "summaryEn": "Clarification that statutory sick leave must not be penalized excessively with discriminatory attendance bonus deductions.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "E0157588298A2D6C",
@@ -1139,7 +1741,9 @@
         }
       ],
       "titleEn": "2026 Taipei Model Worker Award Winners Announced",
-      "summaryEn": "List of honored outstanding individuals recognized for superior craftsmanship and dedication in Taipei industries."
+      "summaryEn": "List of honored outstanding individuals recognized for superior craftsmanship and dedication in Taipei industries.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "08189560B2623CC4",
@@ -1168,7 +1772,9 @@
         }
       ],
       "titleEn": "Promulgation of Amendments to Regulations on Legal Aid and Living Expense Subsidies for Labor Disputes",
-      "summaryEn": "Expanded scope of government subsidized legal costs for arbitration, mediation, and court proceedings."
+      "summaryEn": "Expanded scope of government subsidized legal costs for arbitration, mediation, and court proceedings.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "F0019F90413456C3",
@@ -1202,7 +1808,9 @@
         }
       ],
       "titleEn": "Official Notice: Amendments to the Regulations on Worker Leave Taking",
-      "summaryEn": "Statutory revision affecting leaves of absence, bereavement periods, and medical justifications."
+      "summaryEn": "Statutory revision affecting leaves of absence, bereavement periods, and medical justifications.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "3C4392C58CED0DD8",
@@ -1226,7 +1834,9 @@
         }
       ],
       "titleEn": "Ministry of Labor Approved Medical Institutions for Occupational Disease and Injury Diagnosis",
-      "summaryEn": "Updated directory of authorized regional hospitals and occupational health centers for injury assessments."
+      "summaryEn": "Updated directory of authorized regional hospitals and occupational health centers for injury assessments.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "A3184B6C3B894FE3",
@@ -1255,7 +1865,9 @@
         }
       ],
       "titleEn": "Ministry of Labor Regulatory Interpretation of Article 20, Paragraph 1 of Gender Equality in Employment Act",
-      "summaryEn": "Interpretation regarding family care leave entitlements and documentation standards."
+      "summaryEn": "Interpretation regarding family care leave entitlements and documentation standards.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "B7B2EFAD39C3AAA6",
@@ -1289,7 +1901,9 @@
         }
       ],
       "titleEn": "Notice: Employers Must Provide Paid Voting Leave for Local Public Officials Election Day",
-      "summaryEn": "Mandatory paid day off on local election day for all qualified voting employees; overtime pay required if working."
+      "summaryEn": "Mandatory paid day off on local election day for all qualified voting employees; overtime pay required if working.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     },
     {
       "id": "2464B44C70D94F5C",
@@ -1358,7 +1972,9 @@
         }
       ],
       "titleEn": "2026 Taipei Dept. of Labor Outstanding Union Selection Plan",
-      "summaryEn": "Official implementation criteria and awards schedule for evaluating labor union operational excellence in Taipei."
+      "summaryEn": "Official implementation criteria and awards schedule for evaluating labor union operational excellence in Taipei.",
+      "source": "臺北市勞動局",
+      "sourceEn": "Taipei Labor Bureau"
     }
   ]
 }
