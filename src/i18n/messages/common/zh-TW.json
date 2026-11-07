@@ -1,0 +1,11 @@
+{
+  "appName": "城市通",
+  "language": "語言",
+  "mainNavigation": "主要功能",
+  "backToInformation": "返回資訊",
+  "openExternal": "{title}（在新視窗開啟）",
+  "call": "撥打 {number}：{description}",
+  "information": "資訊",
+  "livingMap": "生活地圖",
+  "events": "活動"
+}

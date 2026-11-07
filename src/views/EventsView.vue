@@ -3,7 +3,10 @@ import { computed, onMounted, ref } from 'vue';
 import EventTimelineItem from '@/components/molecules/EventTimelineItem.vue';
 import { fetchBolaEvents } from '@/services/eventService';
 import type { BolaEvent, BolaEventsFeedData, EventCategoryKey } from '@/interfaces/event.interface';
-import { categoryLabelsMap, currentLang, formatYearMonth, setLanguage, t } from '@/utils/i18n';
+import { useI18n } from 'vue-i18n';
+import { formatYearMonth } from '@/utils/localized-date';
+
+const { t, locale } = useI18n({ useScope: 'global' });
 
 const loading = ref(true);
 const refreshing = ref(false);
@@ -14,7 +17,6 @@ const feedData = ref<BolaEventsFeedData | null>(null);
 const searchQuery = ref('');
 const selectedCategory = ref<EventCategoryKey>('all');
 const sortOrder = ref<'desc' | 'asc'>('desc');
-const lastUpdatedTime = ref<string>('');
 
 const categories: { key: EventCategoryKey }[] = [
   { key: 'all' },
@@ -37,11 +39,9 @@ async function loadData(isManualRefresh = false) {
     const { data, isFallback } = await fetchBolaEvents();
     feedData.value = data;
     isFallbackData.value = isFallback;
-    const now = new Date();
-    lastUpdatedTime.value = `${now.getFullYear()}/${String(now.getMonth() + 1).padStart(2, '0')}/${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
   } catch (err) {
     console.error('Failed to load events:', err);
-    errorMsg.value = '無法載入活動開放資料，請檢查網路連線或稍後再試。';
+    errorMsg.value = 'events.loadError';
   } finally {
     loading.value = false;
     refreshing.value = false;
@@ -93,7 +93,7 @@ const filteredEvents = computed(() => {
         (event.titleEn && event.titleEn.toLowerCase().includes(q)) ||
         event.summary.toLowerCase().includes(q) ||
         (event.summaryEn && event.summaryEn.toLowerCase().includes(q)) ||
-        event.categoryLabel.toLowerCase().includes(q)
+        t(`events.${event.category}`).toLowerCase().includes(q)
     );
   }
 
@@ -118,7 +118,7 @@ const groupedTimeline = computed<TimelineGroup[]>(() => {
   const groups: Map<string, BolaEvent[]> = new Map();
 
   for (const event of filteredEvents.value) {
-    const key = formatYearMonth(event.timestamp, currentLang.value) || 'Other';
+    const key = formatYearMonth(event.timestamp, locale.value) || t('events.other');
     if (!groups.has(key)) {
       groups.set(key, []);
     }
@@ -138,13 +138,13 @@ function clearFilters() {
 </script>
 
 <template>
-  <section class="events-panel" :aria-label="t('pageTitle')">
+  <section class="events-panel" :aria-label="t('events.pageTitle')">
     <div class="events-container">
       <!-- Search & Filters Toolbar -->
       <div
         class="bg-white rounded-2xl p-3.5 sm:p-4 shadow-xs border border-grey-100 mb-5 space-y-3"
       >
-        <!-- Search bar, Sort order & Language Switcher -->
+        <!-- Search and sort order -->
         <div class="flex flex-col sm:flex-row gap-2.5">
           <!-- Search input -->
           <div class="relative flex-1">
@@ -163,11 +163,12 @@ function clearFilters() {
             <input
               v-model="searchQuery"
               type="text"
-              :placeholder="t('searchPlaceholder')"
+              :placeholder="t('events.searchPlaceholder')"
               class="w-full pl-10 pr-9 py-2 bg-grey-50 border border-grey-200 rounded-xl text-xs sm:text-sm text-grey-800 placeholder-grey-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:bg-white transition-all"
             />
             <button
               v-if="searchQuery"
+              :aria-label="t('events.clearSearch')"
               type="button"
               class="absolute inset-y-0 right-0 pr-3 flex items-center text-grey-400 hover:text-grey-600 cursor-pointer"
               @click="searchQuery = ''"
@@ -185,7 +186,7 @@ function clearFilters() {
             </button>
           </div>
 
-          <!-- Controls: Sort Order & Language Switcher -->
+          <!-- Sort order -->
           <div class="flex items-center gap-2 shrink-0">
             <!-- Sort Order Toggle Button -->
             <button
@@ -207,38 +208,10 @@ function clearFilters() {
               >
                 <path d="M7 15l5 5 5-5M7 9l5-5 5 5" />
               </svg>
-              <span>{{ sortOrder === 'desc' ? t('sortNewest') : t('sortOldest') }}</span>
+              <span>{{
+                sortOrder === 'desc' ? t('events.sortNewest') : t('events.sortOldest')
+              }}</span>
             </button>
-
-            <!-- Language Switcher Pill -->
-            <div
-              class="inline-flex items-center p-0.5 rounded-xl bg-grey-100 border border-grey-200 shadow-2xs"
-            >
-              <button
-                type="button"
-                class="px-2.5 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer"
-                :class="
-                  currentLang === 'zh'
-                    ? 'bg-white text-grey-900 shadow-xs'
-                    : 'text-grey-500 hover:text-grey-800'
-                "
-                @click="setLanguage('zh')"
-              >
-                繁中
-              </button>
-              <button
-                type="button"
-                class="px-2.5 py-1 text-xs font-bold rounded-lg transition-all cursor-pointer"
-                :class="
-                  currentLang === 'en'
-                    ? 'bg-white text-grey-900 shadow-xs'
-                    : 'text-grey-500 hover:text-grey-800'
-                "
-                @click="setLanguage('en')"
-              >
-                EN
-              </button>
-            </div>
           </div>
         </div>
 
@@ -330,7 +303,7 @@ function clearFilters() {
               <path d="M13.73 21a2 2 0 0 1-3.46 0" />
             </svg>
 
-            <span>{{ categoryLabelsMap[currentLang][cat.key] }}</span>
+            <span>{{ t(`events.${cat.key}`) }}</span>
             <span
               class="text-[10px] px-1.5 py-0.2 rounded-full"
               :class="
@@ -347,12 +320,12 @@ function clearFilters() {
         <!-- Result count & reset -->
         <div class="flex items-center justify-between text-xs text-grey-500 pt-0.5">
           <div class="flex items-center gap-2">
-            <span>{{ t('foundCount', { count: filteredEvents.length }) }}</span>
+            <span>{{ t('events.foundCount', { count: filteredEvents.length }) }}</span>
             <button
               type="button"
               class="inline-flex items-center gap-1 text-[11px] text-grey-400 hover:text-primary-600 cursor-pointer transition-colors"
               :disabled="refreshing || loading"
-              :title="t('refresh')"
+              :title="t('events.refresh')"
               @click="loadData(true)"
             >
               <svg
@@ -366,10 +339,10 @@ function clearFilters() {
                 <path d="M23 4v6h-6M1 20v-6h6" />
                 <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
               </svg>
-              <span>{{ refreshing ? t('refreshing') : '' }}</span>
+              <span>{{ refreshing ? t('events.refreshing') : '' }}</span>
             </button>
             <span v-if="isFallbackData" class="text-orange-500 text-[11px] font-medium">
-              ({{ t('fallbackNotice') }})
+              ({{ t('events.fallbackNotice') }})
             </span>
           </div>
           <button
@@ -378,7 +351,7 @@ function clearFilters() {
             class="text-primary-600 hover:underline font-semibold cursor-pointer"
             @click="clearFilters"
           >
-            {{ t('clearFilters') }}
+            {{ t('events.clearFilters') }}
           </button>
         </div>
       </div>
@@ -411,14 +384,14 @@ function clearFilters() {
         v-else-if="errorMsg"
         class="bg-red-50 border border-red-200 rounded-2xl p-6 text-center text-red-700 my-4"
       >
-        <p class="font-bold text-base mb-1">Error Loading Events</p>
-        <p class="text-sm text-red-600 mb-3">{{ errorMsg }}</p>
+        <p class="font-bold text-base mb-1">{{ t('events.loadErrorTitle') }}</p>
+        <p class="text-sm text-red-600 mb-3">{{ t(errorMsg) }}</p>
         <button
           type="button"
           class="px-4 py-1.5 bg-red-600 text-white rounded-xl text-xs font-bold hover:bg-red-700 transition-colors cursor-pointer"
           @click="loadData()"
         >
-          {{ t('refresh') }}
+          {{ t('events.refresh') }}
         </button>
       </div>
 
@@ -442,17 +415,17 @@ function clearFilters() {
           </svg>
         </div>
         <h3 class="text-base font-bold text-grey-800 mb-1">
-          {{ t('emptyTitle') }}
+          {{ t('events.emptyTitle') }}
         </h3>
         <p class="text-xs text-grey-500 max-w-sm mx-auto mb-3">
-          {{ t('emptyDesc') }}
+          {{ t('events.emptyDesc') }}
         </p>
         <button
           type="button"
           class="px-3.5 py-1.5 bg-primary-500 text-white rounded-xl text-xs font-bold hover:bg-primary-600 transition-colors cursor-pointer"
           @click="clearFilters"
         >
-          {{ t('resetFilters') }}
+          {{ t('events.resetFilters') }}
         </button>
       </div>
 
@@ -503,7 +476,7 @@ function clearFilters() {
         <!-- End of timeline badge -->
         <div class="flex items-center justify-center gap-2 py-6 text-xs text-grey-400">
           <div class="w-10 h-px bg-grey-200" />
-          <span>{{ t('endOfTimeline', { count: filteredEvents.length }) }}</span>
+          <span>{{ t('events.endOfTimeline', { count: filteredEvents.length }) }}</span>
           <div class="w-10 h-px bg-grey-200" />
         </div>
       </div>
@@ -514,8 +487,8 @@ function clearFilters() {
 <style scoped>
 .events-panel {
   box-sizing: border-box;
-  height: calc(100vh - 49px);
-  height: calc(100dvh - 49px);
+  height: calc(100vh - var(--service-chrome-height, 49px));
+  height: calc(100dvh - var(--service-chrome-height, 49px));
   overflow-y: auto;
   overscroll-behavior-y: contain;
   scrollbar-gutter: stable;

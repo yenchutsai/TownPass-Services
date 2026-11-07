@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import { computed, onErrorCaptured, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useMapLabels } from '@/composables/useMapLabels';
+
 import TaipeiMap from '@/components/organisms/TaipeiMap.vue';
 import placeListJson from '../../public/mock/place_list.json';
 import muslimFriendlyPlacesJson from '@/data/muslim-friendly-places.json';
 import muslimMosquesJson from '@/data/muslim-mosques.json';
 import muslimPrayerRoomsJson from '@/data/muslim-prayer-rooms.json';
 import type { LivingMapInfo, LivingMapSpot } from '@/interfaces/living-map.interface';
+
+const { t, locale } = useI18n({ useScope: 'global' });
+const { serviceLabel, placeName, infoLabel, infoValue } = useMapLabels();
 
 interface ValueFieldConfig {
   title: string;
@@ -86,15 +92,17 @@ const muslimMosques = muslimMosquesJson as MuslimMosque[];
 const muslimPrayerRooms = muslimPrayerRoomsJson as MuslimPrayerRoom[];
 
 const hiddenServiceIds = new Set(['pa-1', 'pa-3']);
-const serviceOptions = [
-  { id: 'muslim-mosque', name: '清真寺' },
-  { id: 'muslim-prayer-room', name: '穆斯林祈禱室' },
-  { id: 'muslim-ablution', name: '淨下設備' },
-  { id: 'muslim-friendly', name: '穆斯林友善店家' },
-  ...placeConfigs
-    .filter((place) => !hiddenServiceIds.has(place.id))
-    .map(({ id, name }) => ({ id, name }))
-];
+const serviceOptions = computed(() =>
+  [
+    { id: 'muslim-mosque', name: '清真寺' },
+    { id: 'muslim-prayer-room', name: '穆斯林祈禱室' },
+    { id: 'muslim-ablution', name: '淨下設備' },
+    { id: 'muslim-friendly', name: '穆斯林友善店家' },
+    ...placeConfigs
+      .filter((place) => !hiddenServiceIds.has(place.id))
+      .map(({ id, name }) => ({ id, name }))
+  ].map((option) => ({ ...option, name: serviceLabel(option.id, option.name) }))
+);
 
 const mapFailed = ref(false);
 const selectedServiceId = ref('muslim-prayer-room');
@@ -320,7 +328,12 @@ function calculateDistance(origin: MapCenter, spot: LivingMapSpot) {
 }
 
 function formatDistance(distance: number) {
-  return distance < 1 ? `${Math.round(distance * 1000)} 公尺` : `${distance.toFixed(1)} 公里`;
+  return new Intl.NumberFormat(locale.value, {
+    style: 'unit',
+    unit: distance < 1 ? 'meter' : 'kilometer',
+    unitDisplay: 'short',
+    maximumFractionDigits: distance < 1 ? 0 : 1
+  }).format(distance < 1 ? distance * 1000 : distance);
 }
 
 function selectSpot(spot: LivingMapSpot, focus = false) {
@@ -356,10 +369,10 @@ onErrorCaptured((error) => {
 </script>
 
 <template>
-  <section class="living-map-view" aria-label="生活地圖">
+  <section class="living-map-view" :aria-label="t('map.title')">
     <header class="map-toolbar">
       <div class="toolbar-field toolbar-field--service">
-        <label class="service-label" for="living-map-service">服務類型</label>
+        <label class="service-label" for="living-map-service">{{ t('map.serviceType') }}</label>
         <select id="living-map-service" v-model="selectedServiceId" class="service-select">
           <option v-for="service in serviceOptions" :key="service.id" :value="service.id">
             {{ service.name }}
@@ -368,25 +381,26 @@ onErrorCaptured((error) => {
       </div>
 
       <div class="toolbar-field toolbar-field--nearest">
-        <label class="service-label" for="nearest-spot">附近地點</label>
+        <label class="service-label" for="nearest-spot">{{ t('map.nearby') }}</label>
         <select
           id="nearest-spot"
           v-model="nearestSpotId"
           class="service-select nearest-select"
           @change="selectNearestSpot"
         >
-          <option value="">目前畫面中心由近到遠</option>
+          <option value="">{{ t('map.nearestOrder') }}</option>
           <option v-for="item in nearestSpots" :key="item.spot.id" :value="item.spot.id">
-            {{ formatDistance(item.distance) }}・{{ item.spot.name }}
+            {{ formatDistance(item.distance) }}・{{ placeName(item.spot.name) }}
           </option>
         </select>
       </div>
     </header>
+    <p v-if="locale !== 'zh-TW'" class="source-note">{{ t('map.sourceContentNotice') }}</p>
 
     <div class="map-column">
       <div v-if="mapFailed" class="map-error" role="alert">
-        <p>地圖暫時無法載入</p>
-        <button type="button" @click="mapFailed = false">重新載入地圖</button>
+        <p>{{ t('map.loadError') }}</p>
+        <button type="button" @click="mapFailed = false">{{ t('map.retry') }}</button>
       </div>
       <TaipeiMap
         v-else
@@ -401,13 +415,15 @@ onErrorCaptured((error) => {
         <button
           type="button"
           class="detail-close"
-          aria-label="關閉地點詳情"
+          :aria-label="t('map.closeDetails')"
           @click="selectedSpot = null"
         >
           ×
         </button>
-        <p class="detail-category">{{ selectedSpot.categoryName }}</p>
-        <h2>{{ selectedSpot.name }}</h2>
+        <p class="detail-category">
+          {{ serviceLabel(selectedSpot.categoryId, selectedSpot.categoryName) }}
+        </p>
+        <h2>{{ placeName(selectedSpot.name) }}</h2>
         <p class="detail-address">{{ selectedSpot.address || selectedSpot.area }}</p>
         <a
           class="google-maps-link"
@@ -415,16 +431,16 @@ onErrorCaptured((error) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          在 Google Maps 開啟
+          {{ t('map.openGoogleMaps') }}
         </a>
         <dl v-if="selectedSpot.info?.length" class="detail-info">
           <template v-for="info in selectedSpot.info" :key="`${info.label}-${info.value}`">
-            <dt>{{ info.label }}</dt>
+            <dt>{{ infoLabel(info.label) }}</dt>
             <dd>
               <a v-if="info.url" :href="info.url" target="_blank" rel="noopener noreferrer">
-                {{ info.value }}
+                {{ infoValue(info.value) }}
               </a>
-              <span v-else>{{ info.value }}</span>
+              <span v-else>{{ infoValue(info.value) }}</span>
             </dd>
           </template>
         </dl>
@@ -434,10 +450,15 @@ onErrorCaptured((error) => {
 </template>
 
 <style scoped>
+.source-note {
+  margin: 0;
+  color: #738995;
+  font-size: 12px;
+}
 .living-map-view {
   display: grid;
   grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
-  min-height: calc(100dvh - 49px);
+  min-height: calc(100dvh - var(--service-chrome-height, 49px));
   background: #f5f8f8;
 }
 .place-panel {
@@ -578,7 +599,7 @@ onErrorCaptured((error) => {
   padding: 20px;
 }
 .map-column :deep(.map-canvas) {
-  height: calc(100dvh - 158px);
+  height: calc(100dvh - var(--service-chrome-height, 49px) - 109px);
   min-height: 460px;
 }
 .spot-detail {
@@ -781,7 +802,7 @@ onErrorCaptured((error) => {
   display: none;
 }
 .map-column :deep(.map-canvas) {
-  height: calc(100dvh - 148px);
+  height: calc(100dvh - var(--service-chrome-height, 49px) - 99px);
   min-height: 520px;
 }
 
@@ -812,7 +833,7 @@ onErrorCaptured((error) => {
     padding: 0;
   }
   .map-column :deep(.map-canvas) {
-    height: calc(100dvh - 180px);
+    height: calc(100dvh - var(--service-chrome-height, 49px) - 131px);
     min-height: 430px;
   }
 }

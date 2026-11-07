@@ -1,18 +1,11 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import resources from '@/data/information-resources.json';
 
-const youtubeChannels = [
-  {
-    id: 'taipei-migrant-worker-school',
-    title: '臺北移工學校',
-    url: 'https://www.youtube.com/@taipeimigrantworkerschool5411'
-  },
-  {
-    id: 'nia-news',
-    title: 'NIA NEWS 新住民全球新聞網',
-    url: 'https://www.youtube.com/@nianews2358'
-  }
-];
+const { t } = useI18n({ useScope: 'global' });
+
+const youtubeChannels = resources.youtube;
 </script>
 
 <template>
@@ -20,9 +13,9 @@ const youtubeChannels = [
     <div class="youtube-content">
       <header class="youtube-header">
         <RouterLink :to="{ name: 'information' }" class="back-link">
-          <span aria-hidden="true">←</span> 返回資訊
+          <span aria-hidden="true">←</span> {{ t('common.backToInformation') }}
         </RouterLink>
-        <h1 id="youtube-title">YouTube</h1>
+        <h1 id="youtube-title">{{ t('information.sections.youtube') }}</h1>
       </header>
       <ul class="youtube-list">
         <li v-for="channel in youtubeChannels" :key="channel.id">
@@ -31,9 +24,9 @@ const youtubeChannels = [
             class="youtube-row"
             target="_blank"
             rel="noopener noreferrer"
-            :aria-label="`${channel.title}（在新視窗開啟 YouTube 頻道）`"
+            :aria-label="t('common.openExternal', { title: t(channel.titleKey) })"
           >
-            <p class="youtube-account-title">{{ channel.title }}</p>
+            <p class="youtube-account-title">{{ t(channel.titleKey) }}</p>
             <span class="external-link-icon" aria-hidden="true">↗</span>
           </a>
         </li>
@@ -45,8 +38,8 @@ const youtubeChannels = [
 <style scoped>
 .youtube-view {
   box-sizing: border-box;
-  height: calc(100vh - 49px);
-  height: calc(100dvh - 49px);
+  height: calc(100vh - var(--service-chrome-height, 49px));
+  height: calc(100dvh - var(--service-chrome-height, 49px));
   overflow-y: auto;
   overscroll-behavior-y: contain;
   scrollbar-gutter: stable;

@@ -1,4 +1,6 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { watch } from 'vue';
+import { createRouter, createWebHistory, type RouteMeta } from 'vue-router';
+import { currentLocale, i18n } from '@/i18n';
 import HomeView from '../views/HomeView.vue';
 import informationRoutes from './modules/information';
 import livingMapRoutes from './modules/living-map';
@@ -411,11 +413,14 @@ const router = createRouter({
   ]
 });
 
-// 導航守衛，用來動態修改標題
-router.beforeEach((to, from, next) => {
-  const defaultTitle = '城市通'; // 預設標題
-  document.title = (to.meta.title as string) || defaultTitle;
-  next();
-});
+function updateDocumentTitle(meta: RouteMeta) {
+  document.title =
+    typeof meta.titleKey === 'string'
+      ? i18n.global.t(meta.titleKey)
+      : (meta.title as string) || i18n.global.t('common.appName');
+}
+
+router.afterEach((to) => updateDocumentTitle(to.meta));
+watch(currentLocale, () => updateDocumentTitle(router.currentRoute.value.meta));
 
 export default router;

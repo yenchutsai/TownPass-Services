@@ -1,0 +1,58 @@
+{
+  "sections": {
+    "phone": "Telepon",
+    "line": "LINE",
+    "facebook": "Facebook",
+    "website": "Situs web",
+    "youtube": "YouTube",
+    "radio": "Radio"
+  },
+  "phoneDescriptions": {
+    "1955": "Perselisihan kerja, upah dan jam kerja, konsultasi dan pengaduan pekerja migran",
+    "110": "Laporan polisi, gangguan keamanan dan bantuan darurat",
+    "119": "Laporan kebakaran, bantuan medis darurat dan penyelamatan",
+    "113": "Kekerasan dalam rumah tangga, kekerasan seksual dan perlindungan anak",
+    "1990": "Konsultasi kehidupan di Taiwan, visa dan izin tinggal bagi warga asing",
+    "1999": "Layanan pemerintah kota, pengaduan dan masalah fasilitas umum"
+  },
+  "links": {
+    "line": {
+      "zh": "Hotline Pekerja Migran 1955 — Bahasa Mandarin",
+      "id": "Hotline Pekerja Migran 1955 — Bahasa Indonesia 🇮🇩",
+      "vi": "Hotline Pekerja Migran 1955 — Tiếng Việt 🇻🇳",
+      "th": "Hotline Pekerja Migran 1955 — ภาษาไทย 🇹🇭",
+      "en": "Hotline Pekerja Migran 1955 — English / Filipina 🇵🇭"
+    },
+    "facebook": {
+      "1955-hotline": "Hotline Pekerja Migran 1955",
+      "taipei-labor": "Kantor Tenaga Kerja Asing dan Penyandang Disabilitas Kota Taipei",
+      "kdei-taipei": "KDEI Taipei — Kantor Dagang dan Ekonomi Indonesia",
+      "kdei-immigration": "Imigrasi KDEI Taipei — Bidang Imigrasi",
+      "save-pmi": "Save PMI Taiwan",
+      "veco-taipei": "VECO Taipei — Kantor Ekonomi dan Kebudayaan Vietnam",
+      "veco-labor": "Kantor Vietnam — Bagian Pengelolaan Tenaga Kerja",
+      "meco": "MECO — Kantor Ekonomi dan Kebudayaan Manila",
+      "thai-labor": "Kantor Urusan Tenaga Kerja Thailand di Taipei"
+    },
+    "website": {
+      "worker-rights": "Portal Hak Pekerja Asing",
+      "worker-query": "Sistem Informasi Daring Pekerja Migran",
+      "taipei-new-immigrants": "Situs Penduduk Baru Kota Taipei",
+      "occupational-safety": "Platform Pembelajaran Keselamatan dan Kesehatan Kerja",
+      "kdei": "KDEI Taipei — Kantor Perwakilan Indonesia",
+      "save-pmi": "Save PMI Taiwan",
+      "veco-labor": "Kantor Vietnam — Bagian Pengelolaan Tenaga Kerja",
+      "vietnam-office": "Kantor Ekonomi dan Kebudayaan Vietnam di Taipei",
+      "thai-labor": "Kantor Urusan Tenaga Kerja Thailand di Taipei",
+      "meco": "MECO — Kantor Perwakilan Filipina",
+      "dmw": "DMW — Departemen Pekerja Migran Filipina"
+    },
+    "youtube": {
+      "taipei-migrant-worker-school": "Sekolah Pekerja Migran Taipei",
+      "nia-news": "NIA NEWS — Berita Global Penduduk Baru"
+    },
+    "radio": {
+      "taiwan-radio": "Program Pekerja Migran Taiwan Radio"
+    }
+  }
+}

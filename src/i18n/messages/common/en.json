@@ -1,0 +1,11 @@
+{
+  "appName": "TownPass",
+  "language": "Language",
+  "mainNavigation": "Main navigation",
+  "backToInformation": "Back to information",
+  "openExternal": "{title} (opens in a new window)",
+  "call": "Call {number}: {description}",
+  "information": "Information",
+  "livingMap": "Living Map",
+  "events": "Events"
+}

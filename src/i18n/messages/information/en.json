@@ -1,0 +1,58 @@
+{
+  "sections": {
+    "phone": "Phone",
+    "line": "LINE",
+    "facebook": "Facebook",
+    "website": "Websites",
+    "youtube": "YouTube",
+    "radio": "Radio"
+  },
+  "phoneDescriptions": {
+    "1955": "Labor disputes, pay and working hours, migrant worker advice and complaints",
+    "110": "Police reports, public safety incidents and urgent assistance",
+    "119": "Fire reports, emergency medical help and rescue",
+    "113": "Domestic violence, sexual assault and child protection",
+    "1990": "Advice on life in Taiwan, visas and residency for foreign nationals",
+    "1999": "City services, public feedback and public facility issues"
+  },
+  "links": {
+    "line": {
+      "zh": "1955 Migrant Worker Hotline — Chinese",
+      "id": "1955 Migrant Worker Hotline — Indonesia 🇮🇩",
+      "vi": "1955 Migrant Worker Hotline — Tiếng Việt 🇻🇳",
+      "th": "1955 Migrant Worker Hotline — ภาษาไทย 🇹🇭",
+      "en": "1955 Migrant Worker Hotline — English / Philippines 🇵🇭"
+    },
+    "facebook": {
+      "1955-hotline": "1955 Migrant Worker Hotline",
+      "taipei-labor": "Taipei City Foreign and Disabled Labor Office",
+      "kdei-taipei": "KDEI Taipei — Indonesian Economic and Trade Office",
+      "kdei-immigration": "Imigrasi KDEI Taipei — Immigration Division",
+      "save-pmi": "Save PMI Taiwan",
+      "veco-taipei": "VECO Taipei — Vietnam Economic and Cultural Office",
+      "veco-labor": "Vietnam Office — Labor Management Division",
+      "meco": "MECO — Manila Economic and Cultural Office",
+      "thai-labor": "Thailand Trade and Economic Office — Labor Affairs"
+    },
+    "website": {
+      "worker-rights": "Foreign Worker Labor Rights Portal",
+      "worker-query": "Migrant Worker Online Inquiry System",
+      "taipei-new-immigrants": "Taipei New Immigrants Website",
+      "occupational-safety": "Occupational Safety and Health E-Learning",
+      "kdei": "KDEI Taipei — Indonesian Representative Office",
+      "save-pmi": "Save PMI Taiwan",
+      "veco-labor": "Vietnam Office — Labor Management Division",
+      "vietnam-office": "Vietnam Economic and Cultural Office in Taipei",
+      "thai-labor": "Thailand Trade and Economic Office — Labor Affairs",
+      "meco": "MECO — Philippine Representative Office",
+      "dmw": "DMW — Philippine Department of Migrant Workers"
+    },
+    "youtube": {
+      "taipei-migrant-worker-school": "Taipei Migrant Worker School",
+      "nia-news": "NIA NEWS — News for New Immigrants"
+    },
+    "radio": {
+      "taiwan-radio": "Taiwan Radio — Migrant Worker Programs"
+    }
+  }
+}

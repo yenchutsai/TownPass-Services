@@ -1,10 +1,16 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, ref, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useMapLabels } from '@/composables/useMapLabels';
+
 import * as L from 'leaflet';
 import type { Feature, FeatureCollection, Polygon } from 'geojson';
 import 'leaflet/dist/leaflet.css';
 import districtData from '@/data/taipei-districts.json';
 import type { LivingMapSpot } from '@/interfaces/living-map.interface';
+
+const { t, locale } = useI18n({ useScope: 'global' });
+const { placeName } = useMapLabels();
 
 type DistrictProperties = { code: string; town: string };
 type DistrictFeature = Feature<Polygon, DistrictProperties>;
@@ -33,12 +39,13 @@ const districtOptions = [...districts.features].sort((a, b) =>
   a.properties.code.localeCompare(b.properties.code)
 );
 const locating = ref(false);
-const locationMessage = ref('');
+const locationMessageKey = ref('');
 const tileError = ref(false);
 let map: L.Map | undefined;
 let boundaries: L.GeoJSON | undefined;
 let positionMarker: L.CircleMarker | undefined;
 let spotLayer: L.LayerGroup | undefined;
+let zoomControl: L.Control.Zoom | undefined;
 const spotMarkers = new Map<string, L.CircleMarker>();
 let resizeObserver: ResizeObserver | undefined;
 let disposed = false;
@@ -69,7 +76,7 @@ function selectDistrict(code: string) {
 }
 
 function resetView() {
-  locationMessage.value = '';
+  locationMessageKey.value = '';
   selectDistrict('');
 }
 
@@ -100,7 +107,7 @@ function refreshSpotMarkers() {
     }).addTo(spotLayer!);
 
     const tooltip = document.createElement('span');
-    tooltip.textContent = spot.name;
+    tooltip.textContent = placeName(spot.name);
     spotMarker.bindTooltip(tooltip, { direction: 'top', offset: [0, -7] });
     spotMarker.on('click', () => emit('select-spot', spot));
     spotMarkers.set(spot.id, spotMarker);
@@ -146,9 +153,9 @@ function isInTaipei(latitude: number, longitude: number) {
 }
 
 function locate() {
-  locationMessage.value = '';
+  locationMessageKey.value = '';
   if (!navigator.geolocation) {
-    locationMessage.value = '此瀏覽器不支援定位。';
+    locationMessageKey.value = 'map.noGeolocation';
     return;
   }
   locating.value = true;
@@ -157,7 +164,7 @@ function locate() {
       if (disposed) return;
       locating.value = false;
       if (!isInTaipei(coords.latitude, coords.longitude)) {
-        locationMessage.value = '你目前的位置在台北市範圍外，地圖會維持台北市視野。';
+        locationMessageKey.value = 'map.outsideTaipei';
         return;
       }
       selectDistrict('');
@@ -170,21 +177,37 @@ function locate() {
         fillOpacity: 1
       })
         .addTo(map!)
-        .bindTooltip('我的位置');
+        .bindTooltip(t('map.myLocation'));
       map?.setView([coords.latitude, coords.longitude], 16);
-      locationMessage.value = '已顯示你目前的位置。';
+      locationMessageKey.value = 'map.locationFound';
     },
     (error) => {
       if (disposed) return;
       locating.value = false;
-      locationMessage.value =
-        error.code === 1
-          ? '尚未允許定位，請在瀏覽器設定中開啟位置權限。'
-          : '暫時無法取得位置，請稍後再試。';
+      locationMessageKey.value =
+        error.code === 1 ? 'map.locationDenied' : 'map.locationUnavailable';
     },
     { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
   );
 }
+
+function updateMapLanguage() {
+  if (!map) return;
+  zoomControl?.remove();
+  zoomControl = L.control
+    .zoom({
+      position: 'bottomright',
+      zoomInTitle: t('map.zoomIn'),
+      zoomOutTitle: t('map.zoomOut')
+    })
+    .addTo(map);
+  positionMarker?.setTooltipContent(t('map.myLocation'));
+}
+
+watch(locale, () => {
+  updateMapLanguage();
+  refreshSpotMarkers();
+});
 
 onMounted(() => {
   if (!mapElement.value) return;
@@ -241,9 +264,7 @@ onMounted(() => {
     fillOpacity: 0.72,
     interactive: false
   }).addTo(map);
-  L.control
-    .zoom({ position: 'bottomright', zoomInTitle: '放大地圖', zoomOutTitle: '縮小地圖' })
-    .addTo(map);
+  updateMapLanguage();
   resetView();
   refreshSpotMarkers();
   resizeObserver = new ResizeObserver(() => map?.invalidateSize());
@@ -263,20 +284,20 @@ onBeforeUnmount(() => {
 <template>
   <section class="taipei-map" aria-labelledby="taipei-map-title">
     <header class="map-heading">
-      <h1 id="taipei-map-title">生活地圖</h1>
+      <h1 id="taipei-map-title">{{ t('map.title') }}</h1>
       <select
         class="district-select"
-        aria-label="選擇行政區"
+        :aria-label="t('map.selectDistrict')"
         :value="selectedDistrict"
         @change="selectDistrict(($event.target as HTMLSelectElement).value)"
       >
-        <option value="">台北市全區</option>
+        <option value="">{{ t('map.allDistricts') }}</option>
         <option
           v-for="district in districtOptions"
           :key="district.properties.code"
           :value="district.properties.code"
         >
-          {{ district.properties.town }}
+          {{ t(`map.districts.${district.properties.code}`) }}
         </option>
       </select>
     </header>
@@ -285,14 +306,14 @@ onBeforeUnmount(() => {
         ref="mapElement"
         class="map-canvas"
         role="region"
-        aria-label="台北市互動地圖，可拖曳、縮放及點選行政區"
+        :aria-label="t('map.mapDescription')"
       />
       <button
         type="button"
         class="locate-button"
         :disabled="locating"
         :aria-busy="locating"
-        :title="locationMessage || undefined"
+        :title="locationMessageKey ? t(locationMessageKey) : undefined"
         @click="locate"
       >
         <svg
@@ -306,11 +327,11 @@ onBeforeUnmount(() => {
           <circle cx="12" cy="12" r="2" />
           <path d="M12 2v3.5M12 18.5V22M2 12h3.5M18.5 12H22" />
         </svg>
-        我的位置
+        {{ t('map.myLocation') }}
       </button>
     </div>
-    <p class="sr-only" role="status">{{ locationMessage }}</p>
-    <p v-if="tileError" class="sr-only" role="status">底圖暫時無法載入，請確認網路連線。</p>
+    <p class="sr-only" role="status">{{ locationMessageKey ? t(locationMessageKey) : '' }}</p>
+    <p v-if="tileError" class="sr-only" role="status">{{ t('map.tileError') }}</p>
   </section>
 </template>
 

@@ -1,29 +1,33 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+
 // 提供正式電話圖示後，替換這個 import 即可。
 import phoneIcon from '@/assets/images/icon_tel.svg';
 
+const { t } = useI18n({ useScope: 'global' });
+
 type InformationItem = {
   id: string;
-  title: string;
+  titleKey: string;
   image: string;
   routeName?: string;
 };
 
 const informationItems: InformationItem[] = [
-  { id: 'phone', title: '電話', image: phoneIcon, routeName: 'phone' },
-  { id: 'line', title: 'LINE', image: '', routeName: 'line' },
-  { id: 'facebook', title: 'Facebook', image: '', routeName: 'facebook' },
-  { id: 'website', title: '網站', image: '', routeName: 'website' },
-  { id: 'youtube', title: 'YouTube', image: '', routeName: 'youtube' },
-  { id: 'radio', title: '廣播', image: '', routeName: 'radio' }
+  { id: 'phone', titleKey: 'information.sections.phone', image: phoneIcon, routeName: 'phone' },
+  { id: 'line', titleKey: 'information.sections.line', image: '', routeName: 'line' },
+  { id: 'facebook', titleKey: 'information.sections.facebook', image: '', routeName: 'facebook' },
+  { id: 'website', titleKey: 'information.sections.website', image: '', routeName: 'website' },
+  { id: 'youtube', titleKey: 'information.sections.youtube', image: '', routeName: 'youtube' },
+  { id: 'radio', titleKey: 'information.sections.radio', image: '', routeName: 'radio' }
 ];
 </script>
 
 <template>
   <RouterView v-slot="{ Component }">
     <component :is="Component" v-if="Component" />
-    <section v-else class="information-view" aria-label="資訊" tabindex="0">
+    <section v-else class="information-view" :aria-label="t('common.information')" tabindex="0">
       <ul class="information-list">
         <li v-for="item in informationItems" :key="item.id" class="information-item">
           <component
@@ -45,7 +49,7 @@ const informationItems: InformationItem[] = [
               <span v-else-if="item.id === 'radio'" class="radio-icon" aria-hidden="true">📻</span>
               <img v-else :src="item.image" alt="" width="32" height="32" />
             </div>
-            <p class="information-title" :title="item.title">{{ item.title }}</p>
+            <p class="information-title" :title="t(item.titleKey)">{{ t(item.titleKey) }}</p>
           </component>
         </li>
       </ul>
@@ -56,8 +60,8 @@ const informationItems: InformationItem[] = [
 <style scoped>
 .information-view {
   box-sizing: border-box;
-  height: calc(100vh - 49px);
-  height: calc(100dvh - 49px);
+  height: calc(100vh - var(--service-chrome-height, 49px));
+  height: calc(100dvh - var(--service-chrome-height, 49px));
   overflow-y: auto;
   overscroll-behavior-y: contain;
   scrollbar-gutter: stable;

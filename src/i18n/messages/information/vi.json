@@ -1,0 +1,58 @@
+{
+  "sections": {
+    "phone": "Điện thoại",
+    "line": "LINE",
+    "facebook": "Facebook",
+    "website": "Trang web",
+    "youtube": "YouTube",
+    "radio": "Phát thanh"
+  },
+  "phoneDescriptions": {
+    "1955": "Tranh chấp lao động, lương và giờ làm, tư vấn và khiếu nại cho lao động di trú",
+    "110": "Báo cảnh sát, sự việc an ninh và hỗ trợ khẩn cấp",
+    "119": "Báo cháy, cấp cứu y tế và cứu hộ",
+    "113": "Bạo lực gia đình, xâm hại tình dục và bảo vệ trẻ em",
+    "1990": "Tư vấn đời sống tại Đài Loan, thị thực và cư trú cho người nước ngoài",
+    "1999": "Tư vấn dịch vụ thành phố, phản ánh và vấn đề công trình công cộng"
+  },
+  "links": {
+    "line": {
+      "zh": "Đường dây nóng lao động di trú 1955 — Tiếng Trung",
+      "id": "Đường dây nóng lao động di trú 1955 — Bahasa Indonesia 🇮🇩",
+      "vi": "Đường dây nóng lao động di trú 1955 — Tiếng Việt 🇻🇳",
+      "th": "Đường dây nóng lao động di trú 1955 — ภาษาไทย 🇹🇭",
+      "en": "Đường dây nóng lao động di trú 1955 — English / Philippines 🇵🇭"
+    },
+    "facebook": {
+      "1955-hotline": "Đường dây nóng lao động di trú 1955",
+      "taipei-labor": "Văn phòng Lao động Nước ngoài và Người khuyết tật Đài Bắc",
+      "kdei-taipei": "KDEI Taipei — Văn phòng Kinh tế và Thương mại Indonesia",
+      "kdei-immigration": "Imigrasi KDEI Taipei — Bộ phận Xuất nhập cảnh",
+      "save-pmi": "Save PMI Taiwan",
+      "veco-taipei": "Văn phòng Kinh tế Văn hóa Việt Nam tại Đài Bắc",
+      "veco-labor": "Ban Quản lý lao động, Văn phòng Việt Nam",
+      "meco": "MECO — Văn phòng Kinh tế và Văn hóa Manila",
+      "thai-labor": "Văn phòng Lao động Thái Lan tại Đài Bắc"
+    },
+    "website": {
+      "worker-rights": "Cổng thông tin quyền lợi lao động nước ngoài",
+      "worker-query": "Hệ thống tra cứu trực tuyến cho lao động di trú",
+      "taipei-new-immigrants": "Trang web cư dân mới Đài Bắc",
+      "occupational-safety": "Nền tảng học trực tuyến về an toàn và vệ sinh lao động",
+      "kdei": "KDEI Taipei — Văn phòng Đại diện Indonesia",
+      "save-pmi": "Save PMI Taiwan",
+      "veco-labor": "Ban Quản lý lao động, Văn phòng Việt Nam",
+      "vietnam-office": "Văn phòng Kinh tế Văn hóa Việt Nam tại Đài Bắc",
+      "thai-labor": "Văn phòng Lao động Thái Lan tại Đài Bắc",
+      "meco": "MECO — Văn phòng Đại diện Philippines",
+      "dmw": "DMW — Bộ Lao động Di trú Philippines"
+    },
+    "youtube": {
+      "taipei-migrant-worker-school": "Trường học Lao động Di trú Đài Bắc",
+      "nia-news": "NIA NEWS — Tin tức toàn cầu cho cư dân mới"
+    },
+    "radio": {
+      "taiwan-radio": "Chương trình dành cho lao động di trú của Đài Phát thanh Đài Loan"
+    }
+  }
+}

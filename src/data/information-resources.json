@@ -1,0 +1,184 @@
+{
+  "phone": [
+    {
+      "number": "1955",
+      "source": "https://www.wda.gov.tw/News_Content.aspx?n=277&s=18960",
+      "descriptionKey": "information.phoneDescriptions.1955"
+    },
+    {
+      "number": "110",
+      "source": "https://www.npa.gov.tw/ch/app/artwebsite/view?id=1048&module=artwebsite&serno=e3ad2889-4dee-41cf-aef8-9b9d26dc6950",
+      "descriptionKey": "information.phoneDescriptions.110"
+    },
+    {
+      "number": "119",
+      "source": "https://www.nfa.gov.tw/cht/?code=list&ids=66",
+      "descriptionKey": "information.phoneDescriptions.119"
+    },
+    {
+      "number": "113",
+      "source": "https://dep.mohw.gov.tw/DOPS/fp-1183-6499-105.html",
+      "descriptionKey": "information.phoneDescriptions.113"
+    },
+    {
+      "number": "1990",
+      "source": "https://www.immigration.gov.tw/5385/5388/7181/100924/",
+      "descriptionKey": "information.phoneDescriptions.1990"
+    },
+    {
+      "number": "1999",
+      "source": "https://www.gov.taipei/News_Content.aspx?n=EEC70A4186D4C828&s=55B67D9F0BA0BB8E",
+      "descriptionKey": "information.phoneDescriptions.1999"
+    }
+  ],
+  "line": [
+    {
+      "id": "zh",
+      "url": "https://lin.ee/9ogCQ3T",
+      "titleKey": "information.links.line.zh"
+    },
+    {
+      "id": "id",
+      "url": "https://lin.ee/CP0lzIK",
+      "titleKey": "information.links.line.id"
+    },
+    {
+      "id": "vi",
+      "url": "https://lin.ee/GOrGlZI",
+      "titleKey": "information.links.line.vi"
+    },
+    {
+      "id": "th",
+      "url": "https://lin.ee/c0fW2nc",
+      "titleKey": "information.links.line.th"
+    },
+    {
+      "id": "en",
+      "url": "https://lin.ee/jap3WmC",
+      "titleKey": "information.links.line.en"
+    }
+  ],
+  "facebook": [
+    {
+      "id": "1955-hotline",
+      "url": "https://www.facebook.com/1955foreignworkershotline/",
+      "titleKey": "information.links.facebook.1955-hotline"
+    },
+    {
+      "id": "taipei-labor",
+      "url": "https://www.facebook.com/handinhandintaipei",
+      "titleKey": "information.links.facebook.taipei-labor"
+    },
+    {
+      "id": "kdei-taipei",
+      "url": "https://www.facebook.com/KDEI.Taipei.Taiwan/",
+      "titleKey": "information.links.facebook.kdei-taipei"
+    },
+    {
+      "id": "kdei-immigration",
+      "url": "https://www.facebook.com/imigrasi.kdeitaipei.56/",
+      "titleKey": "information.links.facebook.kdei-immigration"
+    },
+    {
+      "id": "save-pmi",
+      "url": "https://savepmi.kdei-taipei.org/",
+      "titleKey": "information.links.facebook.save-pmi"
+    },
+    {
+      "id": "veco-taipei",
+      "url": "https://www.facebook.com/VIETNAMOFFICEINTAIPEI/",
+      "titleKey": "information.links.facebook.veco-taipei"
+    },
+    {
+      "id": "veco-labor",
+      "url": "http://www.vecolabor.org.tw",
+      "titleKey": "information.links.facebook.veco-labor"
+    },
+    {
+      "id": "meco",
+      "url": "https://www.facebook.com/MECO.official/",
+      "titleKey": "information.links.facebook.meco"
+    },
+    {
+      "id": "thai-labor",
+      "url": "https://www.facebook.com/thailabourtaipei/",
+      "titleKey": "information.links.facebook.thai-labor"
+    }
+  ],
+  "website": [
+    {
+      "id": "worker-rights",
+      "url": "https://fw.wda.gov.tw",
+      "titleKey": "information.links.website.worker-rights"
+    },
+    {
+      "id": "worker-query",
+      "url": "https://fwad.wda.gov.tw/fwad/",
+      "titleKey": "information.links.website.worker-query"
+    },
+    {
+      "id": "taipei-new-immigrants",
+      "url": "https://nit.taipei/",
+      "titleKey": "information.links.website.taipei-new-immigrants"
+    },
+    {
+      "id": "occupational-safety",
+      "url": "https://isafeel.osha.gov.tw/",
+      "titleKey": "information.links.website.occupational-safety"
+    },
+    {
+      "id": "kdei",
+      "url": "https://www.kdei-taipei.org",
+      "titleKey": "information.links.website.kdei"
+    },
+    {
+      "id": "save-pmi",
+      "url": "https://savepmi.kdei-taipei.org/",
+      "titleKey": "information.links.website.save-pmi"
+    },
+    {
+      "id": "veco-labor",
+      "url": "http://www.vecolabor.org.tw",
+      "titleKey": "information.links.website.veco-labor"
+    },
+    {
+      "id": "vietnam-office",
+      "url": "https://vnoffice-taipei.mofa.gov.vn",
+      "titleKey": "information.links.website.vietnam-office"
+    },
+    {
+      "id": "thai-labor",
+      "url": "https://taipei.mol.go.th?utm_source=chatgpt.com",
+      "titleKey": "information.links.website.thai-labor"
+    },
+    {
+      "id": "meco",
+      "url": "https://www.meco.org.tw",
+      "titleKey": "information.links.website.meco"
+    },
+    {
+      "id": "dmw",
+      "url": "https://dmw.gov.ph",
+      "titleKey": "information.links.website.dmw"
+    }
+  ],
+  "youtube": [
+    {
+      "id": "taipei-migrant-worker-school",
+      "url": "https://www.youtube.com/@taipeimigrantworkerschool5411",
+      "titleKey": "information.links.youtube.taipei-migrant-worker-school"
+    },
+    {
+      "id": "nia-news",
+      "url": "https://www.youtube.com/@nianews2358",
+      "titleKey": "information.links.youtube.nia-news"
+    }
+  ],
+  "radio": [
+    {
+      "id": "taiwan-radio",
+      "url": "https://www.taiwanradio.com.tw/",
+      "titleKey": "information.links.radio.taiwan-radio"
+    }
+  ]
+}

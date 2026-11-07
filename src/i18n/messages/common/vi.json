@@ -1,0 +1,11 @@
+{
+  "appName": "TownPass",
+  "language": "Ngôn ngữ",
+  "mainNavigation": "Điều hướng chính",
+  "backToInformation": "Quay lại thông tin",
+  "openExternal": "{title} (mở trong cửa sổ mới)",
+  "call": "Gọi {number}: {description}",
+  "information": "Thông tin",
+  "livingMap": "Bản đồ đời sống",
+  "events": "Hoạt động"
+}

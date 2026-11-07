@@ -1,13 +1,10 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import type { BolaEvent, EventCategoryKey } from '@/interfaces/event.interface';
-import {
-  categoryLabelsMap,
-  currentLang,
-  formatEventDate,
-  formatRelativeTime,
-  t
-} from '@/utils/i18n';
+import { useI18n } from 'vue-i18n';
+import { formatEventDate, formatRelativeTime } from '@/utils/localized-date';
+
+const { t, locale } = useI18n({ useScope: 'global' });
 
 const props = defineProps<{
   event: BolaEvent;
@@ -18,29 +15,34 @@ const props = defineProps<{
 const isExpanded = ref(false);
 
 const displayTitle = computed(() => {
-  if (currentLang.value === 'en' && props.event.titleEn) {
+  if (locale.value === 'en' && props.event.titleEn) {
     return props.event.titleEn;
   }
   return props.event.title;
 });
 
 const displaySummary = computed(() => {
-  if (currentLang.value === 'en' && props.event.summaryEn) {
+  if (locale.value === 'en' && props.event.summaryEn) {
     return props.event.summaryEn;
   }
   return props.event.summary;
 });
 
 const categoryLabel = computed(() => {
-  return categoryLabelsMap[currentLang.value]?.[props.event.category] || props.event.categoryLabel;
+  return t(`events.${props.event.category}`);
 });
 
 const formattedDateStr = computed(() => {
-  return formatEventDate(props.event.timestamp, currentLang.value);
+  return formatEventDate(props.event.timestamp, locale.value);
 });
 
 const relativeTimeStr = computed(() => {
-  return formatRelativeTime(props.event.timestamp);
+  return formatRelativeTime(props.event.timestamp, locale.value);
+});
+
+const isRecent = computed(() => {
+  const age = Date.now() - props.event.timestamp;
+  return age >= 0 && age < 86_400_000;
 });
 
 const categoryStyles = computed(() => {
@@ -97,13 +99,7 @@ function toggleExpanded() {
       <div
         v-if="relativeTimeStr"
         class="text-[10px] font-semibold mt-1 inline-block px-1.5 py-0.2 rounded"
-        :class="
-          relativeTimeStr === t('justNow') ||
-          relativeTimeStr.includes('h') ||
-          relativeTimeStr.includes('小時')
-            ? 'bg-red-50 text-red-600'
-            : 'bg-primary-50 text-primary-700'
-        "
+        :class="isRecent ? 'bg-red-50 text-red-600' : 'bg-primary-50 text-primary-700'"
       >
         {{ relativeTimeStr }}
       </div>
@@ -208,7 +204,7 @@ function toggleExpanded() {
           <div
             v-if="props.event.attachments && props.event.attachments.length > 0"
             class="inline-flex items-center gap-1 text-[11px] font-semibold text-grey-500 bg-grey-50 px-2 py-0.5 rounded-md border border-grey-200"
-            :title="`${props.event.attachments.length} attachment(s)`"
+            :title="t('events.attachmentsCount', { count: props.event.attachments.length })"
           >
             <svg
               class="w-3 h-3 text-grey-400"
@@ -236,7 +232,7 @@ function toggleExpanded() {
             target="_blank"
             rel="noopener noreferrer"
             class="hover:underline focus:outline-none focus:text-primary-600"
-            :title="`前往外部官方頁面：${displayTitle}`"
+            :title="t('events.openOfficial', { title: displayTitle })"
           >
             {{ displayTitle }}
           </a>
@@ -261,7 +257,7 @@ function toggleExpanded() {
           <div v-if="props.event.attachments && props.event.attachments.length > 0" class="pt-2">
             <div class="text-[11px] font-bold text-grey-500 mb-1.5 flex items-center gap-1">
               <span>
-                {{ t('attachmentsCount', { count: props.event.attachments.length }) }}：
+                {{ t('events.attachmentsCount', { count: props.event.attachments.length }) }}：
               </span>
             </div>
             <div class="flex flex-wrap gap-1.5">
@@ -307,7 +303,7 @@ function toggleExpanded() {
             class="inline-flex items-center gap-1 text-[11px] sm:text-xs font-semibold text-grey-500 hover:text-primary-600 transition-colors py-1 cursor-pointer"
             @click="toggleExpanded"
           >
-            <span>{{ isExpanded ? t('collapse') : t('viewDetails') }}</span>
+            <span>{{ isExpanded ? t('events.collapse') : t('events.viewDetails') }}</span>
             <svg
               class="w-3 h-3 transition-transform duration-200"
               :class="{ 'rotate-180': isExpanded }"
@@ -326,9 +322,9 @@ function toggleExpanded() {
             target="_blank"
             rel="noopener noreferrer"
             class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold bg-primary-500 text-white hover:bg-primary-600 active:scale-95 transition-all shadow-2xs focus:ring-2 focus:ring-primary-400 focus:outline-none"
-            :title="`前往外部官方頁面：${displayTitle}`"
+            :title="t('events.openOfficial', { title: displayTitle })"
           >
-            <span>{{ t('officialSite') }}</span>
+            <span>{{ t('events.officialSite') }}</span>
             <svg
               class="w-3 h-3 text-white"
               viewBox="0 0 24 24"

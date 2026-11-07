@@ -1,0 +1,11 @@
+{
+  "appName": "TownPass",
+  "language": "Bahasa",
+  "mainNavigation": "Navigasi utama",
+  "backToInformation": "Kembali ke informasi",
+  "openExternal": "{title} (buka di jendela baru)",
+  "call": "Hubungi {number}: {description}",
+  "information": "Informasi",
+  "livingMap": "Peta Kehidupan",
+  "events": "Kegiatan"
+}

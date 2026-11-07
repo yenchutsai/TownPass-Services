@@ -1,63 +1,11 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import resources from '@/data/information-resources.json';
 
-const websites = [
-  {
-    id: 'worker-rights',
-    title: '外國人勞動權益網',
-    url: 'https://fw.wda.gov.tw'
-  },
-  {
-    id: 'worker-query',
-    title: '勞保局移工線上查詢系統',
-    url: 'https://fwad.wda.gov.tw/fwad/'
-  },
-  {
-    id: 'taipei-new-immigrants',
-    title: '臺北市新住民網站',
-    url: 'https://nit.taipei/'
-  },
-  {
-    id: 'occupational-safety',
-    title: '職業安全衛生數位學習平台',
-    url: 'https://isafeel.osha.gov.tw/'
-  },
-  {
-    id: 'kdei',
-    title: 'KDEI Taipei 印尼代表處',
-    url: 'https://www.kdei-taipei.org'
-  },
-  {
-    id: 'save-pmi',
-    title: 'Save PMI Taiwan',
-    url: 'https://savepmi.kdei-taipei.org/'
-  },
-  {
-    id: 'veco-labor',
-    title: '越南辦事處勞工管理組',
-    url: 'http://www.vecolabor.org.tw'
-  },
-  {
-    id: 'vietnam-office',
-    title: '越南辦事處',
-    url: 'https://vnoffice-taipei.mofa.gov.vn'
-  },
-  {
-    id: 'thai-labor',
-    title: '泰國駐台北勞工事務處',
-    url: 'https://taipei.mol.go.th?utm_source=chatgpt.com'
-  },
-  {
-    id: 'meco',
-    title: 'MECO 菲律賓辦事處',
-    url: 'https://www.meco.org.tw'
-  },
-  {
-    id: 'dmw',
-    title: 'DMW 菲律賓移工部',
-    url: 'https://dmw.gov.ph'
-  }
-];
+const { t } = useI18n({ useScope: 'global' });
+
+const websites = resources.website;
 </script>
 
 <template>
@@ -65,9 +13,9 @@ const websites = [
     <div class="website-content">
       <header class="website-header">
         <RouterLink :to="{ name: 'information' }" class="back-link">
-          <span aria-hidden="true">←</span> 返回資訊
+          <span aria-hidden="true">←</span> {{ t('common.backToInformation') }}
         </RouterLink>
-        <h1 id="website-title">網站</h1>
+        <h1 id="website-title">{{ t('information.sections.website') }}</h1>
       </header>
       <ul class="website-list">
         <li v-for="website in websites" :key="website.id">
@@ -76,9 +24,9 @@ const websites = [
             class="website-row"
             target="_blank"
             rel="noopener noreferrer"
-            :aria-label="`${website.title}（在新視窗開啟網站）`"
+            :aria-label="t('common.openExternal', { title: t(website.titleKey) })"
           >
-            <p class="website-account-title">{{ website.title }}</p>
+            <p class="website-account-title">{{ t(website.titleKey) }}</p>
             <span class="external-link-icon" aria-hidden="true">↗</span>
           </a>
         </li>
@@ -90,8 +38,8 @@ const websites = [
 <style scoped>
 .website-view {
   box-sizing: border-box;
-  height: calc(100vh - 49px);
-  height: calc(100dvh - 49px);
+  height: calc(100vh - var(--service-chrome-height, 49px));
+  height: calc(100dvh - var(--service-chrome-height, 49px));
   overflow-y: auto;
   overscroll-behavior-y: contain;
   scrollbar-gutter: stable;

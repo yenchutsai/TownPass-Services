@@ -1,0 +1,11 @@
+{
+  "appName": "TownPass",
+  "language": "ภาษา",
+  "mainNavigation": "เมนูหลัก",
+  "backToInformation": "กลับไปหน้าข้อมูล",
+  "openExternal": "{title} (เปิดในหน้าต่างใหม่)",
+  "call": "โทร {number}: {description}",
+  "information": "ข้อมูล",
+  "livingMap": "แผนที่ชีวิตประจำวัน",
+  "events": "กิจกรรม"
+}

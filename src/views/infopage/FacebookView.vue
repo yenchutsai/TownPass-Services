@@ -1,53 +1,11 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import resources from '@/data/information-resources.json';
 
-const facebookLinks = [
-  {
-    id: '1955-hotline',
-    title: '1955hotline移工專線',
-    url: 'https://www.facebook.com/1955foreignworkershotline/'
-  },
-  {
-    id: 'taipei-labor',
-    title: '臺北市勞動力重建運用處',
-    url: 'https://www.facebook.com/handinhandintaipei'
-  },
-  {
-    id: 'kdei-taipei',
-    title: 'KDEI Taipei 駐台北印尼經濟貿易代表處',
-    url: 'https://www.facebook.com/KDEI.Taipei.Taiwan/'
-  },
-  {
-    id: 'kdei-immigration',
-    title: 'Imigrasi KDEI Taipei 印尼代表處移民組',
-    url: 'https://www.facebook.com/imigrasi.kdeitaipei.56/'
-  },
-  {
-    id: 'save-pmi',
-    title: 'Save PMI Taiwan',
-    url: 'https://savepmi.kdei-taipei.org/'
-  },
-  {
-    id: 'veco-taipei',
-    title: 'VECO Taipei 駐台北越南經濟文化辦事處',
-    url: 'https://www.facebook.com/VIETNAMOFFICEINTAIPEI/'
-  },
-  {
-    id: 'veco-labor',
-    title: '越南辦事處勞工管理組',
-    url: 'http://www.vecolabor.org.tw'
-  },
-  {
-    id: 'meco',
-    title: 'MECO 馬尼拉經濟文化辦事處',
-    url: 'https://www.facebook.com/MECO.official/'
-  },
-  {
-    id: 'thai-labor',
-    title: '泰國駐台北勞工事務處',
-    url: 'https://www.facebook.com/thailabourtaipei/'
-  }
-];
+const { t } = useI18n({ useScope: 'global' });
+
+const facebookLinks = resources.facebook;
 </script>
 
 <template>
@@ -55,9 +13,9 @@ const facebookLinks = [
     <div class="facebook-content">
       <header class="facebook-header">
         <RouterLink :to="{ name: 'information' }" class="back-link">
-          <span aria-hidden="true">←</span> 返回資訊
+          <span aria-hidden="true">←</span> {{ t('common.backToInformation') }}
         </RouterLink>
-        <h1 id="facebook-title">Facebook</h1>
+        <h1 id="facebook-title">{{ t('information.sections.facebook') }}</h1>
       </header>
       <ul class="facebook-list">
         <li v-for="account in facebookLinks" :key="account.id">
@@ -66,9 +24,9 @@ const facebookLinks = [
             class="facebook-row"
             target="_blank"
             rel="noopener noreferrer"
-            :aria-label="`${account.title}（在新視窗開啟連結）`"
+            :aria-label="t('common.openExternal', { title: t(account.titleKey) })"
           >
-            <p class="facebook-account-title">{{ account.title }}</p>
+            <p class="facebook-account-title">{{ t(account.titleKey) }}</p>
             <span class="external-link-icon" aria-hidden="true">↗</span>
           </a>
         </li>
@@ -80,8 +38,8 @@ const facebookLinks = [
 <style scoped>
 .facebook-view {
   box-sizing: border-box;
-  height: calc(100vh - 49px);
-  height: calc(100dvh - 49px);
+  height: calc(100vh - var(--service-chrome-height, 49px));
+  height: calc(100dvh - var(--service-chrome-height, 49px));
   overflow-y: auto;
   overscroll-behavior-y: contain;
   scrollbar-gutter: stable;

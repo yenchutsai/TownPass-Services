@@ -1,46 +1,13 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import resources from '@/data/information-resources.json';
+
 import phoneIcon from '@/assets/images/icon_tel.svg';
 
-const phoneNumbers = [
-  {
-    number: '1955',
-    description: '勞資問題、薪資工時、移工諮詢與申訴',
-    // 勞動部勞動力發展署
-    source: 'https://www.wda.gov.tw/News_Content.aspx?n=277&s=18960'
-  },
-  {
-    number: '110',
-    description: '警察報案、治安事件、緊急協助',
-    // 內政部警政署
-    source:
-      'https://www.npa.gov.tw/ch/app/artwebsite/view?id=1048&module=artwebsite&serno=e3ad2889-4dee-41cf-aef8-9b9d26dc6950'
-  },
-  {
-    number: '119',
-    description: '火災報案、緊急救護、救援',
-    // 內政部消防署
-    source: 'https://www.nfa.gov.tw/cht/?code=list&ids=66'
-  },
-  {
-    number: '113',
-    description: '家庭暴力、性侵害、兒少保護',
-    // 衛生福利部保護服務司
-    source: 'https://dep.mohw.gov.tw/DOPS/fp-1183-6499-105.html'
-  },
-  {
-    number: '1990',
-    description: '外國人在臺生活、簽證與居留諮詢',
-    // 內政部移民署
-    source: 'https://www.immigration.gov.tw/5385/5388/7181/100924/'
-  },
-  {
-    number: '1999',
-    description: '市政諮詢、陳情、公共設施問題',
-    // 臺北市政府
-    source: 'https://www.gov.taipei/News_Content.aspx?n=EEC70A4186D4C828&s=55B67D9F0BA0BB8E'
-  }
-];
+const { t } = useI18n({ useScope: 'global' });
+
+const phoneNumbers = resources.phone;
 </script>
 
 <template>
@@ -48,19 +15,22 @@ const phoneNumbers = [
     <div class="phone-content">
       <header class="phone-header">
         <RouterLink :to="{ name: 'information' }" class="back-link">
-          <span aria-hidden="true">←</span> 返回資訊
+          <span aria-hidden="true">←</span> {{ t('common.backToInformation') }}
         </RouterLink>
-        <h1 id="phone-title">電話</h1>
+        <h1 id="phone-title">{{ t('information.sections.phone') }}</h1>
       </header>
       <ul class="phone-list">
         <li v-for="phone in phoneNumbers" :key="phone.number">
           <a
             :href="`tel:${phone.number}`"
             class="phone-row"
-            :aria-label="`撥打 ${phone.number}：${phone.description}`"
+            :aria-label="
+              t('common.call', { number: phone.number, description: t(phone.descriptionKey) })
+            "
           >
             <p class="phone-description">
-              <strong>{{ phone.number }}</strong>：{{ phone.description }}
+              <strong>{{ phone.number }}</strong
+              >：{{ t(phone.descriptionKey) }}
             </p>
             <img :src="phoneIcon" alt="" width="24" height="24" />
           </a>
@@ -73,8 +43,8 @@ const phoneNumbers = [
 <style scoped>
 .phone-view {
   box-sizing: border-box;
-  height: calc(100vh - 49px);
-  height: calc(100dvh - 49px);
+  height: calc(100vh - var(--service-chrome-height, 49px));
+  height: calc(100dvh - var(--service-chrome-height, 49px));
   overflow-y: auto;
   overscroll-behavior-y: contain;
   scrollbar-gutter: stable;

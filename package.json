@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
+    "build": "run-p check:i18n type-check \"build-only {@}\" --",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
+    "check:i18n": "node scripts/check-i18n.mjs",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
     "format": "prettier --write src/"
   },
@@ -27,6 +28,7 @@
     "qrcode.vue": "3.4.1",
     "v-calendar": "3.1.2",
     "vue": "3.4.21",
+    "vue-i18n": "11",
     "vue-router": "4.3.0",
     "vue3-google-map": "0.21.0"
   },

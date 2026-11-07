@@ -1,0 +1,58 @@
+{
+  "sections": {
+    "phone": "電話",
+    "line": "LINE",
+    "facebook": "Facebook",
+    "website": "網站",
+    "youtube": "YouTube",
+    "radio": "廣播"
+  },
+  "phoneDescriptions": {
+    "1955": "勞資問題、薪資工時、移工諮詢與申訴",
+    "110": "警察報案、治安事件、緊急協助",
+    "119": "火災報案、緊急救護、救援",
+    "113": "家庭暴力、性侵害、兒少保護",
+    "1990": "外國人在臺生活、簽證與居留諮詢",
+    "1999": "市政諮詢、陳情、公共設施問題"
+  },
+  "links": {
+    "line": {
+      "zh": "1955移工專線-E-LINE-中文版",
+      "id": "1955移工專線-E-LINE-印尼版 Indonesia 🇮🇩",
+      "vi": "1955移工專線-E-LINE-越南版 Tiếng Việt 🇻🇳",
+      "th": "1955移工專線-E-LINE-泰國版 ภาษาไทย 🇹🇭",
+      "en": "1955移工專線-E-LINE-英文版 English 菲律賓 🇵🇭"
+    },
+    "facebook": {
+      "1955-hotline": "1955hotline移工專線",
+      "taipei-labor": "臺北市勞動力重建運用處",
+      "kdei-taipei": "KDEI Taipei 駐台北印尼經濟貿易代表處",
+      "kdei-immigration": "Imigrasi KDEI Taipei 印尼代表處移民組",
+      "save-pmi": "Save PMI Taiwan",
+      "veco-taipei": "VECO Taipei 駐台北越南經濟文化辦事處",
+      "veco-labor": "越南辦事處勞工管理組",
+      "meco": "MECO 馬尼拉經濟文化辦事處",
+      "thai-labor": "泰國駐台北勞工事務處"
+    },
+    "website": {
+      "worker-rights": "外國人勞動權益網",
+      "worker-query": "勞保局移工線上查詢系統",
+      "taipei-new-immigrants": "臺北市新住民網站",
+      "occupational-safety": "職業安全衛生數位學習平台",
+      "kdei": "KDEI Taipei 印尼代表處",
+      "save-pmi": "Save PMI Taiwan",
+      "veco-labor": "越南辦事處勞工管理組",
+      "vietnam-office": "越南辦事處",
+      "thai-labor": "泰國駐台北勞工事務處",
+      "meco": "MECO 菲律賓辦事處",
+      "dmw": "DMW 菲律賓移工部"
+    },
+    "youtube": {
+      "taipei-migrant-worker-school": "臺北移工學校",
+      "nia-news": "NIA NEWS 新住民全球新聞網"
+    },
+    "radio": {
+      "taiwan-radio": "台灣廣播公司移工節目"
+    }
+  }
+}

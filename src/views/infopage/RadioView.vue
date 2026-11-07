@@ -1,13 +1,11 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import resources from '@/data/information-resources.json';
 
-const radioPrograms = [
-  {
-    id: 'taiwan-radio',
-    title: '台灣廣播公司移工節目',
-    url: 'https://www.taiwanradio.com.tw/'
-  }
-];
+const { t } = useI18n({ useScope: 'global' });
+
+const radioPrograms = resources.radio;
 </script>
 
 <template>
@@ -15,9 +13,9 @@ const radioPrograms = [
     <div class="radio-content">
       <header class="radio-header">
         <RouterLink :to="{ name: 'information' }" class="back-link">
-          <span aria-hidden="true">←</span> 返回資訊
+          <span aria-hidden="true">←</span> {{ t('common.backToInformation') }}
         </RouterLink>
-        <h1 id="radio-title">廣播</h1>
+        <h1 id="radio-title">{{ t('information.sections.radio') }}</h1>
       </header>
       <ul class="radio-list">
         <li v-for="program in radioPrograms" :key="program.id">
@@ -26,9 +24,9 @@ const radioPrograms = [
             class="radio-row"
             target="_blank"
             rel="noopener noreferrer"
-            :aria-label="`${program.title}（在新視窗開啟廣播網站）`"
+            :aria-label="t('common.openExternal', { title: t(program.titleKey) })"
           >
-            <p class="radio-account-title">{{ program.title }}</p>
+            <p class="radio-account-title">{{ t(program.titleKey) }}</p>
             <span class="external-link-icon" aria-hidden="true">↗</span>
           </a>
         </li>
@@ -40,8 +38,8 @@ const radioPrograms = [
 <style scoped>
 .radio-view {
   box-sizing: border-box;
-  height: calc(100vh - 49px);
-  height: calc(100dvh - 49px);
+  height: calc(100vh - var(--service-chrome-height, 49px));
+  height: calc(100dvh - var(--service-chrome-height, 49px));
   overflow-y: auto;
   overscroll-behavior-y: contain;
   scrollbar-gutter: stable;

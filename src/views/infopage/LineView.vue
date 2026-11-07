@@ -1,33 +1,11 @@
 <script setup lang="ts">
 import { RouterLink } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+import resources from '@/data/information-resources.json';
 
-const lineAccounts = [
-  {
-    id: 'zh',
-    title: '1955移工專線-E-LINE-中文版',
-    url: 'https://lin.ee/9ogCQ3T'
-  },
-  {
-    id: 'id',
-    title: '1955移工專線-E-LINE-印尼版 Indonesia 🇮🇩',
-    url: 'https://lin.ee/CP0lzIK'
-  },
-  {
-    id: 'vi',
-    title: '1955移工專線-E-LINE-越南版 Tiếng Việt 🇻🇳',
-    url: 'https://lin.ee/GOrGlZI'
-  },
-  {
-    id: 'th',
-    title: '1955移工專線-E-LINE-泰國版 ภาษาไทย 🇹🇭',
-    url: 'https://lin.ee/c0fW2nc'
-  },
-  {
-    id: 'en',
-    title: '1955移工專線-E-LINE-英文版 English 菲律賓 🇵🇭',
-    url: 'https://lin.ee/jap3WmC'
-  }
-];
+const { t } = useI18n({ useScope: 'global' });
+
+const lineAccounts = resources.line;
 </script>
 
 <template>
@@ -35,9 +13,9 @@ const lineAccounts = [
     <div class="line-content">
       <header class="line-header">
         <RouterLink :to="{ name: 'information' }" class="back-link">
-          <span aria-hidden="true">←</span> 返回資訊
+          <span aria-hidden="true">←</span> {{ t('common.backToInformation') }}
         </RouterLink>
-        <h1 id="line-title">LINE</h1>
+        <h1 id="line-title">{{ t('information.sections.line') }}</h1>
       </header>
       <ul class="line-list">
         <li v-for="account in lineAccounts" :key="account.id">
@@ -46,9 +24,9 @@ const lineAccounts = [
             class="line-row"
             target="_blank"
             rel="noopener noreferrer"
-            :aria-label="`${account.title}（在新視窗開啟 LINE 連結）`"
+            :aria-label="t('common.openExternal', { title: t(account.titleKey) })"
           >
-            <p class="line-account-title">{{ account.title }}</p>
+            <p class="line-account-title">{{ t(account.titleKey) }}</p>
             <span class="external-link-icon" aria-hidden="true">↗</span>
           </a>
         </li>
@@ -60,8 +38,8 @@ const lineAccounts = [
 <style scoped>
 .line-view {
   box-sizing: border-box;
-  height: calc(100vh - 49px);
-  height: calc(100dvh - 49px);
+  height: calc(100vh - var(--service-chrome-height, 49px));
+  height: calc(100dvh - var(--service-chrome-height, 49px));
   overflow-y: auto;
   overscroll-behavior-y: contain;
   scrollbar-gutter: stable;

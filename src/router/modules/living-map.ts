@@ -5,7 +5,7 @@ const livingMapRoutes: RouteRecordRaw[] = [
     path: 'living-map',
     name: 'living-map',
     component: () => import('@/views/LivingMapView.vue'),
-    meta: { title: '生活地圖' }
+    meta: { title: '生活地圖', titleKey: 'common.livingMap' }
   }
 ];
 
