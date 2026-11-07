@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { RouterLink, RouterView } from 'vue-router';
 // 提供正式電話圖示後，替換這個 import 即可。
 import phoneIcon from '@/assets/images/icon_tel.svg';
 import placeholderIcon from '@/assets/images/info-icon-grey.svg';
@@ -15,21 +16,30 @@ const informationItems = [
 </script>
 
 <template>
-  <section class="information-view" aria-label="資訊" tabindex="0">
-    <ul class="information-list">
-      <li
-        v-for="item in informationItems"
-        :key="item.id"
-        class="information-item"
-        :class="{ 'information-item--pending': item.pending }"
-      >
-        <div class="information-image">
-          <img :src="item.image" alt="" width="32" height="32" />
-        </div>
-        <p class="information-title" :title="item.title">{{ item.title }}</p>
-      </li>
-    </ul>
-  </section>
+  <RouterView v-slot="{ Component }">
+    <component :is="Component" v-if="Component" />
+    <section v-else class="information-view" aria-label="資訊" tabindex="0">
+      <ul class="information-list">
+        <li
+          v-for="item in informationItems"
+          :key="item.id"
+          class="information-item"
+          :class="{ 'information-item--pending': item.pending }"
+        >
+          <component
+            :is="item.id === 'phone' ? RouterLink : 'div'"
+            :to="item.id === 'phone' ? { name: 'phone' } : undefined"
+            class="information-row"
+          >
+            <div class="information-image">
+              <img :src="item.image" alt="" width="32" height="32" />
+            </div>
+            <p class="information-title" :title="item.title">{{ item.title }}</p>
+          </component>
+        </li>
+      </ul>
+    </section>
+  </RouterView>
 </template>
 
 <style scoped>
@@ -51,12 +61,24 @@ const informationItems = [
 }
 
 .information-item {
+  border-bottom: 1px solid #e3e7e9;
+}
+
+.information-row {
   display: flex;
   align-items: center;
   gap: 16px;
   min-height: 104px;
   padding: 16px 8px;
-  border-bottom: 1px solid #e3e7e9;
+}
+
+a.information-row:hover {
+  background: #edf8fa;
+}
+
+.information-row:focus-visible {
+  outline: 2px solid #2eb6c7;
+  outline-offset: -2px;
 }
 
 .information-image {

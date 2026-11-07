@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
+import informationRoutes from './modules/information';
+import livingMapRoutes from './modules/living-map';
+import eventRoutes from './modules/events';
 import FormView from '../views/FormView.vue';
 import SurroundingServiceView from '../views/SurroundingServiceView.vue';
 import TopQnAListView from '../views/TopQnAListView.vue';
@@ -60,26 +63,7 @@ const router = createRouter({
       },
       component: HomeView,
       redirect: { name: 'living-map' },
-      children: [
-        {
-          path: 'information',
-          name: 'information',
-          component: () => import('../views/InformationView.vue'),
-          meta: { title: '資訊' }
-        },
-        {
-          path: 'living-map',
-          name: 'living-map',
-          component: () => import('../views/LivingMapView.vue'),
-          meta: { title: '生活地圖' }
-        },
-        {
-          path: 'events',
-          name: 'events',
-          component: () => import('../views/EventsView.vue'),
-          meta: { title: '活動' }
-        }
-      ]
+      children: [...informationRoutes, ...livingMapRoutes, ...eventRoutes]
     },
     {
       path: '/form/:id',
