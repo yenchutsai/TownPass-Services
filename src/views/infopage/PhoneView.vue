@@ -60,8 +60,7 @@ const phoneNumbers = [
             :aria-label="`撥打 ${phone.number}：${phone.description}`"
           >
             <p class="phone-description">
-              <strong>{{ phone.number }}</strong
-              >：{{ phone.description }}
+              <strong>{{ phone.number }}</strong>：{{ phone.description }}
             </p>
             <img :src="phoneIcon" alt="" width="24" height="24" />
           </a>

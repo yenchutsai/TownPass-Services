@@ -12,6 +12,36 @@ const informationRoutes: RouteRecordRaw[] = [
         name: 'phone',
         component: () => import('@/views/infopage/PhoneView.vue'),
         meta: { title: '電話' }
+      },
+      {
+        path: 'line',
+        name: 'line',
+        component: () => import('@/views/infopage/LineView.vue'),
+        meta: { title: 'LINE' }
+      },
+      {
+        path: 'website',
+        name: 'website',
+        component: () => import('@/views/infopage/WebsiteView.vue'),
+        meta: { title: '網站' }
+      },
+      {
+        path: 'facebook',
+        name: 'facebook',
+        component: () => import('@/views/infopage/FacebookView.vue'),
+        meta: { title: 'Facebook' }
+      },
+      {
+        path: 'youtube',
+        name: 'youtube',
+        component: () => import('@/views/infopage/YouTubeView.vue'),
+        meta: { title: 'YouTube' }
+      },
+      {
+        path: 'radio',
+        name: 'radio',
+        component: () => import('@/views/infopage/RadioView.vue'),
+        meta: { title: '廣播' }
       }
     ]
   }
