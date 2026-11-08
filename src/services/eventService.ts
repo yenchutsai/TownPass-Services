@@ -125,6 +125,7 @@ export function parseRssXml(xmlText: string): BolaEventsFeedData {
     const summaryEn = match?.summaryEn || summary;
     const source = match?.source || '臺北市勞動局';
     const sourceEn = match?.sourceEn || 'Taipei Labor Bureau';
+    const translations = match?.translations;
 
     events.push({
       id,
@@ -145,7 +146,8 @@ export function parseRssXml(xmlText: string): BolaEventsFeedData {
       summary,
       summaryEn,
       contentHtml: desc,
-      attachments
+      attachments,
+      translations
     });
   });
 

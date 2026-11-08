@@ -87,14 +87,20 @@ const filteredEvents = computed(() => {
   // Keyword search (searches Chinese and English fields)
   if (searchQuery.value.trim()) {
     const q = searchQuery.value.trim().toLowerCase();
-    list = list.filter(
-      (event) =>
-        event.title.toLowerCase().includes(q) ||
-        (event.titleEn && event.titleEn.toLowerCase().includes(q)) ||
-        event.summary.toLowerCase().includes(q) ||
-        (event.summaryEn && event.summaryEn.toLowerCase().includes(q)) ||
-        t(`events.${event.category}`).toLowerCase().includes(q)
-    );
+    list = list.filter((event) => {
+      if (event.title.toLowerCase().includes(q)) return true;
+      if (event.titleEn && event.titleEn.toLowerCase().includes(q)) return true;
+      if (event.summary.toLowerCase().includes(q)) return true;
+      if (event.summaryEn && event.summaryEn.toLowerCase().includes(q)) return true;
+      if (t(`events.${event.category}`).toLowerCase().includes(q)) return true;
+      if (event.translations) {
+        for (const tr of Object.values(event.translations)) {
+          if (tr?.title && tr.title.toLowerCase().includes(q)) return true;
+          if (tr?.summary && tr.summary.toLowerCase().includes(q)) return true;
+        }
+      }
+      return false;
+    });
   }
 
   // Sort by time

@@ -404,6 +404,18 @@ def main():
 
     print(f"Successfully wrote {len(events_list)} events to {OUTPUT_FILE}")
 
+    # 5. Translate and cache any new events using LibreTranslate
+    try:
+        import sys
+
+        sys.path.insert(0, SCRIPT_DIR)
+        from translate_events import translate_events
+
+        print("\n[i18n] Running translation and caching step...")
+        translate_events()
+    except Exception as trans_err:
+        print(f"[WARN] Translation step skipped or failed: {trans_err}", file=sys.stderr)
+
 
 if __name__ == "__main__":
     main()

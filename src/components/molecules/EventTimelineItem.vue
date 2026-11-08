@@ -16,16 +16,30 @@ const isExpanded = ref(false);
 
 const isNonChinese = computed(() => locale.value !== 'zh-TW');
 
+const currentTranslation = computed(() => {
+  return props.event.translations?.[locale.value];
+});
+
 const displayTitle = computed(() => {
-  if (isNonChinese.value && props.event.titleEn) {
-    return props.event.titleEn;
+  if (isNonChinese.value) {
+    if (currentTranslation.value?.title) {
+      return currentTranslation.value.title;
+    }
+    if (props.event.titleEn) {
+      return props.event.titleEn;
+    }
   }
   return props.event.title;
 });
 
 const displaySummary = computed(() => {
-  if (isNonChinese.value && props.event.summaryEn) {
-    return props.event.summaryEn;
+  if (isNonChinese.value) {
+    if (currentTranslation.value?.summary) {
+      return currentTranslation.value.summary;
+    }
+    if (props.event.summaryEn) {
+      return props.event.summaryEn;
+    }
   }
   return props.event.summary;
 });
@@ -35,8 +49,13 @@ const categoryLabel = computed(() => {
 });
 
 const displaySource = computed(() => {
-  if (isNonChinese.value && props.event.sourceEn) {
-    return props.event.sourceEn;
+  if (isNonChinese.value) {
+    if (currentTranslation.value?.source) {
+      return currentTranslation.value.source;
+    }
+    if (props.event.sourceEn) {
+      return props.event.sourceEn;
+    }
   }
   return props.event.source || '';
 });

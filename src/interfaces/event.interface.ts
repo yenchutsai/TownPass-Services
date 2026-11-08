@@ -6,6 +6,12 @@ export interface BolaEventAttachment {
   type: string;
 }
 
+export interface EventTranslation {
+  title: string;
+  summary: string;
+  source?: string;
+}
+
 export interface BolaEvent {
   id: string;
   title: string;
@@ -26,6 +32,7 @@ export interface BolaEvent {
   summaryEn?: string;
   contentHtml: string;
   attachments: BolaEventAttachment[];
+  translations?: Partial<Record<string, EventTranslation>>;
 }
 
 export interface BolaEventsFeedData {
