@@ -10,6 +10,8 @@ export interface EventTranslation {
   title: string;
   summary: string;
   source?: string;
+  contentHtml?: string;
+  attachments?: BolaEventAttachment[];
 }
 
 export interface BolaEvent {

@@ -51,7 +51,8 @@ function saveCache(): void {
 export async function translateTexts(
   texts: string[],
   targetLang: SupportedTargetLang,
-  sourceLang = 'zh-Hant'
+  sourceLang = 'zh-Hant',
+  format: 'text' | 'html' = 'text'
 ): Promise<Record<string, string>> {
   const cache = getCache();
   if (!cache[targetLang]) {
@@ -84,7 +85,7 @@ export async function translateTexts(
         q: missing,
         source: sourceLang,
         target: targetLang,
-        format: 'text'
+        format
       })
     });
 
@@ -124,7 +125,7 @@ export async function enrichEventWithTranslation(
   event: BolaEvent,
   targetLang: SupportedTargetLang
 ): Promise<BolaEvent> {
-  if (event.translations?.[targetLang]?.title) {
+  if (event.translations?.[targetLang]?.title && event.translations?.[targetLang]?.contentHtml) {
     return event;
   }
 
@@ -135,17 +136,36 @@ export async function enrichEventWithTranslation(
     textsToTranslate.push(shortSummary);
   }
   if (event.source) textsToTranslate.push(event.source);
+  if (event.attachments) {
+    event.attachments.forEach((att) => {
+      if (att.title) textsToTranslate.push(att.title);
+    });
+  }
 
-  const translations = await translateTexts(textsToTranslate, targetLang);
+  const translations = await translateTexts(textsToTranslate, targetLang, 'zh-Hant', 'text');
+
+  let translatedHtml = event.contentHtml || '';
+  if (event.contentHtml) {
+    const htmlMap = await translateTexts([event.contentHtml], targetLang, 'zh-Hant', 'html');
+    translatedHtml = htmlMap[event.contentHtml] || event.contentHtml;
+  }
 
   const shortSummary =
     event.summary && event.summary.length > 300 ? event.summary.slice(0, 300) : event.summary;
+
+  const transAttachments = (event.attachments || []).map((att) => ({
+    title: translations[att.title] || att.title,
+    url: att.url,
+    type: att.type
+  }));
 
   const translationEntry: EventTranslation = {
     title: translations[event.title] || event.titleEn || event.title,
     summary:
       translations[shortSummary] || translations[event.summary] || event.summaryEn || event.summary,
-    source: translations[event.source || ''] || event.sourceEn || event.source
+    source: translations[event.source || ''] || event.sourceEn || event.source,
+    contentHtml: translatedHtml,
+    attachments: transAttachments
   };
 
   if (!event.translations) {

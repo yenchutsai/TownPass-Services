@@ -4,6 +4,9 @@ Translates events in src/data/bola-events.json into supported languages
 (English, Thai, Vietnamese, Indonesian) using the LibreTranslate server
 at ws6.csie.ntu.edu.tw:12345.
 
+Translates titles, summaries, source agencies, detailed content HTML,
+and attachment titles.
+
 Caches all translation results in src/data/translation-cache.json to avoid
 redundant API requests.
 """
@@ -38,9 +41,9 @@ def save_cache(cache):
         json.dump(cache, f, ensure_ascii=False, indent=2)
 
 
-def translate_batch(texts, target_lang, source_lang="zh-Hant", batch_size=15):
+def translate_batch(texts, target_lang, source_lang="zh-Hant", batch_size=10, fmt="text"):
     """
-    Translates a list of unique texts in batches via LibreTranslate API.
+    Translates a list of unique texts or HTML fragments in batches via LibreTranslate API.
     Returns a dict mapping original text -> translated text.
     """
     results = {}
@@ -54,7 +57,7 @@ def translate_batch(texts, target_lang, source_lang="zh-Hant", batch_size=15):
                 "q": chunk,
                 "source": source_lang,
                 "target": target_lang,
-                "format": "text",
+                "format": fmt,
             }
         ).encode("utf-8")
 
@@ -65,7 +68,7 @@ def translate_batch(texts, target_lang, source_lang="zh-Hant", batch_size=15):
         )
 
         try:
-            with urllib.request.urlopen(req, timeout=30) as resp:
+            with urllib.request.urlopen(req, timeout=45) as resp:
                 data = json.loads(resp.read().decode("utf-8"))
                 translated = data.get("translatedText", [])
                 if isinstance(translated, list):
@@ -75,7 +78,7 @@ def translate_batch(texts, target_lang, source_lang="zh-Hant", batch_size=15):
                     results[chunk[0]] = translated
         except Exception as e:
             print(
-                f"[ERROR] Batch translation failed for {target_lang} (chunk {i//batch_size + 1}): {e}",
+                f"[ERROR] Batch translation failed for {target_lang} (format={fmt}, chunk {i//batch_size + 1}): {e}",
                 file=sys.stderr,
             )
             # fallback to individual translation if batch failed
@@ -86,7 +89,7 @@ def translate_batch(texts, target_lang, source_lang="zh-Hant", batch_size=15):
                             "q": text,
                             "source": source_lang,
                             "target": target_lang,
-                            "format": "text",
+                            "format": fmt,
                         }
                     ).encode("utf-8")
                     s_req = urllib.request.Request(
@@ -94,7 +97,7 @@ def translate_batch(texts, target_lang, source_lang="zh-Hant", batch_size=15):
                         data=single_payload,
                         headers={"Content-Type": "application/json"},
                     )
-                    with urllib.request.urlopen(s_req, timeout=10) as s_resp:
+                    with urllib.request.urlopen(s_req, timeout=15) as s_resp:
                         s_data = json.loads(s_resp.read().decode("utf-8"))
                         results[text] = s_data.get("translatedText", text)
                 except Exception as s_err:
@@ -118,7 +121,7 @@ def translate_events():
         if lang not in cache:
             cache[lang] = {}
 
-    # Seed known high-quality translations into the cache
+    # Seed known high-quality translations into the cache for English
     for event in events:
         if event.get("title") and event.get("titleEn"):
             if event["title"] not in cache["en"]:
@@ -134,33 +137,57 @@ def translate_events():
     for lang in SUPPORTED_LANGUAGES:
         print(f"\n--- Processing language: {lang} ---")
         texts_to_translate = set()
+        html_to_translate = set()
 
         for event in events:
             title = event.get("title", "").strip()
             summary = event.get("summary", "").strip()
             source = event.get("source", "").strip()
+            content_html = event.get("contentHtml", "").strip()
 
             if title and title not in cache[lang]:
                 texts_to_translate.add(title)
             if summary and summary not in cache[lang]:
-                # If summary is very long (>500 chars), take first sentence or first 300 chars for concise mobile display
                 short_summary = summary[:300] if len(summary) > 300 else summary
                 if short_summary not in cache[lang]:
                     texts_to_translate.add(short_summary)
             if source and source not in cache[lang]:
                 texts_to_translate.add(source)
 
-        needed_list = list(texts_to_translate)
-        print(f"Found {len(needed_list)} new texts needing translation into '{lang}'.")
+            # Translate attachment titles
+            for att in event.get("attachments", []):
+                att_title = att.get("title", "").strip()
+                if att_title and att_title not in cache[lang]:
+                    texts_to_translate.add(att_title)
 
-        if needed_list:
+            # Translate content HTML
+            if content_html and content_html not in cache[lang]:
+                html_to_translate.add(content_html)
+
+        needed_texts = list(texts_to_translate)
+        needed_html = list(html_to_translate)
+
+        print(
+            f"Found {len(needed_texts)} text strings and {len(needed_html)} HTML fragments needing translation for '{lang}'."
+        )
+
+        if needed_texts:
             t0 = time.time()
-            translated_dict = translate_batch(needed_list, target_lang=lang)
-            cache[lang].update(translated_dict)
-            print(f"Translated {len(translated_dict)} texts in {time.time() - t0:.2f}s")
+            trans_texts = translate_batch(needed_texts, target_lang=lang, fmt="text", batch_size=15)
+            cache[lang].update(trans_texts)
+            print(f"Translated {len(trans_texts)} texts in {time.time() - t0:.2f}s")
             save_cache(cache)
-        else:
-            print("All texts already cached!")
+
+        if needed_html:
+            t0 = time.time()
+            # translate HTML in smaller batches of 8 for stability
+            trans_html = translate_batch(needed_html, target_lang=lang, fmt="html", batch_size=8)
+            cache[lang].update(trans_html)
+            print(f"Translated {len(trans_html)} HTML fragments in {time.time() - t0:.2f}s")
+            save_cache(cache)
+
+        if not needed_texts and not needed_html:
+            print(f"All texts and HTML for '{lang}' already cached!")
 
     # Enrich events with full translations dictionary
     for event in events:
@@ -171,16 +198,33 @@ def translate_events():
         summary = event.get("summary", "").strip()
         short_summary = summary[:300] if len(summary) > 300 else summary
         source = event.get("source", "").strip()
+        content_html = event.get("contentHtml", "").strip()
 
         for lang in SUPPORTED_LANGUAGES:
             trans_title = cache[lang].get(title, title)
             trans_summary = cache[lang].get(short_summary, cache[lang].get(summary, summary))
             trans_source = cache[lang].get(source, source)
+            trans_content_html = cache[lang].get(content_html, content_html)
+
+            # Translated attachments
+            trans_attachments = []
+            for att in event.get("attachments", []):
+                att_title = att.get("title", "").strip()
+                trans_att_title = cache[lang].get(att_title, att_title)
+                trans_attachments.append(
+                    {
+                        "title": trans_att_title,
+                        "url": att.get("url", ""),
+                        "type": att.get("type", "file"),
+                    }
+                )
 
             event["translations"][lang] = {
                 "title": trans_title,
                 "summary": trans_summary,
                 "source": trans_source,
+                "contentHtml": trans_content_html,
+                "attachments": trans_attachments,
             }
 
             # Backwards compatibility for en
@@ -198,4 +242,3 @@ def translate_events():
 
 if __name__ == "__main__":
     translate_events()
-

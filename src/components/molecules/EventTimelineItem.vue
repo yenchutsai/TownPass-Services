@@ -60,6 +60,29 @@ const displaySource = computed(() => {
   return props.event.source || '';
 });
 
+const displayContentHtml = computed(() => {
+  if (isNonChinese.value) {
+    if (currentTranslation.value?.contentHtml) {
+      return currentTranslation.value.contentHtml;
+    }
+    const enHtml = props.event.translations?.en?.contentHtml;
+    if (enHtml) return enHtml;
+    return '';
+  }
+  return props.event.contentHtml || '';
+});
+
+const displayAttachments = computed(() => {
+  if (isNonChinese.value) {
+    if (currentTranslation.value?.attachments && currentTranslation.value.attachments.length > 0) {
+      return currentTranslation.value.attachments;
+    }
+    const enAtt = props.event.translations?.en?.attachments;
+    if (enAtt && enAtt.length > 0) return enAtt;
+  }
+  return props.event.attachments || [];
+});
+
 const formattedDateStr = computed(() => {
   return formatEventDate(props.event.timestamp, locale.value);
 });
@@ -286,21 +309,21 @@ function toggleExpanded() {
           </p>
 
           <div
-            v-if="props.event.contentHtml"
+            v-if="displayContentHtml"
             class="event-html-content text-xs text-grey-600 max-w-none break-words space-y-1.5"
-            v-html="props.event.contentHtml"
+            v-html="displayContentHtml"
           />
 
           <!-- Downloadable Attachments -->
-          <div v-if="props.event.attachments && props.event.attachments.length > 0" class="pt-2">
+          <div v-if="displayAttachments && displayAttachments.length > 0" class="pt-2">
             <div class="text-[11px] font-bold text-grey-500 mb-1.5 flex items-center gap-1">
               <span>
-                {{ t('events.attachmentsCount', { count: props.event.attachments.length }) }}：
+                {{ t('events.attachmentsCount', { count: displayAttachments.length }) }}：
               </span>
             </div>
             <div class="flex flex-wrap gap-1.5">
               <a
-                v-for="(file, fIdx) in props.event.attachments"
+                v-for="(file, fIdx) in displayAttachments"
                 :key="fIdx"
                 :href="file.url"
                 target="_blank"
